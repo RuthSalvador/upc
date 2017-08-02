@@ -15,16 +15,27 @@ const render = (root) => {
     wrapper.append(SegundaPantalla());
   }
 
+  // switch(state.screenView) {
+  // case null:
+  // 	wrapper.append(Home(_ => render(root)));
+  // 	break;
+  // }
+
   root.append(wrapper);
 };
 
 const state = {
   page: 0,
-  data:{}
+  data:{},
+  rutasMo: null,
+	screenView: null
 };
 
-$( _ => {
-  const root = $("#root");
+$(document).ready(function() {
+  getJSON('/rutasMo', (err, json) => {
+  state.rutasMo = json;
+  console.log(state.rutasMo);
+  const root = $('.root');
   render(root);
-
+  });
 });
