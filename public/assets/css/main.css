@@ -1,39 +1,7 @@
-.bg--principal {
-  background-color: red;
-  color: white;
-}
-
-.bg--principal:hover {
-  color: white;
-}
-
-.bg--contrast {
-  background-color: white;
-  color: #aeaeae;
-}
-
-.text-principal {
-  color: red;
-}
-
-.text-secondary {
-  color: #aeaeae;
-}
-
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 * {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-}
-
-.map {
-  width: 100%;
-  height: 100vh;
-}
-
-.result__details {
-  padding: 21px 35px;
-  position: absolute;
-  bottom: 5vh;
 }
 
 body {
@@ -46,15 +14,17 @@ header {
   font-size: 21px;
 }
 
+header * {
+  display: inline-block;
+}
+
 header span {
   padding-left: 7px;
   padding-right: 7px;
 }
 
-header h5 {
-  display: inline-block;
+header h3 {
   font-weight: bold;
-  font-size: 21px;
   padding-left: 7px;
   padding-right: 7px;
 }
@@ -69,17 +39,3 @@ header h5 {
 }
 
 /* Medium devices (desktops, 992px and up) */
-#login {
-  align-items: center;
-  height: 100vh;
-  background-color: aqua;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-#login .login__cajas,
-#login .login__botones {
-  display: flex;
-  flex-direction: column;
-}
