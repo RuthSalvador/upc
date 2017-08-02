@@ -50,7 +50,7 @@ header * {
   display: inline-block;
 }
 
-header span {
+header span, header p {
   padding-left: 7px;
   padding-right: 7px;
 }
