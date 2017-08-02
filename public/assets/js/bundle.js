@@ -208,19 +208,20 @@ const render = (root) => {
   const wrapper = $('<div class="wrapper"></div>');
 
   if(state.page == 0){
-    // wrapper.append(Resultado(_=>{ render(root) }));
-    // setTimeout(function() {
-    //   initMap("map-result", laboratoriaLima);
-    // }, 500);
-    wrapper.append(Header(_=> {
-        render(root)
-    }));
+    wrapper.append(Resultado(_=>{ render(root) }));
+    setTimeout(function() {
+      initMap("map-result", laboratoriaLima);
+    }, 500);
+
   }
-  // else if(state.page == 1){
-  //   wrapper.append(Login(_=>{ render(root) }));
-  // }else if(state.page == 2){
-  //   wrapper.append(SegundaPantalla());
-  // }
+  else if(state.page == 1){
+    wrapper.append(Login(_=>{ render(root) }));
+  }else if(state.page == 2){
+    wrapper.append(SegundaPantalla());
+} else if(state.page == 3) {
+    wrapper.append(Header(_=>{ render(root) }));
+
+}
 
   // switch(state.screenView) {
   // case null:
@@ -232,7 +233,7 @@ const render = (root) => {
 };
 
 const state = {
-  page: 0,
+  page: 3,
   data:{},
   rutasMo: null,
 	screenView: null
