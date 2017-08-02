@@ -6,6 +6,9 @@ const render = (root) => {
 
   if(state.page == 0){
     wrapper.append(Resultado(_=>{ render(root) }));
+    setTimeout(function() {
+      initMap("map-result", laboratoriaLima);
+    }, 500);
   }
 
   root.append(wrapper);

@@ -1,0 +1,36 @@
+.bg--principal {
+  background-color: red;
+  color: white;
+}
+
+.bg--principal:hover {
+  color: white;
+}
+
+.bg--contrast {
+  background-color: white;
+  color: #aeaeae;
+}
+
+.text-principal {
+  color: red;
+}
+
+.text-secondary {
+  color: #aeaeae;
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.map {
+  width: 100%;
+  height: 100vh;
+}
+
+.result__details {
+  padding: 21px 35px;
+  position: absolute;
+  bottom: 5vh;
+}
