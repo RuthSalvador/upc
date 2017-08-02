@@ -5,15 +5,19 @@ const render = (root) => {
   const wrapper = $('<div class="wrapper"></div>');
 
   if(state.page == 0){
-    wrapper.append(Resultado(_=>{ render(root) }));
-    setTimeout(function() {
-      initMap("map-result", laboratoriaLima);
-    }, 500);
-  } else if(state.page == 1){
-    wrapper.append(Login(_=>{ render(root) }));
-  }else if(state.page == 2){
-    wrapper.append(SegundaPantalla());
+    // wrapper.append(Resultado(_=>{ render(root) }));
+    // setTimeout(function() {
+    //   initMap("map-result", laboratoriaLima);
+    // }, 500);
+    wrapper.append(Header(_=> {
+        render(root)
+    }));
   }
+  // else if(state.page == 1){
+  //   wrapper.append(Login(_=>{ render(root) }));
+  // }else if(state.page == 2){
+  //   wrapper.append(SegundaPantalla());
+  // }
 
   // switch(state.screenView) {
   // case null:
