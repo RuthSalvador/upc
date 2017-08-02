@@ -113,19 +113,32 @@ const Resultado = (update) => {
   const reservar = $('<button type="button" class="btn btn-block bg--principal text-uppercase" name="button">reservar</button>');
   const volver   = $('<button type="button" class="btn btn-block btn-default text-uppercase" name="button">volver</button>');
 
-  section.append(divMap);
-  section.append(containerDetails);
-  containerDetails.append(details);
-  containerDetails.append(pasos);
-  containerDetails.append(btns);
-  details.append(figure);
-  details.append(divText);
-  figure.append(img);
-  divText.append(h4);
-  divText.append(h5);
-  pasos.append(p);
-  btns.append(reservar);
-  btns.append(volver);
+  section
+    .append(divMap)
+    .append(containerDetails);
+
+  containerDetails
+    .append(details)
+    .append(pasos)
+    .append(btns);
+
+  details
+    .append(figure)
+    .append(divText);
+
+  figure
+    .append(img);
+
+  divText
+    .append(h4)
+    .append(h5);
+
+  pasos
+    .append(p);
+
+  btns
+    .append(reservar)
+    .append(volver);
 
   return section;
 
