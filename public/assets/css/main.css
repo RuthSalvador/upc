@@ -69,3 +69,17 @@ header h5 {
 }
 
 /* Medium devices (desktops, 992px and up) */
+#login {
+  align-items: center;
+  height: 100vh;
+  background-color: aqua;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#login .login__cajas,
+#login .login__botones {
+  display: flex;
+  flex-direction: column;
+}

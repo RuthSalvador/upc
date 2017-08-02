@@ -23,3 +23,17 @@
 }
 
 @import "header" ;
+
+#login{
+	align-items: center;
+	height: 100vh;
+	background-color: aqua;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	.login__cajas,
+	.login__botones{
+		display: flex;
+		flex-direction: column;
+	}
+}
