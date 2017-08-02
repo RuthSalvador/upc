@@ -123,8 +123,8 @@ const Resultado = (update) => {
   const p     = $('<p></p>');
 
   const btns     = $('<div></div>');
-  const reservar = $('<button type="button" class="btn btn-block bg--principal text-uppercase" name="button">reservar</button>');
-  const volver   = $('<button type="button" class="btn btn-block btn-default text-uppercase" name="button">volver</button>');
+  const reservar = $('<button type="button" class="btn btn-block bg--principal text-uppercase" data-toggle="modal" data-target="#modalReserva">reservar</button>');
+  const volver   = $('<button type="button" class="btn btn-block btn-default text-uppercase">volver</button>');
 
   section
     .append(divMap)
@@ -153,9 +153,19 @@ const Resultado = (update) => {
     .append(reservar)
     .append(volver);
 
+  //Modal:
+  const modal = $('<div class="modal fade" id="modalReserva" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>');
+  const divDocument = $('<div class="modal-dialog" role="document"></div>');
+  const divContent = $('<div class="modal-content"></div>');
+  const header = $('<div class="modal-header"></div>');
+  const close = $('<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+  const body = $('<div class="modal-body"></div>');
+
   return section;
 
 };
+
+
 'use strict';
 
 const SegundaPantalla = () => {
