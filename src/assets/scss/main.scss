@@ -1,6 +1,7 @@
 @import "colors";
 
 * {
+  box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -14,3 +15,11 @@
   position: absolute;
   bottom: 5vh;
 }
+
+%flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@import "header" ;

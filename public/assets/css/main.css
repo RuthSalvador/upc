@@ -21,6 +21,7 @@
 }
 
 * {
+  box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -34,3 +35,37 @@
   position: absolute;
   bottom: 5vh;
 }
+
+body {
+  background: rgba(130, 142, 145, 0.45);
+}
+
+header {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 10px 14px;
+  font-size: 21px;
+}
+
+header span {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+header h5 {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 21px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  header {
+    background-color: #FB1515;
+    height: 70px;
+    color: #fff;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */

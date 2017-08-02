@@ -1,7 +1,6 @@
 {
   "name": "upc",
   "version": "1.0.0",
-  "description": "",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,5 +22,14 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^3.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RuthSalvador/upc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RuthSalvador/upc/issues"
+  },
+  "homepage": "https://github.com/RuthSalvador/upc#readme",
+  "description": ""
 }
