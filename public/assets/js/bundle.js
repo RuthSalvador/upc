@@ -81,6 +81,7 @@ const initMap = (mapa,centro) => {
 
 };
 
+
 'use strict'
 const Header = (update) => {
     const principal     = $('<header></header>');
@@ -185,6 +186,7 @@ const Login = (update) => {
 	    });
 
 	    firebase.auth().onAuthStateChanged(function(user) {
+				console.log(user);
 	      if (user) {
 	        // User is signed in.
 	        console.log(user);
@@ -308,10 +310,9 @@ const Modal = (idModal) => {
   divDate
     .append(date)
     .append(selDate);
-
+console.log(state.rutasMo);
   return modal;
 };
-
 
 'use strict';
 
@@ -338,14 +339,13 @@ const render = (root) => {
     wrapper.append(SegundaPantalla());
 } else if(state.page == 3) {
     wrapper.append(Header(_=>{ render(root) }));
-
 }
 
   root.append(wrapper);
 };
 
 const state = {
-  page: 3,
+  page: 0,
   data:{},
   rutasMo: null,
   rutasSis: null,

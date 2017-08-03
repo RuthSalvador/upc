@@ -94,7 +94,6 @@ const Modal = (idModal) => {
   divDate
     .append(date)
     .append(selDate);
-
+console.log(state.rutasMo);
   return modal;
 };
-

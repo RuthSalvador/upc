@@ -15,14 +15,13 @@ const render = (root) => {
     wrapper.append(SegundaPantalla());
 } else if(state.page == 3) {
     wrapper.append(Header(_=>{ render(root) }));
-
 }
 
   root.append(wrapper);
 };
 
 const state = {
-  page: 3,
+  page: 0,
   data:{},
   rutasMo: null,
   rutasSis: null,
