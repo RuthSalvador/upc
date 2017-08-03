@@ -13,13 +13,16 @@ const render = (root) => {
     }, 500);
   }else if(state.page == 2){
     wrapper.append(SegundaPantalla());
-  }
+} else if(state.page == 3) {
+    wrapper.append(Header(_=>{ render(root) }));
+
+}
 
   root.append(wrapper);
 };
 
 const state = {
-  page: 0,
+  page: 3,
   data:{},
   rutasMo: null,
   rutasSis: null,
