@@ -3,6 +3,8 @@
 
 const kata = { lat: -12.1045677, lng: -76.9630828};
 //let myLocation;
+var markerUbication;
+var markerDestiny;
 
 const initMap = (mapa,latitud,longitud,destiny) => {
 
