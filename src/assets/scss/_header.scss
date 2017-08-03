@@ -4,30 +4,29 @@ body {
 }
 header {
     background-color: rgba(255, 255, 255, 0);
-    // @extend %flex;
-    // justify-content: space-between;
     padding: 10px 14px;
     font-size: 21px;
-    img {
-    }
-    span {
-        padding-left: 7px;
-        padding-right: 7px;
-    }
-    h5 {
+    * {
         display: inline-block;
-        font-weight: bold;
-        font-size: 21px;
-        padding-left: 7px;
-        padding-right: 7px;
-    }
+      }
+      span, p  {
+          padding-left: 7px;
+          padding-right: 7px;
+      }
+      h3 {
+          font-weight: bold;
+         font-size: 21px;
+          padding-left: 7px;
+          padding-right: 7px;
+      }
+
 }
 
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 header {
-    background-color: #FB1515;
+    background-color: $color-principal;
     height: 70px;
     color: #fff;
 }

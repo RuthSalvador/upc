@@ -81,6 +81,33 @@ const initMap = (mapa,centro) => {
 
 };
 
+'use strict'
+const Header = (update) => {
+    const principal     = $('<header></header>');
+
+    const arrowLeft     = $('<div class="pull-left hidden-xs"></div>');
+    const userImg       = $('<img src="assets/img/avatar.png" alt="usuario alumno">')
+    const user          = $('<p class="estudiante">Hola <span id="student">Javier</span></p>');
+
+    const arrowRight    = $('<div class="pull-right"></div>');
+    const ubicar        = $('<img src="assets/img/ubicacion-cabecera.png" alt="signo de ubicación" class="hidden-xs">');
+    const namePrincipal = $('<h3>UPC GO! </h3>');
+    const logoRed       = $('<img src="assets/img/logo.png" alt="logo upc rojo" class="hidden-sm hidden-md hidden-lg">');
+    const logoWhite     =$('<img src="assets/img/crisol.png" alt="logo upc blanco" class="hidden-xs">');
+
+    arrowLeft.append(userImg);
+    arrowLeft.append(user);
+
+    arrowRight.append(ubicar);
+    arrowRight.append(namePrincipal);
+    arrowRight.append(logoRed);
+    arrowRight.append(logoWhite);
+
+    principal.append(arrowLeft);
+    principal.append(arrowRight);
+    return principal;
+}
+
 'use strict';
 
 const Login = (update) => {
@@ -161,7 +188,7 @@ const Login = (update) => {
 	      if (user) {
 	        // User is signed in.
 	        console.log(user);
-	        state.page = 2;
+	        state.page = 1;
 	        update();
 	      } else {
 	        console.log('no logeado');
@@ -301,23 +328,27 @@ const render = (root) => {
   const wrapper = $('<div class="wrapper"></div>');
 
   if(state.page == 0){
+    wrapper.append(Login(_=>{ render(root) }));
+  } else if(state.page == 1){
     wrapper.append(Resultado(_=>{ render(root) }));
     setTimeout(function() {
       initMap("map-result", laboratoriaLima);
     }, 500);
-  } else if(state.page == 1){
-    wrapper.append(Login(_=>{ render(root) }));
   }else if(state.page == 2){
     wrapper.append(SegundaPantalla());
-  }
+} else if(state.page == 3) {
+    wrapper.append(Header(_=>{ render(root) }));
+
+}
 
   root.append(wrapper);
 };
 
 const state = {
-  page: 1,
+  page: 3,
   data:{},
   rutasMo: null,
+  rutasSis: null,
 	screenView: null
 };
 
@@ -327,6 +358,15 @@ $(document).ready(function() {
   console.log(state.rutasMo);
   const root = $('.root');
   render(root);
+  });
+});
+
+$(document).ready(function() {
+  getJSON('/rutasSis', (err, json) => {
+    state.rutasSis = json;
+    console.log(state.rutasSis);
+    const root = $('.root');
+    render(root);
   });
 });
 

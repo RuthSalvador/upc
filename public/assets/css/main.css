@@ -51,13 +51,16 @@ header {
   font-size: 21px;
 }
 
-header span {
+header * {
+  display: inline-block;
+}
+
+header span, header p {
   padding-left: 7px;
   padding-right: 7px;
 }
 
-header h5 {
-  display: inline-block;
+header h3 {
   font-weight: bold;
   font-size: 21px;
   padding-left: 7px;
@@ -67,7 +70,7 @@ header h5 {
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   header {
-    background-color: #FB1515;
+    background-color: red;
     height: 70px;
     color: #fff;
   }

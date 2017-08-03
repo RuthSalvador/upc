@@ -78,7 +78,7 @@ const Login = (update) => {
 	      if (user) {
 	        // User is signed in.
 	        console.log(user);
-	        state.page = 2;
+	        state.page = 1;
 	        update();
 	      } else {
 	        console.log('no logeado');
