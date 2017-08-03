@@ -55,7 +55,7 @@ const initMap = (mapa,centro,destiny) => {
     disableDefaultUI: true
   });
 
-  
+
 
 
   var iconBase = 'assets/img/';
