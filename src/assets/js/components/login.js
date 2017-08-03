@@ -10,7 +10,7 @@ const Login = (update) => {
 	const contenido 			= $('<div class="login__contenido row"></div>');
 
 	const cajas					 = $('<div class="login__cajas col-xs-12"></div>');
-	const codigoAlumno 	 = $('<input type="text" class="contenido__codigo" placeholder="Código de Alumno"/>');
+	const codigoAlumno 	 = $('<input type="text" class="contenido__codigo" placeholder="Correo electronico"/>');
 	const passwordAlumno = $('<input type="password" class="contenido__contraseña" placeholder="Contraseña"/>');
 
 	const botones		 	= $('<div class="login__botones col-xs-12"></div>');
@@ -76,7 +76,6 @@ const Login = (update) => {
 				console.log(user);
 	      if (user) {
 	        // User is signed in.
-	        console.log(user);
 	        state.page = 1;
 	        state.usuario = user.email;
 	        update();
@@ -87,5 +86,4 @@ const Login = (update) => {
 	    });
 	});
 	return section;
-
 };

@@ -8,9 +8,7 @@ const Buscar = (update) => {
 
   section
     .append(Header(update))
-    .append(map);
-
-  map
+    .append(map)
     .append(btn);
 
   btn
