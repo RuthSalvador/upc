@@ -1,5 +1,14 @@
 @import "colors";
 
+.modal-content {
+  top: 25vh !important;
+}
+
+.modal-backdrop.in {
+  filter: alpha(opacity=80) !important;
+  opacity: .8 !important;
+}
+
 * {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
@@ -14,9 +23,15 @@
 }
 
 .result__details {
-  padding: 21px 35px;
+  padding: 28px 35px;
   position: absolute;
   bottom: 5vh;
+  width: 84vw;
+  margin-left: 8vw;
+}
+
+.steps {
+  @extend %flex;
 }
 
 %flex {

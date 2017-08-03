@@ -60,9 +60,9 @@ var getJSON = (url, cb) => {
 
 const HeaderResult = (image, title, detail) => {
   const div        = $('<div></div>');
-  const details    = $('<div class=""></div>');
+  const details    = $('<div class="details__title"></div>');
   const figure     = $('<figure></figure>');
-  const img        = $(`<img src="assets/img/${image}.png" alt="piscina">`);
+  const img        = $(`<img src=${image} alt="piscina">`);
   const divText    = $('<div></div>');
   const h4         = $(`<h4 class="text-principal text-uppercase">${title}</h4>`);
   const h5         = $(`<h5 class="text-secondary">${detail}</h5>`);
@@ -303,7 +303,7 @@ const searchItem = (places, update)  => {
     const link   = $('<a href=""></a>');
     const nam    = $('<p>'+places.properties.Name+'</p>');
     const images = $('<img src="'+places.properties.src+'" alt="'+places.properties.Name+'">');
-    console.log(places.geometry.coordinates[1]);
+    //console.log(places.geometry.coordinates[1]);
     link.append(images);
     link.append(nam);
     item.append(link);
@@ -313,8 +313,7 @@ const searchItem = (places, update)  => {
       state.page = 5;
       state.destinoLat = places.geometry.coordinates[1];
       state.destinoLong = places.geometry.coordinates[0];
-      console.log(state.destinoLat);
-      console.log(state.destinoLong);
+      state.dataPlaces = places.properties;
 
       update();
     });
@@ -539,8 +538,14 @@ const Resultado = (update) => {
   const p       = $('<p></p>');
 
   const btns    = $('<div></div>');
-  const reserve = $('<button type="button" class="btn btn-block bg--principal text-uppercase" data-toggle="modal" data-target="#modalReserve">reservar</button>');
+  let reserve;
+
+  if ((state.dataPlaces.Name == 'Gimnasio')||(state.dataPlaces.Name == 'Piscina')){
+    reserve = $('<button type="button" class="btn btn-block bg--principal text-uppercase" data-toggle="modal" data-target="#modalReserve">reservar</button>');
+    btns.append(reserve);
+  }
   const back    = $('<button type="button" class="btn btn-block btn--change text-uppercase">volver</button>');
+
 
   section
     .append(Header(update))
@@ -549,7 +554,7 @@ const Resultado = (update) => {
     .append(Modal('modalReserve'));
 
   content
-    .append(HeaderResult("serv-piscina", "piscina upc", "metros"))
+    .append(HeaderResult(state.dataPlaces.src, state.dataPlaces.Name , "metros"))
     .append(steps)
     .append(btns);
 
@@ -557,11 +562,14 @@ const Resultado = (update) => {
     .append(p);
 
   btns
-    .append(reserve)
     .append(back);
 
-  return section;
 
+  back.on('click',function () {
+    state.page = 3;
+    update();
+  });
+  return section;
 };
 
 //Modal:
@@ -571,24 +579,37 @@ const Modal = (idModal) => {
   const divContent  = $('<div class="modal-content"></div>');
 
   const header      = $('<div class="modal-header"></div>');
+  const logo        = $('<img src="assets/img/logo.png" alt="logo upc">');
   const close       = $('<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
   const body        = $('<form class="modal-body form-horizontal"></form>');
 
   const divSpace    = $('<div class="form-group"></div>');
-  const space       = $('<label>Espacio Deportivo:</label>');
-  const selSpace    = $('<select></select>');
-  const option1     = $('<option value="piscina">Piscina</option>');
-  const option2     = $('<option value="gimnasio">Gimnasio</option>');
+  const space       = $('<label class="col-xs-5">Espacio Deportivo:</label>');
+  const selSpace    = $('<select class="col-xs-6"></select>');
+  const option1     = $('<option value="piscina">Gimnasio</option>');
+  const option2     = $('<option value="gimnasio">Piscina</option>');
 
   const divHours    = $('<div class="form-group"></div>');
-  const numHours    = $('<label>Número de horas:</label>');
-  const selHours    = $('<input type="number" min="1" max="2">');
+  const numHours    = $('<label class="col-xs-5">Número de horas:</label>');
+  const selHours    = $('<input class="col-xs-6" type="number" min="1" max="2" placeholder="1">');
 
   const divDate     = $('<div class="form-group"></div>');
-  const date        = $('<label>Día y hora:</label>');
-  const selDate     = $('<input type="date">');
+  const date        = $('<label class="col-xs-5">Día:</label>');
+  const selDate     = $('<input class="col-xs-6" type="date" min="2017-08-03" value="2017-08-03">');
 
-  const btn         = $('<button type="button" class="btn btn-block bg--principal text-uppercase">reservar</button>');
+  const divHor     = $('<div class="form-group"></div>');
+  const hor        = $('<label class="col-xs-5">Hora:</label>');
+  const hours       = $('<select class="col-xs-6"></select>');
+
+  let optionHours;
+  for (let i=6; i<24; i++){
+    optionHours = $('<option value="'+i+'">'+i+':00 hrs.</option>');
+    hours
+      .append(optionHours);
+  }
+
+
+  const btn = $('<button type="button" class="btn btn-block bg--principal text-uppercase">reservar</button>');
 
   modal
     .append(divDocument);
@@ -601,13 +622,15 @@ const Modal = (idModal) => {
     .append(body);
 
   header
+    .append(logo)
     .append(close);
 
   body
-    .append(HeaderResult("reserva", "reserva de espacios dep","reserva el espacio"))
+    .append(HeaderResult(state.upcSede[15].properties.src, "reserva de espacios deportivos","Consulte y reserve el espacio deportivo"))
     .append(divSpace)
     .append(divHours)
     .append(divDate)
+    .append(divHor)
     .append(btn);
 
   divSpace
@@ -625,7 +648,11 @@ const Modal = (idModal) => {
   divDate
     .append(date)
     .append(selDate);
-console.log(state.rutasMo);
+
+  divHor
+    .append(hor)
+    .append(hours);
+
   return modal;
 };
 
@@ -737,6 +764,7 @@ const state = {
   origenLong: null,
   destinoLat: null,
   destinoLong: null,
+  dataPlaces: null,
   clases: null
 };
 
@@ -762,4 +790,5 @@ $(document).ready(function() {
   render(root);
 
 });
+
 },{}]},{},[1])

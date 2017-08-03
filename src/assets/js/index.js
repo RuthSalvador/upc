@@ -46,6 +46,7 @@ const state = {
   origenLong: null,
   destinoLat: null,
   destinoLong: null,
+  dataPlaces: null,
   clases: null
 };
 
