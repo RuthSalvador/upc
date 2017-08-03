@@ -364,7 +364,6 @@ const Login = (update) => {
 	    firebase.auth().onAuthStateChanged(function(user) {
 	      if (user) {
 	        // User is signed in.
-	        console.log(user);
 	        state.page = 1;
 	        state.usuario = user.email;
 	        update();

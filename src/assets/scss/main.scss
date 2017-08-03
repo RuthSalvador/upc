@@ -101,6 +101,11 @@
 				color: white;
 				background-color: $color-principal;
 				margin-bottom: 10px;
+				cursor: pointer;
+				&:hover{
+					background: rgb(215,0,0);
+					transition: 1s;
+				}
 			}
 			button:nth-child(2){
 				text-transform: uppercase;

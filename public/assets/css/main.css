@@ -282,6 +282,13 @@ header h3 {
   color: white;
   background-color: red;
   margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#login .login__contenido .login__cajas button:nth-child(1):hover,
+#login .login__contenido .login__botones button:nth-child(1):hover {
+  background: #d70000;
+  transition: 1s;
 }
 
 #login .login__contenido .login__cajas button:nth-child(2),
