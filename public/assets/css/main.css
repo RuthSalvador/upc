@@ -271,3 +271,15 @@ header h3 {
   background-color: #dcdada;
   width: 80%;
 }
+
+small {
+  margin-left: 14%;
+}
+
+.p-clase {
+  margin: 0 0 0px;
+}
+
+.container-buscar {
+  cursor: pointer;
+}

@@ -2,6 +2,7 @@
 
 const filterByPlace = (places,query) => {
 		return places.filter((place) => {
-			return place.toLowerCase().indexOf(query.toLowerCase()) != -1;
+      console.log(place);
+			return place.nombre.toLowerCase().indexOf(query.toLowerCase()) != -1;
 		});
 }

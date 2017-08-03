@@ -28,7 +28,7 @@ const BuscarLugar = (update) => {
     const secClass = $('<section id="clase"></section>');
     const secOther = $('<section id="places"></section>');
 
-    const container     = $('<div class="container"></div>');
+    const container     = $('<div class="container container-buscar"></div>');
     const boxImg        = $('<div class="col-xs-2 "></div>');
     const img           = $('<img src="assets/img/reserva.png"> alt="ir a clases"');
     const boxText       = $('<div class="col-xs-9"></div>')
@@ -67,6 +67,7 @@ const BuscarLugar = (update) => {
     container.on('click',(e)=>{
       e.preventDefault();
       state.page = 6;
+      update();
     });
     let list = state.upcMonterrico.features;
     reRender( secOther, list, update);

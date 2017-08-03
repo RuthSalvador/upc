@@ -2,16 +2,17 @@
 
 const classItem = (classes, update)  => {
     const item = $('<div class="item"></div>');
-    const nam = $('<p>'+classes.nombre+'</p>');
+    const nam = $('<p class="p-clase">'+classes.nombre+'</p>');
+    const small = $('<br><small>'+classes.horario+'</small>');
     const images = $('<img src="'+classes.src+'">');
 
     item.append(images);
-    item.append(nam);
+    item.append(nam,small);
 
     return item;
 }
 
-const reRender = (sectionList, result, update) => {
+const reRenderClass = (sectionList, result, update) => {
     sectionList.empty();
     result.forEach((classes) => {
         sectionList.append(classItem(classes, update));
@@ -23,14 +24,14 @@ const BuscarClass = (update) => {
   const lugar     = $('<div id="buscarLugar" ></div>');
   const secSearch = $('<section id="search"></section>');
   const secClass  = $('<section id="clase"></section>');
-  const secOther  = $('<section id="classes"></section>');
+  const secOther  = $('<section id="places"></section>');
 
-  const container = $('<div class="container"></div>');
+  const container = $('<div class="container container-buscar"></div>');
   const boxImg    = $('<div class="col-xs-2 "></div>');
   const img       = $('<img src="assets/img/reserva.png"> alt="ir a clases"');
   const boxText   = $('<div class="col-xs-9"></div>')
-  const parr      = $('<p>Quiero ir a mis clases</p>');
-  const span      = $('<span>Sincronizado con tu horario</span>');
+  const parr      = $('<p>Volver a principales lugares</p>');
+  const span      = $('<span>Top lugares en campus</span>');
   const boxArrow    = $('<div class="col-xs-1"></div>');
   const icon      = $('<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>');
 
@@ -59,8 +60,18 @@ const BuscarClass = (update) => {
   lugar.append(secClass);
   lugar.append(secOther);
 
+  inputDestino.on('keyup',(e) => {
+      let filtersClases = filterByPlace(state.clases.clases,inputDestino.val());
+      reRenderClass(secOther,filtersClases,update);
+  });
+
+  container.on('click',(e)=>{
+    e.preventDefault();
+    state.page = 4;
+    update();
+  });
 
   let list = state.clases.clases;
-  reRender( secOther, list, update);
+  reRenderClass( secOther, list, update);
   return lugar;
 }
