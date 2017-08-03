@@ -1,0 +1,21 @@
+@media (min-width: 768px) {
+  .result__details {
+    padding: 21px 35px;
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+  }
+  .btn--change {
+    background-color: $color-contrast;
+    color: $color-principal;
+    border: $color-principal 1px solid;
+    &:hover {
+      background-color: lighten($color-principal, 45%);
+      color: $color-principal;
+
+    }
+    &:active, &:focus {
+      color: $color-principal;
+    }
+  }
+}

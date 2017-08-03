@@ -6,15 +6,13 @@ $color-contrast: rgb(255,255,255);
 .bg--principal {
   background-color: $color-principal;
   color: $color-contrast;
-}
-
-.bg--principal:hover {
-  background-color: lighten($color-principal, 7%);
-  color: $color-contrast;
-}
-
-.bg--principal:active, .bg--principal:focus {
-  color: $color-contrast;
+  &:hover {
+    background-color: lighten($color-principal, 7%);
+    color: $color-contrast;
+  }
+  &:active, &:focus {
+    color: $color-contrast;
+  }
 }
 
 .bg--contrast {
@@ -30,3 +28,14 @@ $color-contrast: rgb(255,255,255);
   color: $color-secondary;
 }
 
+.btn--change {
+  background-color: darken($color-contrast, 7%);
+  color: rgb(0,0,0);
+  &:hover {
+    background-color: lighten($color-secondary, 20%);
+    color: rgb(0,0,0);
+  }
+  &:active, &:focus {
+    color: $color-contrast;
+  }
+}

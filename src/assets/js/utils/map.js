@@ -1,22 +1,47 @@
 
 //centros
-const laboratoriaLima = { lat: -12.07702, lng: -77.09341};
-//const RPChorrillos = {lat: -12.172645, lng: -76.992717};
-let myLocation;
+const upcMo = { lat: -12.103676, lng: -76.9633296};
+const kata = { lat: -12.1040077, lng: -76.9624472};
+//let myLocation;
 
-const initMap = (mapa,centro) => {
+const initMap = (mapa,centro, destiny) => {
 
   var map = new google.maps.Map(document.getElementById(mapa), {
     zoom: 18,
     center: centro,
+    disableDefaultUI: true
   });
 
-  var marker;
-  var functionLocalization = function(position) {
+  var iconBase = 'assets/img/';
+    marker = new google.maps.Marker({
+      position: centro,
+      map: map,
+      icon: iconBase + 'ubicacion-mapa.png',
+    });
+
+    marker = new google.maps.Marker({
+      position: destiny,
+      map: map,
+      icon: iconBase + 'tu-llegada.png',
+    });
+
+
+
+};
+
+
+
+
+
+/* Con localización
+
+var functionLocalization = function(position) {
+
     var pos = {
       lat: position.coords.latitude,
       lng: position.coords.longitude,
     };
+
     //map.setCenter(pos);
     map.setZoom(18);
 
@@ -33,7 +58,4 @@ const initMap = (mapa,centro) => {
   if (navigator.geolocation) {
     myLocation = navigator.geolocation.getCurrentPosition(functionLocalization, functionNotFounded);
     return myLocation;
-  }
-
-
-};
+  }*/

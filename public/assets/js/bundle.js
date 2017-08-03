@@ -43,23 +43,48 @@ const HeaderResult = (image, title, detail) => {
 //jbmnbmnbnm
 
 //centros
-const laboratoriaLima = { lat: -12.07702, lng: -77.09341};
-//const RPChorrillos = {lat: -12.172645, lng: -76.992717};
-let myLocation;
+const upcMo = { lat: -12.103676, lng: -76.9633296};
+const kata = { lat: -12.1040077, lng: -76.9624472};
+//let myLocation;
 
-const initMap = (mapa,centro) => {
+const initMap = (mapa,centro, destiny) => {
 
   var map = new google.maps.Map(document.getElementById(mapa), {
     zoom: 18,
     center: centro,
+    disableDefaultUI: true
   });
 
-  var marker;
-  var functionLocalization = function(position) {
+  var iconBase = 'assets/img/';
+    marker = new google.maps.Marker({
+      position: centro,
+      map: map,
+      icon: iconBase + 'ubicacion-mapa.png',
+    });
+
+    marker = new google.maps.Marker({
+      position: destiny,
+      map: map,
+      icon: iconBase + 'tu-llegada.png',
+    });
+
+
+
+};
+
+
+
+
+
+/* Con localización
+
+var functionLocalization = function(position) {
+
     var pos = {
       lat: position.coords.latitude,
       lng: position.coords.longitude,
     };
+
     //map.setCenter(pos);
     map.setZoom(18);
 
@@ -76,37 +101,34 @@ const initMap = (mapa,centro) => {
   if (navigator.geolocation) {
     myLocation = navigator.geolocation.getCurrentPosition(functionLocalization, functionNotFounded);
     return myLocation;
-  }
-
-
-};
-
-'use strict'
+  }*/
+'use strict';
 const Header = (update) => {
-    const principal     = $('<header></header>');
+  const principal     = $('<header></header>');
 
-    const arrowLeft     = $('<div class="pull-left hidden-xs"></div>');
-    const userImg       = $('<img src="assets/img/avatar.png" alt="usuario alumno">')
-    const user          = $('<p class="estudiante">Hola <span id="student">Javier</span></p>');
+  const arrowLeft     = $('<div class="pull-left hidden-xs"></div>');
+  const userImg       = $('<img src="assets/img/avatar.png" alt="usuario alumno">');
+  const user          = $('<p class="estudiante">Hola <span id="student">Javier</span></p>');
 
-    const arrowRight    = $('<div class="pull-right"></div>');
-    const ubicar        = $('<img src="assets/img/ubicacion-cabecera.png" alt="signo de ubicación" class="hidden-xs">');
-    const namePrincipal = $('<h3>UPC GO! </h3>');
-    const logoRed       = $('<img src="assets/img/logo.png" alt="logo upc rojo" class="hidden-sm hidden-md hidden-lg">');
-    const logoWhite     =$('<img src="assets/img/crisol.png" alt="logo upc blanco" class="hidden-xs">');
+  const arrowRight    = $('<div class="pull-right"></div>');
+  const ubicar        = $('<img src="assets/img/ubicacion-cabecera.png" alt="signo de ubicación" class="hidden-xs">');
+  const namePrincipal = $('<h3>UPC GO! </h3>');
+  const logoRed       = $('<img src="assets/img/logo.png" alt="logo upc rojo" class="hidden-sm hidden-md hidden-lg">');
+  const logoWhite     =$('<img src="assets/img/crisol.png" alt="logo upc blanco" class="hidden-xs">');
 
-    arrowLeft.append(userImg);
-    arrowLeft.append(user);
+  arrowLeft.append(userImg);
+  arrowLeft.append(user);
 
-    arrowRight.append(ubicar);
-    arrowRight.append(namePrincipal);
-    arrowRight.append(logoRed);
-    arrowRight.append(logoWhite);
+  arrowRight.append(ubicar);
+  arrowRight.append(namePrincipal);
+  arrowRight.append(logoRed);
+  arrowRight.append(logoWhite);
 
-    principal.append(arrowLeft);
-    principal.append(arrowRight);
-    return principal;
-}
+  principal.append(arrowLeft);
+  principal.append(arrowRight);
+
+  return principal;
+};
 
 'use strict';
 
@@ -225,9 +247,10 @@ const Resultado = (update) => {
 
   const btns    = $('<div></div>');
   const reserve = $('<button type="button" class="btn btn-block bg--principal text-uppercase" data-toggle="modal" data-target="#modalReserve">reservar</button>');
-  const back    = $('<button type="button" class="btn btn-block btn-default text-uppercase">volver</button>');
+  const back    = $('<button type="button" class="btn btn-block btn--change text-uppercase">volver</button>');
 
   section
+    .append(Header(update))
     .append(divMap)
     .append(content)
     .append(Modal('modalReserve'));
@@ -333,7 +356,7 @@ const render = (root) => {
   } else if(state.page == 1){
     wrapper.append(Resultado(_=>{ render(root) }));
     setTimeout(function() {
-      initMap("map-result", laboratoriaLima);
+      initMap("map-result", upcMo, kata);
     }, 500);
   }else if(state.page == 2){
     wrapper.append(SegundaPantalla());
@@ -346,7 +369,7 @@ const render = (root) => {
 };
 
 const state = {
-  page: 3,
+  page: 1,
   data:{},
   rutasMo: null,
   rutasSis: null,

@@ -9,7 +9,7 @@ const render = (root) => {
   } else if(state.page == 1){
     wrapper.append(Resultado(_=>{ render(root) }));
     setTimeout(function() {
-      initMap("map-result", laboratoriaLima);
+      initMap("map-result", upcMo, kata);
     }, 500);
   }else if(state.page == 2){
     wrapper.append(SegundaPantalla());
@@ -22,7 +22,7 @@ const render = (root) => {
 };
 
 const state = {
-  page: 3,
+  page: 1,
   data:{},
   rutasMo: null,
   rutasSis: null,

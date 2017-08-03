@@ -10,9 +10,10 @@ const Resultado = (update) => {
 
   const btns    = $('<div></div>');
   const reserve = $('<button type="button" class="btn btn-block bg--principal text-uppercase" data-toggle="modal" data-target="#modalReserve">reservar</button>');
-  const back    = $('<button type="button" class="btn btn-block btn-default text-uppercase">volver</button>');
+  const back    = $('<button type="button" class="btn btn-block btn--change text-uppercase">volver</button>');
 
   section
+    .append(Header(update))
     .append(divMap)
     .append(content)
     .append(Modal('modalReserve'));
