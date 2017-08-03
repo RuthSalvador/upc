@@ -15,12 +15,6 @@ const render = (root) => {
     wrapper.append(SegundaPantalla());
   }
 
-  // switch(state.screenView) {
-  // case null:
-  // 	wrapper.append(Home(_ => render(root)));
-  // 	break;
-  // }
-
   root.append(wrapper);
 };
 

@@ -82,6 +82,7 @@ const initMap = (mapa,centro) => {
 'use strict';
 
 const Login = (update) => {
+
 	const section = $('<section id="login" class="container-fluid"></section>');
 
 	const logo = $('<img src="assets/img/logo.png" alt="Logo Upc">');
@@ -121,16 +122,66 @@ const Login = (update) => {
 		.append(logo);
 
 	/*section.append(HeaderAll('Logeate',0,update));*/
-
-	btnIngresar.on('click',(e) => {
-		e.preventDefault();
-		console.log('click');
+	btnFacebook.on('click',(e)=>{
+		var config = {
+			apiKey: "AIzaSyD7SAHtwHAUv-24w6ww30l82qLu0wMjxmM",
+			authDomain: "tf-upc.firebaseapp.com",
+			databaseURL: "https://tf-upc.firebaseio.com",
+			projectId: "tf-upc",
+			storageBucket: "tf-upc.appspot.com",
+			messagingSenderId: "293713595531"
+		};
+		firebase.initializeApp(config);
+		var provider = new firebase.auth.FacebookAuthProvider();
+		firebase.auth().signInWithRedirect(provider);
 		state.page = 2;
 		update();
 	});
+	btnIngresar.on('click', (e) => {
+			var config = {
+			  apiKey: "AIzaSyD7SAHtwHAUv-24w6ww30l82qLu0wMjxmM",
+			  authDomain: "tf-upc.firebaseapp.com",
+			  databaseURL: "https://tf-upc.firebaseio.com",
+			  projectId: "tf-upc",
+			  storageBucket: "tf-upc.appspot.com",
+			  messagingSenderId: "293713595531"
+			};
+			firebase.initializeApp(config);
+	    const codAlumno = codigoAlumno.val();
+	    const passAlumno = passwordAlumno.val();
+	    const auth = firebase.auth(); //constante para almacenar la promesa que nos va a devolver
+	    const promise = auth.signInWithEmailAndPassword(codAlumno,passAlumno);
+	    promise.catch(e => {
+	      console.log(e.message);
+	    });
+
+	    firebase.auth().onAuthStateChanged(function(user) {
+	      if (user) {
+	        // User is signed in.
+	        console.log(user);
+	        state.page = 2;
+	        update();
+	      } else {
+	        console.log('no logeado');
+	      }
+	    });
+	});
+
+		// btnIngresar.on('click', (e) => {
+		// 	const codAlumno = codigoAlumno.val();
+	  //   const passAlumno = passwordAlumno.val();
+		// 	const auth = firebase.auth(); //constante para almacenar la promesa que nos va a devolver
+		// 	const promise = auth.createUserWithEmailAndPassword(codAlumno,passAlumno);
+		// 	promise.catch(e => {
+		// 		console.log(e.message);
+		// 	});
+		// });
 
 	return section;
-}
+
+};
+
+//deberia subir todoOK
 
 
 'use strict';
@@ -258,12 +309,6 @@ const render = (root) => {
   }else if(state.page == 2){
     wrapper.append(SegundaPantalla());
   }
-
-  // switch(state.screenView) {
-  // case null:
-  // 	wrapper.append(Home(_ => render(root)));
-  // 	break;
-  // }
 
   root.append(wrapper);
 };
