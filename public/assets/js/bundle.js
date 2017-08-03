@@ -69,6 +69,18 @@ const Buscar = (update) => {
     return box;
 }
 
+const BuscarLugar = (update) => {
+    const lugar         = $('<div id="buscarLugar" ></div>');
+    const secSearch = $('<section id="search"></section>');
+    const secClass  = $('<section id="clase"></section>');
+    const secOther  = $('<section id="places"></section>');
+
+    lugar.append(secSearch);
+    lugar.append(secClass);
+    lugar.append(secOther);
+    return lugar;
+}
+
 'use strict'
 const Header = () => {
     const principal     = $('<header></header>');

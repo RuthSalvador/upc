@@ -1,19 +1,4 @@
-// #formulario {
-//     position: absolute;
-//     top: 14vh;
-//     .form-group {
-//         width: 80vw;
-//         margin-left: 10vw;
-//     }
-//     input{
-//         height: 7vh!important;
-//         border-right-color: transparent!important;
-//     }
-//     .input-group-addon {
-//         background-color: #fff;
-//         border-radius: 0;
-//     }
-// }
+
 #buscar {
     @extend %flex;
     justify-content: space-between;
@@ -23,6 +8,11 @@
     color: rgb(85, 85, 85);
     border-color: rgb(204, 204, 204);
     border-radius: 0px;
+}
+#buscarLugar {
+    height: 100vh;
+    width: 100%;
+    background-color: white;
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

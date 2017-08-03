@@ -88,6 +88,12 @@ header h3 {
   border-radius: 0px;
 }
 
+#buscarLugar {
+  height: 100vh;
+  width: 100%;
+  background-color: white;
+}
+
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
 #login {
