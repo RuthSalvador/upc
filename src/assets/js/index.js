@@ -43,18 +43,16 @@ const state = {
 $(document).ready(function() {
   getJSON('/rutasMo', (err, json) => {
   state.rutasMo = json;
+  console.log(state.rutasMo.features[0].geometry.coordinates[1]);
   });
   getJSON('/rutasSis', (err, json) => {
       state.rutasSis = json;
-      console.log(state.rutasSis);
   });
   getJSON('/upcMonterrico', (err, json) => {
       state.upcMonterrico = json;
   });
   getJSON('/clases', (err, json) => {
       state.clases = json;
-      console.log(state.clases);
-
   });
 
   const root = $('.root');
