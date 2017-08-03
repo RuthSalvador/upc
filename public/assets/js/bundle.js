@@ -355,7 +355,7 @@ const BuscarLugar = (update) => {
       state.page = 6;
       update();
     });
-    let list = state.upcMonterrico.features;
+    let list = state.upcSede;
     reRender( secOther, list, update);
     return section;
 };
@@ -600,7 +600,7 @@ const Sedes = (update) => {
 	  campus.on('click',(e) => {
 		  e.preventDefault();
 		  getJSON(urlSede, (err, json) => {
-			//state.upcSede = json.features;
+			state.upcSede = json.features;
 			state.origenLat = json.features[0].geometry.coordinates[0];
 			state.origenLong = json.features[0].geometry.coordinates[1];
 

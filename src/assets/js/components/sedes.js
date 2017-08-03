@@ -18,7 +18,7 @@ const Sedes = (update) => {
 	  campus.on('click',(e) => {
 		  e.preventDefault();
 		  getJSON(urlSede, (err, json) => {
-			//state.upcSede = json.features;
+			state.upcSede = json.features;
 			state.origenLat = json.features[0].geometry.coordinates[0];
 			state.origenLong = json.features[0].geometry.coordinates[1];
 

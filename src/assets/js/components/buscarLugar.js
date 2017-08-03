@@ -80,7 +80,7 @@ const BuscarLugar = (update) => {
       state.page = 6;
       update();
     });
-    let list = state.upcMonterrico.features;
+    let list = state.upcSede;
     reRender( secOther, list, update);
     return section;
 };
