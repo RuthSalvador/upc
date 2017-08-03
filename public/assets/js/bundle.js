@@ -89,6 +89,7 @@ const HeaderResult = (image, title, detail) => {
 //let myLocation;
 var markerUbication;
 var markerDestiny;
+var rutas = [];
 
 const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
 
@@ -129,8 +130,6 @@ const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
     });
 
 
-
-
   var flightPlanCoordinates = [
     {lat: -12.103676, lng: -76.9633296},
     {lat: -12.1042031, lng: -76.9629622},
@@ -138,6 +137,7 @@ const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
     {lat: -12.1044444, lng: -76.9630909},
     {lat: -12.1045677, lng: -76.9630828},
   ];
+
   var flightPath = new google.maps.Polyline({
     path: flightPlanCoordinates,
     geodesic: true,
@@ -564,12 +564,14 @@ const Resultado = (update) => {
   btns
     .append(back);
 
+  console.log(state.rutasSede);
 
   back.on('click',function () {
     state.page = 3;
     update();
   });
   return section;
+
 };
 
 //Modal:
@@ -674,7 +676,7 @@ const Sedes = (update) => {
 	const sMiguel 	 = $('<div class="sede--SanMiguel col-xs-12 col-sm-6"><p>Campus San Miguel</p></div>');
 
 
-	const sede = (campus, urlSede) => {
+	const sede = (campus, urlSede, rutasSede) => {
 	  campus.on('click',(e) => {
 		  e.preventDefault();
 		  getJSON(urlSede, (err, json) => {
@@ -682,17 +684,19 @@ const Sedes = (update) => {
 			state.origenLat = json.features[0].geometry.coordinates[1];
 			state.origenLong = json.features[0].geometry.coordinates[0];
 
-			console.log(state.origenLat);
-			console.log(state.origenLong);
 		  });
+		  getJSON(rutasSede,(err,json) => {
+        state.rutasSede = json.features;
+        console.log(state.rutasSede);
+      });
 
 		  state.page = 2;
 		  update();
 	  });
   	};
 
-	sede(monterrico,'/upcMonterrico');
-	sede(sanIsidro,'/upcSis');
+	sede(monterrico,'/upcMonterrico','/rutasMo');
+	sede(sanIsidro,'/upcSis','/rutasSis');
 
 	contenedortitle.append(title);
 

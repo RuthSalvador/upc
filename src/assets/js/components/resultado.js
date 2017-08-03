@@ -35,12 +35,14 @@ const Resultado = (update) => {
   btns
     .append(back);
 
+  console.log(state.rutasSede);
 
   back.on('click',function () {
     state.page = 3;
     update();
   });
   return section;
+
 };
 
 //Modal:

@@ -14,7 +14,7 @@ const Sedes = (update) => {
 	const sMiguel 	 = $('<div class="sede--SanMiguel col-xs-12 col-sm-6"><p>Campus San Miguel</p></div>');
 
 
-	const sede = (campus, urlSede) => {
+	const sede = (campus, urlSede, rutasSede) => {
 	  campus.on('click',(e) => {
 		  e.preventDefault();
 		  getJSON(urlSede, (err, json) => {
@@ -22,17 +22,19 @@ const Sedes = (update) => {
 			state.origenLat = json.features[0].geometry.coordinates[1];
 			state.origenLong = json.features[0].geometry.coordinates[0];
 
-			console.log(state.origenLat);
-			console.log(state.origenLong);
 		  });
+		  getJSON(rutasSede,(err,json) => {
+        state.rutasSede = json.features;
+        console.log(state.rutasSede);
+      });
 
 		  state.page = 2;
 		  update();
 	  });
   	};
 
-	sede(monterrico,'/upcMonterrico');
-	sede(sanIsidro,'/upcSis');
+	sede(monterrico,'/upcMonterrico','/rutasMo');
+	sede(sanIsidro,'/upcSis','/rutasSis');
 
 	contenedortitle.append(title);
 
