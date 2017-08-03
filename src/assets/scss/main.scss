@@ -1,5 +1,10 @@
 @import "colors";
 
+@font-face {
+	font-family: "Solano";
+	src: url('../fonts/upc_sgothic-bdcap-webfont.woff');
+}
+
 * {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
@@ -127,10 +132,24 @@
 			margin-bottom: 10px;
 		}
 	}
-	.login__title--text{
-		color: #FFFFFF;
-		font-size: 50px;
+	.login__title{
+		position: relative;
+		.login__title--text{
+			font-family: 'Solano', sans-serif;
+			color: #FFFFFF;
+			font-size: 50px;
+		}
+		span.beta{
+			position: absolute;
+			color: red;
+			font-size: 20px;
+			font-weight: bold;
+			bottom: -7px;
+			right: 23px;
+			z-index: 1;
+		}
 	}
+
 
 	input[type="text"],
 	input[type="password"]{

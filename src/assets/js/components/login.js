@@ -6,8 +6,9 @@ const Login = (update) => {
 	const logo 		= $('<img src="assets/img/logo.png" alt="Logo Upc">');
 
 	const contenedortitle = $('<div class="login__title row"></div>');
-	const title 					= $('<h1 class="login__title--text col-xs-12">UPC GO!</h1>');
-	const contenido 			= $('<div class="login__contenido row"></div>');
+	const title = $('<h1 class="login__title--text col-xs-12">UPC GO!</h1>');
+	const span	= $('<span class="beta">Beta</span>');
+	const contenido = $('<div class="login__contenido row"></div>');
 
 	const cajas					 = $('<div class="login__cajas col-xs-12"></div>');
 	const codigoAlumno 	 = $('<input type="text" class="contenido__codigo" placeholder="Correo electronico"/>');
@@ -18,7 +19,9 @@ const Login = (update) => {
 	const btnFacebook = $('<button type="button" class="btn" name="button">Facebook</button>');
 	const text 				= $('<p>* Olvidé contraseña</p>');
 
-	contenedortitle.append(title);
+	contenedortitle
+		.append(span)
+		.append(title);
 
 	cajas
 		.append(codigoAlumno)

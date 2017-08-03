@@ -39,6 +39,11 @@
   color: white;
 }
 
+@font-face {
+  font-family: "Solano";
+  src: url("../fonts/upc_sgothic-bdcap-webfont.woff");
+}
+
 * {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
@@ -309,9 +314,24 @@ header h3 {
   margin-bottom: 10px;
 }
 
-#login .login__title--text {
+#login .login__title {
+  position: relative;
+}
+
+#login .login__title .login__title--text {
+  font-family: 'Solano', sans-serif;
   color: #FFFFFF;
   font-size: 50px;
+}
+
+#login .login__title span.beta {
+  position: absolute;
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  bottom: -7px;
+  right: 23px;
+  z-index: 1;
 }
 
 #login input[type="text"],
