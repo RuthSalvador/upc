@@ -25,3 +25,5 @@ const HeaderResult = (image, title, detail) => {
 
   return div;
 };
+
+//jbmnbmnbnm

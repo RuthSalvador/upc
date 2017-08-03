@@ -40,6 +40,8 @@ const HeaderResult = (image, title, detail) => {
   return div;
 };
 
+//jbmnbmnbnm
+
 //centros
 const laboratoriaLima = { lat: -12.07702, lng: -77.09341};
 //const RPChorrillos = {lat: -12.172645, lng: -76.992717};
