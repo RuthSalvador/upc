@@ -152,6 +152,13 @@ header h3 {
   #buscarLugar #clase .container {
     width: 100%;
   }
+  #buscarLugar #search .container {
+    width: 100%;
+  }
+  #buscarLugar #search input {
+    width: 100%;
+    font-size: 12px;
+  }
 }
 
 /* Medium devices (desktops, 992px and up) */
