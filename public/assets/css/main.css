@@ -97,6 +97,19 @@ header h3 {
   background-color: white;
 }
 
+#buscarLugar #search input {
+  display: block;
+  margin-top: 5px;
+  border: none;
+  background-color: #dcdada;
+  width: 70vw;
+  margin-bottom: 7px;
+}
+
+#buscarLugar #search img {
+  width: 5vh;
+}
+
 #buscarLugar #clase {
   border-top: 7px solid rgba(196, 190, 196, 0.62);
   border-bottom: 7px solid rgba(196, 190, 196, 0.62);
