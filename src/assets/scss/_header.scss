@@ -1,5 +1,5 @@
 body {
-    background: rgba(130, 142, 145, 0.45);
+   // background: rgba(130, 142, 145, 0.45);
 
 }
 header {
@@ -8,28 +8,27 @@ header {
     font-size: 21px;
     * {
         display: inline-block;
-      }
-      span, p  {
-          padding-left: 7px;
-          padding-right: 7px;
-      }
-      h3 {
-          font-weight: bold;
-         font-size: 21px;
-          padding-left: 7px;
-          padding-right: 7px;
-      }
-
+    }
+    span, p  {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+    h3 {
+        font-weight: bold;
+        font-size: 21px;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
 }
 
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-header {
-    // background-color: $color-principal;
-    height: 70px;
-    color: #fff;
-}
+    header {
+        background-color: $color-principal;
+        height: 70px;
+        color: #fff;
+    }
 
 }
 
