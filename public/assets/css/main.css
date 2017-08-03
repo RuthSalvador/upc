@@ -194,3 +194,10 @@ header h3 {
 }
 
 /**styles quiero ir a mis clases**/
+#search input {
+  display: block;
+  margin-top: 5px;
+  border: none;
+  background-color: #dcdada;
+  width: 80%;
+}
