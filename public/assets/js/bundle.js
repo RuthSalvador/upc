@@ -594,6 +594,7 @@ const Resultado = (update) => {
 
   back.on('click',function () {
     state.page = 3;
+    state.myarray = [];
     update();
   });
   return section;
@@ -790,7 +791,7 @@ const render = (root) => {
 };
 
 const state = {
-  page: 1,
+  page: 0,
   usuario: null,
   rutasSede: null,
   upcSede: null,

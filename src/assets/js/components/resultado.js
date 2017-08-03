@@ -59,6 +59,7 @@ const Resultado = (update) => {
 
   back.on('click',function () {
     state.page = 3;
+    state.myarray = [];
     update();
   });
   return section;
