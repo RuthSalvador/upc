@@ -11,7 +11,7 @@ const Login = (update) => {
 	const contenido = $('<div class="login__contenido row"></div>');
 
 	const cajas					 = $('<div class="login__cajas col-xs-12"></div>');
-	const codigoAlumno 	 = $('<input type="text" class="contenido__codigo" placeholder="Correo electronico"/>');
+	const codigoAlumno 	 = $('<input type="text" class="contenido__codigo" placeholder="Correo electrónico"/>');
 	const passwordAlumno = $('<input type="password" class="contenido__contraseña" placeholder="Contraseña"/>');
 
 	const botones		 	= $('<div class="login__botones col-xs-12"></div>');
