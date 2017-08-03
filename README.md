@@ -8,7 +8,7 @@
 
 ## Herramientas utilizadas:
 
-`Google maps` `Gulp` `Sass` `Bootstrap` `Sweet Alert`
+`Google maps` `Gulp` `Sass` `Bootstrap` `Sweet Alert` `Firebase` `Componentes`
 
 ## Desarrollo
 
