@@ -1,4 +1,18 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+
+var getJSON = (url, cb) => {
+  var xhr = new XMLHttpRequest();
+  xhr.addEventListener('load', () => {
+    if (xhr.status !== 200) {
+      return cb(new Error('Error loading JSON from ' + url + '(' + xhr.status + ')'));
+    } cb(null, xhr.response);
+  });
+
+  xhr.open('GET', url);
+  xhr.responseType = 'json';
+  xhr.send();
+};
+
 'use strict';
 
 const HeaderResult = (image, title, detail) => {
@@ -41,12 +55,43 @@ const Buscar = (update) => {
         state.page = 5;
         update();
     })
-
     return box;
 }
 
+'use strict';
+
+const searchItem = (places, update)  => {
+    const item = $('<div class="item"></div>');
+    const nam = $('<p>'+places.properties.Name+'</p>');
+    // const adrss= $('<h6>'+station.address+'</h6>');
+    // const district = $('<h6>'+station.district+'</h6>');
+    // const icon = $('<i class="fa fa-map" aria-hidden="true"></i>');
+
+    item.append(nam);
+    // item.append(adrss);
+    // item.append(district);
+    // item.append(icon);
+
+    // icon.on('click', (e) => {
+    //     e.preventDefault();
+    //     state.selectedStation = station;
+    //     update();
+    //     showMap(state.selectedStation.lat, state.selectedStation.long);
+    // })
+    return item;
+}
+
+
+const reRender = (sectionList, result, update) => {
+    sectionList.empty();
+    result.forEach((places) => {
+        sectionList.append(searchItem(places, update));
+    });
+};
+
+
 const BuscarLugar = (update) => {
-    const lugar         = $('<div id="buscarLugar" ></div>');
+    const lugar     = $('<div id="buscarLugar" ></div>');
     const secSearch = $('<section id="search"></section>');
     const secClass  = $('<section id="clase"></section>');
     const secOther  = $('<section id="places"></section>');
@@ -54,6 +99,10 @@ const BuscarLugar = (update) => {
     lugar.append(secSearch);
     lugar.append(secClass);
     lugar.append(secOther);
+
+    let list = state.upcMonterrico.features;
+    reRender( secOther, list, update);
+
     return lugar;
 }
 
@@ -324,29 +373,31 @@ const render = (root) => {
 };
 
 const state = {
-  page: 0,
+  page: 4,
   data:{},
   rutasMo: null,
   rutasSis: null,
-	screenView: null
+  upcMonterrico: null
 };
 
 $(document).ready(function() {
   getJSON('/rutasMo', (err, json) => {
   state.rutasMo = json;
   console.log(state.rutasMo);
+
+  });
+  getJSON('/rutasSis', (err, json) => {
+      state.rutasSis = json;
+      console.log(state.rutasSis);
+
+  });
+  getJSON('/upcMonterrico', (err, json) => {
+      state.upcMonterrico = json;
+     
+  });
+
   const root = $('.root');
   render(root);
-  });
-});
-
-$(document).ready(function() {
-  getJSON('/rutasSis', (err, json) => {
-    state.rutasSis = json;
-    console.log(state.rutasSis);
-    const root = $('.root');
-    render(root);
-  });
 });
 
 },{}]},{},[1])

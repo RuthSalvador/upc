@@ -32,27 +32,29 @@ const render = (root) => {
 };
 
 const state = {
-  page: 0,
+  page: 4,
   data:{},
   rutasMo: null,
   rutasSis: null,
-	screenView: null
+  upcMonterrico: null
 };
 
 $(document).ready(function() {
   getJSON('/rutasMo', (err, json) => {
   state.rutasMo = json;
   console.log(state.rutasMo);
+
+  });
+  getJSON('/rutasSis', (err, json) => {
+      state.rutasSis = json;
+      console.log(state.rutasSis);
+
+  });
+  getJSON('/upcMonterrico', (err, json) => {
+      state.upcMonterrico = json;
+     
+  });
+
   const root = $('.root');
   render(root);
-  });
-});
-
-$(document).ready(function() {
-  getJSON('/rutasSis', (err, json) => {
-    state.rutasSis = json;
-    console.log(state.rutasSis);
-    const root = $('.root');
-    render(root);
-  });
 });

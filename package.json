@@ -12,7 +12,8 @@
   "author": "Ruth Salvador, Marilú Llamocca, Miriam Mendoza, Fiorella Quispe",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "firebase": "^4.2.0"
   },
   "devDependencies": {
     "browser-sync": "^2.18.13",
