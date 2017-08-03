@@ -1,4 +1,31 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+window.fbAsyncInit = function() {
+	FB.init({
+		appId	: '648776228595741',
+		cookie	: true,
+		xfbml	: true,
+		version	: 'v2.9'
+	});
+};
+
+function loginHandler (response) {
+	if(response.status === 'connected'){
+		state.status = 'Conectado';
+		FB.api('/me?fields=email,name', user => {
+			state.user = user;
+			state.doRender();
+		});
+	} else if(response.status === 'not_authorized'){
+		state.user = null;
+		state.status = 'Aplicación no autorizada';
+		state.doRender();
+	}
+}
+
+function doLogin() {
+	FB.login(loginHandler, {scope:'email'});
+}
+
 
 var getJSON = (url, cb) => {
   var xhr = new XMLHttpRequest();
@@ -469,22 +496,15 @@ const Sedes = (update) => {
 	const sMiguel 	 = $('<div class="sede--SanMiguel col-xs-12 col-sm-6"><p>Campus San Miguel</p></div>');
 
 
-	const sede = (campus, urlRuta, urlSede) => {
+	const sede = (campus, urlSede) => {
 	  campus.on('click',(e) => {
       e.preventDefault();
-      getJSON(urlRuta, (err, json) => {
-        state.rutasSede = json;
-        $.each(json.features, ( key, value ) =>  {
-          console.log(value.geometry.coordinates);
-        });
-      });
       getJSON(urlSede, (err, json) => {
-        state.upcSede = json;
-        $.each(json.features, ( key, value ) =>  {
-          console.log(value.geometry.coordinates);
-          console.log(state.upcSede.geometry.coordinates);
-
-        });
+        //state.upcSede = json.features;
+        state.origenLat = json.features[0].geometry.coordinates[0];
+		  state.origenLong = json.features[0].geometry.coordinates[1];
+        console.log(state.origenLat);
+        console.log(state.origenLong);
       });
 
       state.page = 2;
@@ -494,8 +514,8 @@ const Sedes = (update) => {
 
   };
 
-	sede(monterrico,'/rutasMo','/upcMonterrico');
-	sede(sanIsidro,'/rutasSis','/upcSis');
+	sede(monterrico,'/upcMonterrico');
+	sede(sanIsidro,'/upcSis');
 
 	contenedortitle.append(title);
 
@@ -536,7 +556,7 @@ const render = (root) => {
   } else if(state.page == 2){
     wrapper.append(Buscar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-buscar", -12.1037153,-76.9633269, kata);
+      initMap("map-buscar",state.origenLong ,state.origenLat, kata);
     }, 500);
 
   } else if(state.page == 3 ) {
@@ -552,10 +572,11 @@ const render = (root) => {
 };
 
 const state = {
-  page: 1,
-  usuario: null,
-  rutasSede: null,
-  upcSede: null,
+  	page: 1,
+  	usuario: null,
+  	rutasSede: null,
+	origenLat :null,
+	origenLong: null
 };
 
 $(document).ready(function() {

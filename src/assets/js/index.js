@@ -13,7 +13,7 @@ const render = (root) => {
   } else if(state.page == 2){
     wrapper.append(Buscar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-buscar", -12.1037153,-76.9633269, kata);
+      initMap("map-buscar",state.origenLong ,state.origenLat, kata);
     }, 500);
 
   } else if(state.page == 3 ) {
@@ -29,10 +29,11 @@ const render = (root) => {
 };
 
 const state = {
-  page: 1,
-  usuario: null,
-  rutasSede: null,
-  upcSede: null,
+  	page: 1,
+  	usuario: null,
+  	rutasSede: null,
+	origenLat :null,
+	origenLong: null
 };
 
 $(document).ready(function() {
