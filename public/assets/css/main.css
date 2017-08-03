@@ -1,25 +1,3 @@
-.bg--principal {
-  background-color: red;
-  color: white;
-}
-
-.bg--principal:hover {
-  color: white;
-}
-
-.bg--contrast {
-  background-color: white;
-  color: #aeaeae;
-}
-
-.text-principal {
-  color: red;
-}
-
-.text-secondary {
-  color: #aeaeae;
-}
-
 * {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
@@ -71,7 +49,6 @@ header h3 {
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   header {
-    background-color: red;
     height: 70px;
     color: #fff;
   }

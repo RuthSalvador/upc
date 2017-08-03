@@ -1,57 +1,4 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var getJSON = (url, cb) => {
-  var xhr = new XMLHttpRequest();
-  xhr.addEventListener('load', () => {
-    if (xhr.status !== 200) {
-      return cb(new Error('Error loading JSON from ' + url + '(' + xhr.status + ')'));
-    } cb(null, xhr.response);
-  });
-
-  xhr.open('GET', url);
-  xhr.responseType = 'json';
-  xhr.send();
-};
-
-
-//centros
-const laboratoriaLima = { lat: -12.07702, lng: -77.09341};
-//const RPChorrillos = {lat: -12.172645, lng: -76.992717};
-let myLocation;
-
-const initMap = (mapa,centro) => {
-
-  var map = new google.maps.Map(document.getElementById(mapa), {
-    zoom: 18,
-    center: centro,
-  });
-
-  var marker;
-  var functionLocalization = function(position) {
-    var pos = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
-    };
-    //map.setCenter(pos);
-    map.setZoom(18);
-
-    marker = new google.maps.Marker({
-      position: pos,
-      map: map
-    });
-  };
-
-  var functionNotFounded = function(error) {
-    alert("Encontramos un inconveniente para ver tu ubicación");
-  };
-
-  if (navigator.geolocation) {
-    myLocation = navigator.geolocation.getCurrentPosition(functionLocalization, functionNotFounded);
-    return myLocation;
-  }
-
-
-};
-
 'use strict';
 
 const Buscar = (update) => {
@@ -107,58 +54,6 @@ const Header = () => {
     principal.append(arrowRight);
     return principal;
 }
-
-'use strict';
-
-const Login = (update) => {
-	const section = $('<section id="login" class="container-fluid"></section>');
-
-	const contenedortitle = $('<div class="login__title row"></div>');
-	const title = $('<h2 class="login__title--text col-xs-12">UPC GO!</h2>');
-
-	const contenido = $('<div class="login__contenido row"></div>');
-
-	const cajas = $('<div class="login__cajas col-xs-12"></div>');
-	const codigoAlumno = $('<input type="text" class="contenido__codigo" placeholder="Código de Alumno"/>');
-	const passwordAlumno = $('<input type="password" class="contenido__contraseña" placeholder="Contraseña"/>');
-
-	const botones = $('<div class="login__botones col-xs-12"></div>');
-	const btnIngresar = $('<button type="button" class="btn btn-lg uppercase" name="button">Ingresar</button>');
-	const btnFacebook = $('<button type="button" class="btn btn-lg uppercase" name="button">Facebook</button>');
-	const text = $('<p>* Olvidé contraseña</p>');
-
-	contenedortitle.append(title);
-
-	cajas
-		.append(codigoAlumno)
-		.append(passwordAlumno);
-
-	botones
-		.append(btnIngresar)
-		.append(btnFacebook)
-		.append(text);
-
-	contenido
-		.append(cajas)
-		.append(botones)
-		.append(text);
-
-	section
-		.append(contenedortitle)
-		.append(contenido);
-
-	/*section.append(HeaderAll('Logeate',0,update));*/
-
-	btnIngresar.on('click',(e) => {
-		e.preventDefault();
-		console.log('click');
-		state.page = 2;
-		update();
-	});
-
-	return section;
-}
-
 
 'use strict';
 
@@ -224,14 +119,6 @@ const Resultado = (update) => {
 
   return section;
 
-};
-
-'use strict';
-
-const SegundaPantalla = () => {
-	const section = $('<section>Hola SEGUNDA PANTALLA</section>');
-
-	return section;
 };
 
 'use strict';
