@@ -16,21 +16,20 @@ const Sedes = (update) => {
 
 	const sede = (campus, urlSede) => {
 	  campus.on('click',(e) => {
-      e.preventDefault();
-      getJSON(urlSede, (err, json) => {
-        //state.upcSede = json.features;
-        state.origenLat = json.features[0].geometry.coordinates[0];
-		  state.origenLong = json.features[0].geometry.coordinates[1];
-        console.log(state.origenLat);
-        console.log(state.origenLong);
-      });
+		  e.preventDefault();
+		  getJSON(urlSede, (err, json) => {
+			//state.upcSede = json.features;
+			state.origenLat = json.features[0].geometry.coordinates[0];
+			state.origenLong = json.features[0].geometry.coordinates[1];
 
-      state.page = 2;
-      update();
+			console.log(state.origenLat);
+			console.log(state.origenLong);
+		  });
 
-    });
-
-  };
+		  state.page = 2;
+		  update();
+	  });
+  	};
 
 	sede(monterrico,'/upcMonterrico');
 	sede(sanIsidro,'/upcSis');

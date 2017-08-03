@@ -299,7 +299,7 @@ const Login = (update) => {
 	const contenido 			= $('<div class="login__contenido row"></div>');
 
 	const cajas					 = $('<div class="login__cajas col-xs-12"></div>');
-	const codigoAlumno 	 = $('<input type="text" class="contenido__codigo" placeholder="Código de Alumno"/>');
+	const codigoAlumno 	 = $('<input type="text" class="contenido__codigo" placeholder="Correo electronico"/>');
 	const passwordAlumno = $('<input type="password" class="contenido__contraseña" placeholder="Contraseña"/>');
 
 	const botones		 	= $('<div class="login__botones col-xs-12"></div>');
@@ -498,21 +498,20 @@ const Sedes = (update) => {
 
 	const sede = (campus, urlSede) => {
 	  campus.on('click',(e) => {
-      e.preventDefault();
-      getJSON(urlSede, (err, json) => {
-        //state.upcSede = json.features;
-        state.origenLat = json.features[0].geometry.coordinates[0];
-		  state.origenLong = json.features[0].geometry.coordinates[1];
-        console.log(state.origenLat);
-        console.log(state.origenLong);
-      });
+		  e.preventDefault();
+		  getJSON(urlSede, (err, json) => {
+			//state.upcSede = json.features;
+			state.origenLat = json.features[0].geometry.coordinates[0];
+			state.origenLong = json.features[0].geometry.coordinates[1];
 
-      state.page = 2;
-      update();
+			console.log(state.origenLat);
+			console.log(state.origenLong);
+		  });
 
-    });
-
-  };
+		  state.page = 2;
+		  update();
+	  });
+  	};
 
 	sede(monterrico,'/upcMonterrico');
 	sede(sanIsidro,'/upcSis');
@@ -572,7 +571,7 @@ const render = (root) => {
 };
 
 const state = {
-  	page: 1,
+  	page: 0,
   	usuario: null,
   	rutasSede: null,
 	origenLat :null,
