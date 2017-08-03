@@ -35,7 +35,7 @@ var loadUpcSanMiguel = () => {
     });
 };
 var loadUpcSis = () => {
-    var url = '/rutasSis';
+    var url = '/upcSis';
     return database.ref(url).once('value').then(function(snapshot) {
       return snapshot.val();
     });

@@ -5,12 +5,12 @@ const render = (root) => {
   const wrapper = $('<div class="wrapper"></div>');
 
   if(state.page == 0){
+    wrapper.append(Login(_=>{ render(root) }));
+  } else if(state.page == 1){
     wrapper.append(Resultado(_=>{ render(root) }));
     setTimeout(function() {
       initMap("map-result", laboratoriaLima);
     }, 500);
-  } else if(state.page == 1){
-    wrapper.append(Login(_=>{ render(root) }));
   }else if(state.page == 2){
     wrapper.append(SegundaPantalla());
   }
@@ -19,9 +19,10 @@ const render = (root) => {
 };
 
 const state = {
-  page: 1,
+  page: 0,
   data:{},
   rutasMo: null,
+  rutasSis: null,
 	screenView: null
 };
 
@@ -31,5 +32,14 @@ $(document).ready(function() {
   console.log(state.rutasMo);
   const root = $('.root');
   render(root);
+  });
+});
+
+$(document).ready(function() {
+  getJSON('/rutasSis', (err, json) => {
+    state.rutasSis = json;
+    console.log(state.rutasSis);
+    const root = $('.root');
+    render(root);
   });
 });
