@@ -4,8 +4,10 @@ const Login = (update) => {
 
 	const section = $('<section id="login" class="container-fluid"></section>');
 
+	const logo = $('<img src="assets/img/logo.png" alt="Logo Upc">');
+
 	const contenedortitle = $('<div class="login__title row"></div>');
-	const title = $('<h2 class="login__title--text col-xs-12">UPC GO!</h2>');
+	const title = $('<h1 class="login__title--text col-xs-12">UPC GO!</h1>');
 
 	const contenido = $('<div class="login__contenido row"></div>');
 
@@ -14,8 +16,8 @@ const Login = (update) => {
 	const passwordAlumno = $('<input type="password" class="contenido__contraseña" placeholder="Contraseña"/>');
 
 	const botones = $('<div class="login__botones col-xs-12"></div>');
-	const btnIngresar = $('<button type="button" class="btn btn-lg uppercase" name="button">Ingresar</button>');
-	const btnFacebook = $('<button type="button" class="btn btn-lg uppercase" name="button">Facebook</button>');
+	const btnIngresar = $('<button type="button" class="btn" name="button">Ingresar</button>');
+	const btnFacebook = $('<button type="button" class="btn" name="button">Facebook</button>');
 	const text = $('<p>* Olvidé contraseña</p>');
 
 	contenedortitle.append(title);
@@ -31,12 +33,12 @@ const Login = (update) => {
 
 	contenido
 		.append(cajas)
-		.append(botones)
-		.append(text);
+		.append(botones);
 
 	section
 		.append(contenedortitle)
-		.append(contenido);
+		.append(contenido)
+		.append(logo);
 
 	/*section.append(HeaderAll('Logeate',0,update));*/
 	btnFacebook.on('click',(e)=>{
@@ -95,4 +97,6 @@ const Login = (update) => {
 		// });
 
 	return section;
-}
+};
+
+//deberia subir todoOK

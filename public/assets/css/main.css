@@ -72,14 +72,80 @@ header h5 {
 #login {
   align-items: center;
   height: 100vh;
-  background-color: aqua;
+  background-color: #FFF;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/bg-mobile.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* Cambio color placeholder*/
 }
 
-#login .login__cajas,
-#login .login__botones {
+#login .login__contenido {
+  margin-top: 30px;
+}
+
+#login .login__contenido .login__cajas,
+#login .login__contenido .login__botones {
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+#login .login__contenido .login__cajas button:nth-child(1),
+#login .login__contenido .login__botones button:nth-child(1) {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 1px;
+  text-transform: uppercase;
+  color: white;
+  background-color: red;
+  margin-bottom: 10px;
+}
+
+#login .login__contenido .login__cajas button:nth-child(2),
+#login .login__contenido .login__botones button:nth-child(2) {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+
+#login .login__contenido .login__cajas {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#login .login__title--text {
+  color: #FFFFFF;
+  font-size: 50px;
+}
+
+#login input[type="text"],
+#login input[type="password"] {
+  width: 80%;
+  font-size: 16px;
+  color: #FFF;
+  outline: none;
+  padding: 10px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #dedcdc;
+}
+
+#login button {
+  width: 80%;
+}
+
+#login ::-webkit-input-placeholder {
+  color: #dcdada;
+}
+
+#login img {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
