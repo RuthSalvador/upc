@@ -18,7 +18,7 @@ const render = (root) => {
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-buscar", state.origenLong, state.origenLat, kata);
+      initMap("map-lugar", state.origenLong, state.origenLat, kata);
     }, 500);
 
   } else if(state.page == 4 ) {

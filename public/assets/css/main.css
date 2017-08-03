@@ -366,6 +366,10 @@ small {
 }
 
 @media (min-width: 768px) {
+  #map-lugar {
+    left: 20%;
+    width: 80%;
+  }
   .result__details {
     padding: 21px 35px;
     position: absolute;

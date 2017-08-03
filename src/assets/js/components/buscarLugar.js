@@ -22,16 +22,19 @@ const reRender = (sectionList, result, update) => {
 
 
 const BuscarLugar = (update) => {
+    const section = $('<section></section>');
     const lugar = $('<div id="buscarLugar" ></div>');
+    const divMap  = $('<div id="map-lugar" class="map hidden-xs"></div>');
 
-    const secSearch = $('<section id="search"></section>');
+
+  const secSearch = $('<section id="search"></section>');
     const secClass = $('<section id="clase"></section>');
     const secOther = $('<section id="places"></section>');
 
     const container     = $('<div class="container container-buscar"></div>');
     const boxImg        = $('<div class="col-xs-2 "></div>');
     const img           = $('<img src="assets/img/reserva.png"> alt="ir a clases"');
-    const boxText       = $('<div class="col-xs-9"></div>')
+    const boxText       = $('<div class="col-xs-9"></div>');
     const parr          = $('<p>Quiero ir a mis clases</p>');
     const span          = $('<span>Sincronizado con tu horario</span>');
     const boxArrow      = $('<div class="col-xs-1"></div>');
@@ -52,18 +55,26 @@ const BuscarLugar = (update) => {
     boxText.append(parr,span);
     boxArrowLeft.append(iconLeft);
     boxArrow.append(icon);
+
     container.append(boxImg,boxText,boxArrow);
     containerGo.append(boxArrowLeft,boxImgGo,boxTextGo);
+
     secSearch.append(containerGo);
     secClass.append(container);
+
     lugar.append(secSearch);
     lugar.append(secClass);
     lugar.append(secOther);
+
+    section.append(Header(update));
+    section.append(lugar);
+    section.append(divMap);
+
     iconLeft.on('click', (e)=> {
         e.preventDefault();
         state.page = 2;
         update();
-    })
+    });
     container.on('click',(e)=>{
       e.preventDefault();
       state.page = 6;
@@ -71,5 +82,5 @@ const BuscarLugar = (update) => {
     });
     let list = state.upcMonterrico.features;
     reRender( secOther, list, update);
-    return lugar;
-}
+    return section;
+};
