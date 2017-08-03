@@ -12,9 +12,10 @@ const render = (root) => {
   } else if(state.page == 1){
     wrapper.append(Login(_=>{ render(root) }));
   }else if(state.page == 2){
-    wrapper.append(SegundaPantalla());
+    wrapper.append(Sedes(_=>{ render(root) }));
+  }else if(state.page == 3){
+  	wrapper.append(terceraPantalla());
   }
-
   // switch(state.screenView) {
   // case null:
   // 	wrapper.append(Home(_ => render(root)));

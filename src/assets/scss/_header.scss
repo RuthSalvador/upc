@@ -1,36 +1,35 @@
 body {
-    background: rgba(130, 142, 145, 0.45);
+   // background: rgba(130, 142, 145, 0.45);
 
 }
 header {
     background-color: rgba(255, 255, 255, 0);
-    // @extend %flex;
-    // justify-content: space-between;
     padding: 10px 14px;
     font-size: 21px;
-    img {
+    * {
+        display: inline-block;
     }
-    span {
+    span, p  {
         padding-left: 7px;
         padding-right: 7px;
     }
-    h5 {
-        display: inline-block;
+    h3 {
         font-weight: bold;
         font-size: 21px;
         padding-left: 7px;
         padding-right: 7px;
     }
+
 }
 
 
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-header {
-    background-color: #FB1515;
-    height: 70px;
-    color: #fff;
-}
+    header {
+        background-color: $color-principal;
+        height: 70px;
+        color: #fff;
+    }
 
 }
 
