@@ -4,6 +4,11 @@
 }
 
 .bg--principal:hover {
+  background-color: #ff2424;
+  color: white;
+}
+
+.bg--principal:active, .bg--principal:focus {
   color: white;
 }
 
@@ -20,6 +25,20 @@
   color: #aeaeae;
 }
 
+.btn--change {
+  background-color: #ededed;
+  color: black;
+}
+
+.btn--change:hover {
+  background-color: #e1e1e1;
+  color: black;
+}
+
+.btn--change:active, .btn--change:focus {
+  color: white;
+}
+
 * {
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
@@ -28,6 +47,9 @@
 .map {
   width: 100%;
   height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: -1;
 }
 
 .result__details {
@@ -36,8 +58,10 @@
   bottom: 5vh;
 }
 
-body {
-  background: rgba(130, 142, 145, 0.45);
+#buscar, #buscarLugar #clase .container {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
 }
 
 header {
@@ -46,13 +70,16 @@ header {
   font-size: 21px;
 }
 
-header span {
+header * {
+  display: inline-block;
+}
+
+header span, header p {
   padding-left: 7px;
   padding-right: 7px;
 }
 
-header h5 {
-  display: inline-block;
+header h3 {
   font-weight: bold;
   font-size: 21px;
   padding-left: 7px;
@@ -62,13 +89,164 @@ header h5 {
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   header {
-    background-color: #FB1515;
+    background-color: red;
     height: 70px;
     color: #fff;
   }
 }
 
 /* Medium devices (desktops, 992px and up) */
+#sedes {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#sedes .sede__title {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+#sedes [class*='sede--'] {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100px;
+}
+
+@media (min-width: 670px) {
+  #sedes [class*='sede--'] {
+    height: 200px;
+    border: 2px solid white;
+  }
+}
+
+#sedes [class*='sede--'] p {
+  width: 50%;
+  /* text-transform: uppercase; */
+  font-size: 17px;
+  color: white;
+  /* margin: 0 0 10px; */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#sedes .sede--Monterrico {
+  background-image: url("../img/campus-monterrico.jpg");
+  background-position: top;
+}
+
+#sedes .sede--SanIsidro {
+  background-image: url("../img/campus-san-isidro-2.jpg");
+  background-position: top;
+}
+
+#sedes .sede--Villa {
+  background-image: url("../img/sede-villa.jpg");
+  background-position: bottom;
+}
+
+#sedes .sede--SanMiguel {
+  background-image: url("../img/campus-san-miguel.jpg");
+  background-position: bottom;
+}
+
+#buscar {
+  justify-content: space-between;
+  width: 85vw;
+  margin: 21vh auto 0 auto;
+  background-color: white;
+  color: #555555;
+  border-color: #cccccc;
+  border-radius: 0;
+}
+
+#buscarLugar {
+  width: 100%;
+  background-color: white;
+}
+
+#buscarLugar #search span {
+  cursor: pointer;
+}
+
+#buscarLugar #search input {
+  display: block;
+  margin-top: 5px;
+  border: none;
+  background-color: #dcdada;
+  width: 70vw;
+  margin-bottom: 7px;
+}
+
+#buscarLugar #search img {
+  width: 5vh;
+}
+
+#buscarLugar #clase {
+  border-top: 7px solid rgba(196, 190, 196, 0.62);
+  border-bottom: 7px solid rgba(196, 190, 196, 0.62);
+}
+
+#buscarLugar #clase p {
+  color: red;
+  font-weight: 500;
+  margin: 0;
+  font-size: 1.14em;
+}
+
+#buscarLugar #clase span {
+  color: #aeaeae;
+}
+
+#buscarLugar #places .item {
+  padding: 7px 14px;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+#buscarLugar #places .item a {
+  color: #000;
+}
+
+#buscarLugar #places .item p {
+  display: inline-block;
+}
+
+#buscarLugar #places .item img {
+  padding-right: 35px;
+  padding-left: 14px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  #buscar {
+    width: 50vw;
+  }
+  #buscarLugar {
+    width: 40%;
+  }
+  #buscarLugar #clase .container {
+    width: 100%;
+  }
+  #buscarLugar #search .container {
+    width: 100%;
+  }
+  #buscarLugar #search input {
+    width: 100%;
+    font-size: 12px;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #buscar {
+    width: 35vw;
+  }
+  #buscarLugar {
+    width: 30%;
+  }
+}
+
 #login {
   align-items: center;
   height: 100vh;
@@ -148,4 +326,29 @@ header h5 {
   position: absolute;
   top: 20px;
   right: 20px;
+}
+
+.modal-body {
+  padding: 21px 35px;
+}
+
+@media (min-width: 768px) {
+  .result__details {
+    padding: 21px 35px;
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+  }
+  .btn--change {
+    background-color: white;
+    color: red;
+    border: red 1px solid;
+  }
+  .btn--change:hover {
+    background-color: #ffe6e6;
+    color: red;
+  }
+  .btn--change:active, .btn--change:focus {
+    color: red;
+  }
 }

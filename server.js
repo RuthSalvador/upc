@@ -1,15 +1,16 @@
 const express = require('express');
-const api = require("./api");
+const api = require('./api');
 const app = express();
-
 app.use('/', express.static('public'));
+
 app.set('port', (process.env.PORT || 5000));
 
 app.listen(app.get('port'), ()=> {
   console.log('Node app is running on port', app.get('port'));
 });
 
-app.get('/rutasMO', function (req, res) {
+
+app.get('/rutasMo', function (req, res) {
     var questions = api.questions();
     questions.then( (result) => {
         res.status(200).json(result);

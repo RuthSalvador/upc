@@ -29,13 +29,13 @@ var loadUpcMonterrico = () => {
     });
 };
 var loadUpcSanMiguel = () => {
-    var url = '/rutasMo';
+    var url = '/upcSanMiguel';
     return database.ref(url).once('value').then(function(snapshot) {
       return snapshot.val();
     });
 };
 var loadUpcSis = () => {
-    var url = '/rutasSis';
+    var url = '/upcSis';
     return database.ref(url).once('value').then(function(snapshot) {
       return snapshot.val();
     });
