@@ -1,30 +1,13 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-window.fbAsyncInit = function() {
-	FB.init({
-		appId	: '648776228595741',
-		cookie	: true,
-		xfbml	: true,
-		version	: 'v2.9'
-	});
+'use strict';
+
+const alert = () => {
+	swal(
+		'Reserva Lista',
+		'No olvides llegar 30 minutos antes',
+		'success'
+	)
 };
-
-function loginHandler (response) {
-	if(response.status === 'connected'){
-		state.status = 'Conectado';
-		FB.api('/me?fields=email,name', user => {
-			state.user = user;
-			state.doRender();
-		});
-	} else if(response.status === 'not_authorized'){
-		state.user = null;
-		state.status = 'Aplicación no autorizada';
-		state.doRender();
-	}
-}
-
-function doLogin() {
-	FB.login(loginHandler, {scope:'email'});
-}
 
 'use strict';
 
@@ -614,6 +597,10 @@ const Modal = (idModal) => {
 
   const btn = $('<button type="button" class="btn btn-block bg--principal text-uppercase">reservar</button>');
 
+	btn.on('click', (e) => {
+      alert();
+	});
+
   modal
     .append(divDocument);
 
@@ -758,11 +745,12 @@ const render = (root) => {
       initMap("map-result", state.origenLat, state.origenLong, state.destinoLat, state.destinoLong);
     }, 500);
   }
+
   root.append(wrapper);
 };
 
 const state = {
-  page: 1,
+  page: 5,
   usuario: null,
   rutasSede: null,
   upcSede: null,

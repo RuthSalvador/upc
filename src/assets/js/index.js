@@ -34,11 +34,12 @@ const render = (root) => {
       initMap("map-result", state.origenLat, state.origenLong, state.destinoLat, state.destinoLong);
     }, 500);
   }
+
   root.append(wrapper);
 };
 
 const state = {
-  page: 1,
+  page: 5,
   usuario: null,
   rutasSede: null,
   upcSede: null,
