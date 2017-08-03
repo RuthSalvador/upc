@@ -23,7 +23,41 @@
 }
 
 @import "header" ;
+#sedes{
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	.sede__title {
+		margin-bottom: 30px;
+		margin-top: 30px;
+	}
+	[class*='sede--'] {
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 114px;
+		@media (min-width: 670px) {
+			height: 211px;
+			border: 2px solid white;
+		}
+	}
+	.sede--Monterrico{
+		background-image: url("../img/campus-monterrico.jpg");
+		background-position: top;
+	}
+	.sede--SanIsidro{
+		background-image: url("../img/campus-san-isidro-2.jpg");
+		background-position: top;
+	}
+	.sede--Villa{
+		background-image: url("../img/sede-villa.jpg");
+		background-position: bottom;
+	}
+	.sede--SanMiguel{
+		background-image: url("../img/campus-san-miguel.jpg");
+		background-position: bottom;
+	}
 
+}
 #login{
 	align-items: center;
 	height: 100vh;
