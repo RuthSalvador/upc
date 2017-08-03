@@ -42,12 +42,17 @@ const HeaderResult = (image, title, detail) => {
 };
 
 
-//centros
-const upcMo = { lat: -12.103676, lng: -76.9633296};
+
+
 const kata = { lat: -12.1045677, lng: -76.9630828};
 //let myLocation;
 
-const initMap = (mapa,centro,destiny) => {
+const initMap = (mapa,latitud,longitud,destiny) => {
+
+  var centro = {
+    lat: latitud,
+    lng: longitud
+  };
 
   var map = new google.maps.Map(document.getElementById(mapa), {
     zoom: 18,
@@ -149,7 +154,8 @@ const Buscar = (update) => {
     .on('click', (e) => {
         e.preventDefault();
         state.page = 3;
-        update();
+
+      update();
     });
     return section;
 };
@@ -232,7 +238,7 @@ const Header = (update) => {
 
   const arrowLeft     = $('<div class="pull-left hidden-xs"></div>');
   const userImg       = $('<img src="assets/img/avatar.png" alt="usuario alumno">');
-  const user          = $('<p class="estudiante">Hola <span id="student">Javier</span></p>');
+  const user          = $('<p class="estudiante">Hola <span id="student">'+ state.usuario +'</span></p>');
 
   const arrowRight    = $('<div class="pull-right"></div>');
   const ubicar        = $('<img src="assets/img/ubicacion-cabecera.png" alt="signo de ubicación" class="hidden-xs">');
@@ -333,8 +339,10 @@ const Login = (update) => {
 	        // User is signed in.
 	        console.log(user);
 	        state.page = 1;
+	        state.usuario = user.email;
 	        update();
-	      } else {
+          console.log(state.usuario);
+        } else {
 	        console.log('no logeado');
 	      }
 	    });
@@ -467,16 +475,21 @@ const Sedes = (update) => {
       getJSON(urlRuta, (err, json) => {
         state.rutasSede = json;
         $.each(json.features, ( key, value ) =>  {
-          console.log(value);
+          console.log(value.geometry.coordinates);
         });
       });
       getJSON(urlSede, (err, json) => {
         state.upcSede = json;
-        //console.log(json.features);
+        $.each(json.features, ( key, value ) =>  {
+          console.log(value.geometry.coordinates);
+          console.log(state.upcSede.geometry.coordinates);
+
+        });
       });
 
       state.page = 2;
       update();
+
     });
 
   };
@@ -523,7 +536,7 @@ const render = (root) => {
   } else if(state.page == 2){
     wrapper.append(Buscar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-buscar", upcMo, kata);
+      initMap("map-buscar", -12.1037153,-76.9633269, kata);
     }, 500);
 
   } else if(state.page == 3 ) {
@@ -540,6 +553,7 @@ const render = (root) => {
 
 const state = {
   page: 1,
+  usuario: null,
   rutasSede: null,
   upcSede: null,
 };

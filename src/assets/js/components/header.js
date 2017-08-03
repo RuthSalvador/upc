@@ -5,7 +5,7 @@ const Header = (update) => {
 
   const arrowLeft     = $('<div class="pull-left hidden-xs"></div>');
   const userImg       = $('<img src="assets/img/avatar.png" alt="usuario alumno">');
-  const user          = $('<p class="estudiante">Hola <span id="student">Javier</span></p>');
+  const user          = $('<p class="estudiante">Hola <span id="student">'+ state.usuario +'</span></p>');
 
   const arrowRight    = $('<div class="pull-right"></div>');
   const ubicar        = $('<img src="assets/img/ubicacion-cabecera.png" alt="signo de ubicación" class="hidden-xs">');
