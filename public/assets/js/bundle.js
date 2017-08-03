@@ -540,7 +540,7 @@ const Resultado = (update) => {
   const btns    = $('<div></div>');
   let reserve;
 
-  if ((state.dataPlaces.Name == 'Gimnasio')||(state.dataPlaces.Name == 'Piscina')){
+  if ((state.dataPlaces.Name == 'Gimnasio')||(state.dataPlaces.Name == 'Piscina')||(state.dataPlaces.Name == 'Campos de Fulbito')){
     reserve = $('<button type="button" class="btn btn-block bg--principal text-uppercase" data-toggle="modal" data-target="#modalReserve">reservar</button>');
     btns.append(reserve);
   }
@@ -586,8 +586,9 @@ const Modal = (idModal) => {
   const divSpace    = $('<div class="form-group"></div>');
   const space       = $('<label class="col-xs-5">Espacio Deportivo:</label>');
   const selSpace    = $('<select class="col-xs-6"></select>');
-  const option1     = $('<option value="piscina">Gimnasio</option>');
-  const option2     = $('<option value="gimnasio">Piscina</option>');
+  const option1     = $('<option value="gimnasio">Gimnasio</option>');
+  const option2     = $('<option value="fulbito">Campo Fulbito</option>');
+  const option3     = $('<option value="piscina">Piscina</option>');
 
   const divHours    = $('<div class="form-group"></div>');
   const numHours    = $('<label class="col-xs-5">Número de horas:</label>');
@@ -639,7 +640,8 @@ const Modal = (idModal) => {
 
   selSpace
     .append(option1)
-    .append(option2);
+    .append(option2)
+    .append(option3);
 
   divHours
     .append(numHours)
