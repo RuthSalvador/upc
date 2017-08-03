@@ -12,18 +12,30 @@ const initMap = (mapa,centro,destiny) => {
     disableDefaultUI: true
   });
 
+
+
+
   var iconBase = 'assets/img/';
-    marker = new google.maps.Marker({
+    markerUbication = new google.maps.Marker({
       position: centro,
       map: map,
       icon: iconBase + 'ubicacion-mapa.png',
+      draggable: true,
+      animation: google.maps.Animation.DROP,
     });
 
-    marker = new google.maps.Marker({
+
+
+    markerDestiny = new google.maps.Marker({
       position: destiny,
       map: map,
       icon: iconBase + 'tu-llegada.png',
+      draggable: true,
+      animation: google.maps.Animation.DROP,
     });
+
+
+
 
   var flightPlanCoordinates = [
     {lat: -12.103676, lng: -76.9633296},
@@ -42,8 +54,8 @@ const initMap = (mapa,centro,destiny) => {
 
   flightPath.setMap(map);
 
-};
 
+};
 
 
 
