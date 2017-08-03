@@ -10,7 +10,7 @@ const Header = (update) => {
   const ubicar        = $('<img src="assets/img/ubicacion-cabecera.png" alt="signo de ubicación" class="hidden-xs">');
   const namePrincipal = $('<h3>UPC GO! </h3>');
   const logoRed       = $('<img src="assets/img/logo.png" alt="logo upc rojo" class="hidden-sm hidden-md hidden-lg">');
-  const logoWhite     =$('<img src="assets/img/crisol.png" alt="logo upc blanco" class="hidden-xs">');
+  const logoWhite     = $('<img src="assets/img/crisol.png" alt="logo upc blanco" class="hidden-xs">');
 
   arrowLeft.append(userImg);
   arrowLeft.append(user);

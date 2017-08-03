@@ -58,10 +58,6 @@
   bottom: 5vh;
 }
 
-body {
-  background: rgba(130, 142, 145, 0.45);
-}
-
 header {
   background-color: rgba(255, 255, 255, 0);
   padding: 10px 14px;
@@ -94,6 +90,60 @@ header h3 {
 }
 
 /* Medium devices (desktops, 992px and up) */
+#sedes {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#sedes .sede__title {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+#sedes [class*='sede--'] {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 114px;
+}
+
+@media (min-width: 670px) {
+  #sedes [class*='sede--'] {
+    height: 211px;
+    border: 2px solid white;
+  }
+}
+
+#sedes [class*='sede--'] p {
+  width: 50%;
+  /* text-transform: uppercase; */
+  font-size: 17px;
+  color: white;
+  /* margin: 0 0 10px; */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#sedes .sede--Monterrico {
+  background-image: url("../img/campus-monterrico.jpg");
+  background-position: top;
+}
+
+#sedes .sede--SanIsidro {
+  background-image: url("../img/campus-san-isidro-2.jpg");
+  background-position: top;
+}
+
+#sedes .sede--Villa {
+  background-image: url("../img/sede-villa.jpg");
+  background-position: bottom;
+}
+
+#sedes .sede--SanMiguel {
+  background-image: url("../img/campus-san-miguel.jpg");
+  background-position: bottom;
+}
+
 #login {
   align-items: center;
   height: 100vh;

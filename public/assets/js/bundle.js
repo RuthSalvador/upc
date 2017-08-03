@@ -40,7 +40,6 @@ const HeaderResult = (image, title, detail) => {
   return div;
 };
 
-//jbmnbmnbnm
 
 //centros
 const upcMo = { lat: -12.103676, lng: -76.9633296};
@@ -55,7 +54,7 @@ const initMap = (mapa,centro,destiny) => {
     disableDefaultUI: true
   });
 
-  
+
 
 
   var iconBase = 'assets/img/';
@@ -141,7 +140,7 @@ const Header = (update) => {
   const ubicar        = $('<img src="assets/img/ubicacion-cabecera.png" alt="signo de ubicación" class="hidden-xs">');
   const namePrincipal = $('<h3>UPC GO! </h3>');
   const logoRed       = $('<img src="assets/img/logo.png" alt="logo upc rojo" class="hidden-sm hidden-md hidden-lg">');
-  const logoWhite     =$('<img src="assets/img/crisol.png" alt="logo upc blanco" class="hidden-xs">');
+  const logoWhite     = $('<img src="assets/img/crisol.png" alt="logo upc blanco" class="hidden-xs">');
 
   arrowLeft.append(userImg);
   arrowLeft.append(user);
@@ -259,27 +258,6 @@ const Login = (update) => {
 
 };
 
-//deberia subir todoOK
-
-
-'use strict';
-
-const MapaSvg = (update) => {
-  const section = $('<section></section>');
-  var divMap  = $(`<div id="map-exa" class="map"></div>`);
-  var svg = `<svg xmlns="http://www.w3.org/2000/svg" version='1.1' width="100%" height="100%" >`;
-
-  section.append(divMap);
-
-  const line = `<line id="" x1='700' y1="400" x2='700' y2='340' style='stroke:blue;stroke-width:5'/>`;
-  divMap.append(svg);
-  //svg.append(line);
-
-  return section;
-
-};
-
-
 
 'use strict';
 
@@ -385,12 +363,82 @@ const Modal = (idModal) => {
 
 'use strict';
 
-const SegundaPantalla = () => {
-	const section = $('<section>Hola SEGUNDA PANTALLA</section>');
+const Sedes = (update) => {
+	const section = $('<section id="sedes" class="container-fluid"></section>');
+
+	const contenedortitle = $('<div class="sede__title row"></div>');
+	const title = $('<h1 class="sede__title--text col-xs-12 text-center">Elige la sede</h1>');
+
+	const sedes = $('<div class="sede__contenido row"></div>');
+
+	const monterrico = $('<div class="sede--Monterrico col-xs-12 col-sm-6"><p>Campus Monterrico</p></div>');
+	const sanIsidro = $('<div class="sede--SanIsidro col-xs-12 col-sm-6"><p>Campus San Isidro</p></div>');
+	const villa = $('<div class="sede--Villa col-xs-12 col-sm-6"><p>Campus Villa</p></div>');
+	const sMiguel = $('<div class="sede--SanMiguel col-xs-12 col-sm-6"><p>Campus San Miguel</p></div>');
+
+
+
+	monterrico.on('click',(e) => {
+		e.preventDefault();
+		getJSON('/rutasMo', (err, json) => {
+			state.rutasMo = json;
+			console.log(json.features);
+			$.each(json.features, ( key, value ) =>  {
+				console.log(value);
+			});
+		});
+			/*
+		getJSON('/upcMonterrico', (err, json) => {
+			state.rutasMo = json;
+			console.log(json.features);
+		});*/
+
+		//state.page = 2;
+		//update();
+	});
+
+	sanIsidro.on('click',(e) => {
+		getJSON('/rutasSis', (err, json) => {
+			state.rutasSis = json;
+			console.log(state.rutasSis);
+		});
+		getJSON('/upcSis', (err, json) => {
+			state.rutasSis = json;
+			console.log(state.rutasSis);
+		});
+		e.preventDefault();
+		//state.page = 2;
+		//update();
+	});
+
+
+	contenedortitle.append(title);
+
+	sedes
+		.append(monterrico)
+		.append(sanIsidro)
+		.append(villa)
+		.append(sMiguel);
+
+	section
+		.append(Header())
+		.append(contenedortitle)
+		.append(sedes);
+
+
+	/*section.append(HeaderAll('Logeate',0,update));*/
+
 
 	return section;
 };
 
+'use strict';
+
+const terceraPantalla = () => {
+	const section = $('<section>Hola tercera PANTALLA</section>');
+
+	return section;
+};
 'use strict';
 
 const render = (root) => {
@@ -404,21 +452,18 @@ const render = (root) => {
     setTimeout(function() {
       initMap("map-result", upcMo, kata);
     }, 500);
-  }else if(state.page == 2){
-    wrapper.append(SegundaPantalla());
-  } else if(state.page == 3) {
+  } else if(state.page == 2) {
       wrapper.append(Header(_=>{ render(root) }));
-  } else if(state.page == 4) {
-    wrapper.append(MapaSvg(_ =>{render(root) }));
-    setTimeout(function() {
-      initMap("map-exa", upcMo, kata);
-    }, 500);
+  } else if(state.page == 3){
+    wrapper.append(Sedes(_=>{ render(root) }));
   }
+
+
   root.append(wrapper);
 };
 
 const state = {
-  page: 1,
+  page: 0,
   data:{},
   rutasMo: null,
   rutasSis: null,

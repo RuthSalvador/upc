@@ -11,21 +11,18 @@ const render = (root) => {
     setTimeout(function() {
       initMap("map-result", upcMo, kata);
     }, 500);
-  }else if(state.page == 2){
-    wrapper.append(SegundaPantalla());
-  } else if(state.page == 3) {
+  } else if(state.page == 2) {
       wrapper.append(Header(_=>{ render(root) }));
-  } else if(state.page == 4) {
-    wrapper.append(MapaSvg(_ =>{render(root) }));
-    setTimeout(function() {
-      initMap("map-exa", upcMo, kata);
-    }, 500);
+  } else if(state.page == 3){
+    wrapper.append(Sedes(_=>{ render(root) }));
   }
+
+
   root.append(wrapper);
 };
 
 const state = {
-  page: 1,
+  page: 0,
   data:{},
   rutasMo: null,
   rutasSis: null,

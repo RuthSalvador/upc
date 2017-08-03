@@ -100,5 +100,3 @@ const Login = (update) => {
 
 };
 
-//deberia subir todoOK
-
