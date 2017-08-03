@@ -60,6 +60,10 @@ const Modal = (idModal) => {
 
   const btn         = $('<button type="button" class="btn btn-block bg--principal text-uppercase">reservar</button>');
 
+	btn.on('click', (e) => {
+      alert();
+	});
+
   modal
     .append(divDocument);
 
