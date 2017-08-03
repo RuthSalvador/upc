@@ -534,7 +534,7 @@ const Resultado = (update) => {
     .append(Header(update))
     .append(divMap)
     .append(content)
-    .append(Modal('modalReserve'));
+    .append(Modal('modalReserve', update));
 
   content
     .append(HeaderResult(state.dataPlaces.src, state.dataPlaces.Name , "metros"))
@@ -558,7 +558,7 @@ const Resultado = (update) => {
 };
 
 //Modal:
-const Modal = (idModal) => {
+const Modal = (idModal, update) => {
   const modal       = $(`<div class="modal fade" id="${idModal}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>`);
   const divDocument = $('<div class="modal-dialog" role="document"></div>');
   const divContent  = $('<div class="modal-content"></div>');
@@ -583,8 +583,8 @@ const Modal = (idModal) => {
   const date        = $('<label class="col-xs-5">Día:</label>');
   const selDate     = $('<input class="col-xs-6" type="date" min="2017-08-03" value="2017-08-03">');
 
-  const divHor     = $('<div class="form-group"></div>');
-  const hor        = $('<label class="col-xs-5">Hora:</label>');
+  const divHor      = $('<div class="form-group"></div>');
+  const hor         = $('<label class="col-xs-5">Hora:</label>');
   const hours       = $('<select class="col-xs-6"></select>');
 
   let optionHours;
@@ -598,7 +598,11 @@ const Modal = (idModal) => {
   const btn = $('<button type="button" class="btn btn-block bg--principal text-uppercase">reservar</button>');
 
 	btn.on('click', (e) => {
+	  e.preventDefault();
       alert();
+      state.page = 3;
+      update();
+      $('.modal-backdrop').hide();
 	});
 
   modal
@@ -750,7 +754,7 @@ const render = (root) => {
 };
 
 const state = {
-  page: 5,
+  page: 1,
   usuario: null,
   rutasSede: null,
   upcSede: null,

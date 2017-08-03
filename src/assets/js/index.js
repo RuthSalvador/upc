@@ -39,7 +39,7 @@ const render = (root) => {
 };
 
 const state = {
-  page: 5,
+  page: 1,
   usuario: null,
   rutasSede: null,
   upcSede: null,
