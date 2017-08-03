@@ -1,4 +1,31 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+window.fbAsyncInit = function() {
+	FB.init({
+		appId	: '648776228595741',
+		cookie	: true,
+		xfbml	: true,
+		version	: 'v2.9'
+	});
+};
+
+function loginHandler (response) {
+	if(response.status === 'connected'){
+		state.status = 'Conectado';
+		FB.api('/me?fields=email,name', user => {
+			state.user = user;
+			state.doRender();
+		});
+	} else if(response.status === 'not_authorized'){
+		state.user = null;
+		state.status = 'Aplicación no autorizada';
+		state.doRender();
+	}
+}
+
+function doLogin() {
+	FB.login(loginHandler, {scope:'email'});
+}
+
 'use strict';
 
 const filterByPlace = (places,query) => {
@@ -65,7 +92,7 @@ const initMap = (mapa,latitud,longitud,destiny) => {
   };
 
   var map = new google.maps.Map(document.getElementById(mapa), {
-    zoom: 18,
+    zoom: 19,
     center: centro,
     disableDefaultUI: true
   });
@@ -154,9 +181,7 @@ const Buscar = (update) => {
 
   section
     .append(Header(update))
-    .append(map);
-
-  map
+    .append(map)
     .append(btn);
 
   btn
@@ -365,7 +390,7 @@ const Login = (update) => {
 	const contenido 			= $('<div class="login__contenido row"></div>');
 
 	const cajas					 = $('<div class="login__cajas col-xs-12"></div>');
-	const codigoAlumno 	 = $('<input type="text" class="contenido__codigo" placeholder="Código de Alumno"/>');
+	const codigoAlumno 	 = $('<input type="text" class="contenido__codigo" placeholder="Correo electronico"/>');
 	const passwordAlumno = $('<input type="password" class="contenido__contraseña" placeholder="Contraseña"/>');
 
 	const botones		 	= $('<div class="login__botones col-xs-12"></div>');
@@ -431,7 +456,6 @@ const Login = (update) => {
 				console.log(user);
 	      if (user) {
 	        // User is signed in.
-	        console.log(user);
 	        state.page = 1;
 	        state.usuario = user.email;
 	        update();
@@ -561,33 +585,25 @@ const Sedes = (update) => {
 	const sMiguel 	 = $('<div class="sede--SanMiguel col-xs-12 col-sm-6"><p>Campus San Miguel</p></div>');
 
 
-	const sede = (campus, urlRuta, urlSede) => {
+	const sede = (campus, urlSede) => {
 	  campus.on('click',(e) => {
-      e.preventDefault();
-      getJSON(urlRuta, (err, json) => {
-        state.rutasSede = json;
-        $.each(json.features, ( key, value ) =>  {
-          console.log(value.geometry.coordinates);
-        });
-      });
-      getJSON(urlSede, (err, json) => {
-        state.upcSede = json;
-        $.each(json.features, ( key, value ) =>  {
-          console.log(value.geometry.coordinates);
-          console.log(state.upcSede.geometry.coordinates);
+		  e.preventDefault();
+		  getJSON(urlSede, (err, json) => {
+			//state.upcSede = json.features;
+			state.origenLat = json.features[0].geometry.coordinates[0];
+			state.origenLong = json.features[0].geometry.coordinates[1];
 
-        });
-      });
+			console.log(state.origenLat);
+			console.log(state.origenLong);
+		  });
 
-      state.page = 2;
-      update();
+		  state.page = 2;
+		  update();
+	  });
+  	};
 
-    });
-
-  };
-
-	sede(monterrico,'/rutasMo','/upcMonterrico');
-	sede(sanIsidro,'/rutasSis','/upcSis');
+	sede(monterrico,'/upcMonterrico');
+	sede(sanIsidro,'/upcSis');
 
 	contenedortitle.append(title);
 
@@ -628,10 +644,13 @@ const render = (root) => {
   } else if(state.page == 2){
     wrapper.append(Buscar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-buscar", -12.1037153,-76.9633269, kata);
+      initMap("map-buscar", state.origenLong, state.origenLat, '');
     }, 500);
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
+    setTimeout(function () {
+      initMap("map-buscar", state.origenLong, state.origenLat, kata);
+    }, 500);
 
   } else if(state.page == 4 ) {
     wrapper.append(BuscarClass(_=>{ render(root) }));
@@ -639,7 +658,7 @@ const render = (root) => {
   }else if(state.page == 5 ) {
     wrapper.append(Resultado(_ => { render(root) }));
     setTimeout(function () {
-      initMap("map-result", -12.1037153,-76.9633269, kata);
+      initMap("map-result", state.origenLong, state.origenLat, kata);
     }, 500);
   }
   root.append(wrapper);
@@ -650,17 +669,18 @@ const state = {
   usuario: null,
   rutasSede: null,
   upcSede: null,
-  clases:null
+  origenLat :null,
+  origenLong: null,
+  clases: null
 };
 
 $(document).ready(function() {
   getJSON('/rutasMo', (err, json) => {
-  state.rutasMo = json;
-    //console.log(state.rutasMo.features[0].geometry.coordinates[1]);
+      state.rutasMo = json;
   });
   getJSON('/rutasSis', (err, json) => {
       state.rutasSis = json;
-      //console.log(state.rutasSis);
+
 
   console.log(state.rutasMo.features[0].geometry.coordinates[1]);
 
@@ -676,5 +696,4 @@ $(document).ready(function() {
   render(root);
 
 });
-
 },{}]},{},[1])

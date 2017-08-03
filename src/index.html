@@ -20,5 +20,14 @@
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGmVPurrDH6DdlnPpfLqlnaIjflWaW5Z0"></script>
     <script type="text/javascript" src="assets/js/bundle.js"></script>
+    <script type="text/javascript">
+		(function(thisdocument, scriptelement, id){
+			var js, fjs = thisdocument.getElementsByTagName(scriptelement)[0];
+			if (thisdocument.getElementById(id)) {return;}
+			js = thisdocument.createElement(scriptelement); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+    </script>
   </body>
 </html>

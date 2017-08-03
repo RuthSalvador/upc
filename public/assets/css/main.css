@@ -152,9 +152,13 @@ header h3 {
 }
 
 #buscar {
+  z-index: 1000;
+  position: absolute;
+  top: 21vh;
+  left: 14vw;
   justify-content: space-between;
-  width: 85vw;
-  margin: 21vh auto 0 auto;
+  width: 72vw;
+  margin: 0 auto;
   background-color: white;
   color: #555555;
   border-color: #cccccc;
@@ -220,7 +224,8 @@ header h3 {
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   #buscar {
-    width: 50vw;
+    left: 7vw;
+    width: 86vw;
   }
   #buscarLugar {
     width: 40%;
@@ -234,16 +239,6 @@ header h3 {
   #buscarLugar #search input {
     width: 100%;
     font-size: 12px;
-  }
-}
-
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  #buscar {
-    width: 35vw;
-  }
-  #buscarLugar {
-    width: 30%;
   }
 }
 
@@ -278,18 +273,35 @@ header h3 {
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
-  border-radius: 1px;
   text-transform: uppercase;
   color: white;
   background-color: red;
   margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#login .login__contenido .login__cajas button:nth-child(1):hover,
+#login .login__contenido .login__botones button:nth-child(1):hover {
+  background: #d70000;
+  transition: 1s;
 }
 
 #login .login__contenido .login__cajas button:nth-child(2),
 #login .login__contenido .login__botones button:nth-child(2) {
+  text-transform: uppercase;
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
+  border: 1px solid #4267b2;
+  background: #4267b2;
+  color: #fff;
+  cursor: pointer;
+}
+
+#login .login__contenido .login__cajas button:nth-child(2):hover,
+#login .login__contenido .login__botones button:nth-child(2):hover {
+  background: #365899;
+  transition: 1s;
 }
 
 #login .login__contenido .login__cajas {
@@ -332,27 +344,6 @@ header h3 {
   padding: 21px 35px;
 }
 
-<<<<<<< HEAD
-@media (min-width: 768px) {
-  .result__details {
-    padding: 21px 35px;
-    position: absolute;
-    top: 70px;
-    bottom: 0;
-  }
-  .btn--change {
-    background-color: white;
-    color: red;
-    border: red 1px solid;
-  }
-  .btn--change:hover {
-    background-color: #ffe6e6;
-    color: red;
-  }
-  .btn--change:active, .btn--change:focus {
-    color: red;
-  }
-=======
 /**styles quiero ir a mis clases**/
 #search input {
   display: block;
@@ -372,5 +363,25 @@ small {
 
 .container-buscar {
   cursor: pointer;
->>>>>>> origin/clases
+}
+
+@media (min-width: 768px) {
+  .result__details {
+    padding: 21px 35px;
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+  }
+  .btn--change {
+    background-color: white;
+    color: red;
+    border: red 1px solid;
+  }
+  .btn--change:hover {
+    background-color: #ffe6e6;
+    color: red;
+  }
+  .btn--change:active, .btn--change:focus {
+    color: red;
+  }
 }

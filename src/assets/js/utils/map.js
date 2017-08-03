@@ -14,7 +14,7 @@ const initMap = (mapa,latitud,longitud,destiny) => {
   };
 
   var map = new google.maps.Map(document.getElementById(mapa), {
-    zoom: 18,
+    zoom: 19,
     center: centro,
     disableDefaultUI: true
   });
