@@ -2,8 +2,8 @@
 
 const alert = () => {
 	swal(
-		'Good job!',
-		'You clicked the button!',
+		'Reserva Lista',
+		'No olvides llegar 30 minutos antes',
 		'success'
 	)
 };
