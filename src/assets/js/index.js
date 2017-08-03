@@ -52,7 +52,7 @@ $(document).ready(function() {
   });
   getJSON('/upcMonterrico', (err, json) => {
       state.upcMonterrico = json;
-     
+
   });
 
   const root = $('.root');
