@@ -13,6 +13,9 @@
     width: 100%;
     background-color: white;
     #search {
+        span {
+            cursor: pointer;
+        }
         input {
             display: block;
             margin-top: 5px;
@@ -60,6 +63,9 @@
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+    #buscar {
+        width: 50vw;
+    }
     #buscarLugar {
         width: 40%;
         #clase {
@@ -81,6 +87,9 @@
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+    #buscar {
+        width: 35vw;
+    }
     #buscarLugar {
         width: 30%;
     }
