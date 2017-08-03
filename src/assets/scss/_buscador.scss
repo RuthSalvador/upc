@@ -10,9 +10,18 @@
     border-radius: 0px;
 }
 #buscarLugar {
-    height: 100vh;
+    // height: 100vh;
     width: 100%;
     background-color: white;
+    #places {
+        .item {
+            padding: 7px 14px;
+            border-bottom: 1px solid rgb(215, 215, 215);
+            p {
+                display: inline-block;
+            }
+        }
+    }
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {

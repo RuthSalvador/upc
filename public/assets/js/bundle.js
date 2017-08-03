@@ -63,10 +63,12 @@ const Buscar = (update) => {
 const searchItem = (places, update)  => {
     const item = $('<div class="item"></div>');
     const nam = $('<p>'+places.properties.Name+'</p>');
+    const images = $('<img src="'+places.properties.src+'">');
     // const adrss= $('<h6>'+station.address+'</h6>');
     // const district = $('<h6>'+station.district+'</h6>');
     // const icon = $('<i class="fa fa-map" aria-hidden="true"></i>');
 
+    item.append(images);
     item.append(nam);
     // item.append(adrss);
     // item.append(district);
