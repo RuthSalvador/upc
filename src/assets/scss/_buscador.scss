@@ -1,0 +1,40 @@
+
+#buscar {
+    @extend %flex;
+    justify-content: space-between;
+    width: 85vw;
+    margin: 21vh auto 0 auto;
+    background-color: rgb(255, 255, 255);
+    color: rgb(85, 85, 85);
+    border-color: rgb(204, 204, 204);
+    border-radius: 0px;
+}
+#buscarLugar {
+    // height: 100vh;
+    width: 100%;
+    background-color: white;
+    #places {
+        .item {
+            padding: 7px 14px;
+            border-bottom: 1px solid rgb(215, 215, 215);
+            p {
+                display: inline-block;
+            }
+        }
+    }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    // header {
+    //     background-color: $color-principal;
+    //     height: 70px;
+    //     color: #fff;
+    // }
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+
+}

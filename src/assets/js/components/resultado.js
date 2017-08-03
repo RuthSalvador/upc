@@ -13,6 +13,7 @@ const Resultado = (update) => {
   const back    = $('<button type="button" class="btn btn-block btn-default text-uppercase">volver</button>');
 
   section
+    .append(Header(update))
     .append(divMap)
     .append(content)
     .append(Modal('modalReserve'));

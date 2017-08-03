@@ -41,6 +41,12 @@
   bottom: 5vh;
 }
 
+#buscar {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
   background: rgba(130, 142, 145, 0.45);
 }
@@ -70,12 +76,37 @@ header h3 {
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   header {
-    background-color: red;
     height: 70px;
     color: #fff;
   }
 }
 
+/* Medium devices (desktops, 992px and up) */
+#buscar {
+  justify-content: space-between;
+  width: 85vw;
+  margin: 21vh auto 0 auto;
+  background-color: white;
+  color: #555555;
+  border-color: #cccccc;
+  border-radius: 0px;
+}
+
+#buscarLugar {
+  width: 100%;
+  background-color: white;
+}
+
+#buscarLugar #places .item {
+  padding: 7px 14px;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+#buscarLugar #places .item p {
+  display: inline-block;
+}
+
+/* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
 #login {
   align-items: center;
