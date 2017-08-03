@@ -133,7 +133,7 @@ header h5 {
   padding: 10px;
   background: none;
   border: none;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #dedcdc;
 }
 
 #login button {
@@ -141,7 +141,7 @@ header h5 {
 }
 
 #login ::-webkit-input-placeholder {
-  color: gray;
+  color: #dcdada;
 }
 
 #login img {
