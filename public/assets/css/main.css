@@ -1,0 +1,391 @@
+.bg--principal {
+  background-color: red;
+  color: white;
+}
+
+.bg--principal:hover {
+  background-color: #ff2424;
+  color: white;
+}
+
+.bg--principal:active, .bg--principal:focus {
+  color: white;
+}
+
+.bg--contrast {
+  background-color: white;
+  color: #aeaeae;
+}
+
+.text-principal {
+  color: red;
+}
+
+.text-secondary {
+  color: #aeaeae;
+}
+
+.btn--change {
+  background-color: #ededed;
+  color: black;
+}
+
+.btn--change:hover {
+  background-color: #e1e1e1;
+  color: black;
+}
+
+.btn--change:active, .btn--change:focus {
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.map {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+.result__details {
+  padding: 21px 35px;
+  position: absolute;
+  bottom: 5vh;
+}
+
+#buscar, #buscarLugar #clase .container {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  background-color: rgba(255, 255, 255, 0);
+  padding: 10px 14px;
+  font-size: 21px;
+}
+
+header * {
+  display: inline-block;
+}
+
+header span, header p {
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+header h3 {
+  font-weight: bold;
+  font-size: 21px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  header {
+    background-color: red;
+    height: 70px;
+    color: #fff;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+#sedes {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#sedes .sede__title {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+#sedes [class*='sede--'] {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100px;
+}
+
+@media (min-width: 670px) {
+  #sedes [class*='sede--'] {
+    height: 200px;
+    border: 2px solid white;
+  }
+}
+
+#sedes [class*='sede--'] p {
+  width: 50%;
+  /* text-transform: uppercase; */
+  font-size: 17px;
+  color: white;
+  /* margin: 0 0 10px; */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#sedes .sede--Monterrico {
+  background-image: url("../img/campus-monterrico.jpg");
+  background-position: top;
+}
+
+#sedes .sede--SanIsidro {
+  background-image: url("../img/campus-san-isidro-2.jpg");
+  background-position: top;
+}
+
+#sedes .sede--Villa {
+  background-image: url("../img/sede-villa.jpg");
+  background-position: bottom;
+}
+
+#sedes .sede--SanMiguel {
+  background-image: url("../img/campus-san-miguel.jpg");
+  background-position: bottom;
+}
+
+#buscar {
+  z-index: 1000;
+  position: absolute;
+  top: 21vh;
+  left: 14vw;
+  justify-content: space-between;
+  width: 72vw;
+  margin: 0 auto;
+  background-color: white;
+  color: #555555;
+  border-color: #cccccc;
+  border-radius: 0;
+}
+
+#buscarLugar {
+  width: 100%;
+  background-color: white;
+}
+
+#buscarLugar #search span {
+  cursor: pointer;
+}
+
+#buscarLugar #search input {
+  display: block;
+  margin-top: 5px;
+  border: none;
+  background-color: #dcdada;
+  width: 70vw;
+  margin-bottom: 7px;
+}
+
+#buscarLugar #search img {
+  width: 5vh;
+}
+
+#buscarLugar #clase {
+  border-top: 7px solid rgba(196, 190, 196, 0.62);
+  border-bottom: 7px solid rgba(196, 190, 196, 0.62);
+}
+
+#buscarLugar #clase p {
+  color: red;
+  font-weight: 500;
+  margin: 0;
+  font-size: 1.14em;
+}
+
+#buscarLugar #clase span {
+  color: #aeaeae;
+}
+
+#buscarLugar #places .item {
+  padding: 7px 14px;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+#buscarLugar #places .item a {
+  color: #000;
+}
+
+#buscarLugar #places .item p {
+  display: inline-block;
+}
+
+#buscarLugar #places .item img {
+  padding-right: 35px;
+  padding-left: 14px;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  #buscar {
+    left: 7vw;
+    width: 86vw;
+  }
+  #buscarLugar {
+    width: 40%;
+  }
+  #buscarLugar #clase .container {
+    width: 100%;
+  }
+  #buscarLugar #search .container {
+    width: 100%;
+  }
+  #buscarLugar #search input {
+    width: 100%;
+    font-size: 12px;
+  }
+}
+
+#login {
+  align-items: center;
+  height: 100vh;
+  background-color: #FFF;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/bg-mobile.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* Cambio color placeholder*/
+}
+
+#login .login__contenido {
+  margin-top: 30px;
+}
+
+#login .login__contenido .login__cajas,
+#login .login__contenido .login__botones {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#login .login__contenido .login__cajas button:nth-child(1),
+#login .login__contenido .login__botones button:nth-child(1) {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  text-transform: uppercase;
+  color: white;
+  background-color: red;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+#login .login__contenido .login__cajas button:nth-child(1):hover,
+#login .login__contenido .login__botones button:nth-child(1):hover {
+  background: #d70000;
+  transition: 1s;
+}
+
+#login .login__contenido .login__cajas button:nth-child(2),
+#login .login__contenido .login__botones button:nth-child(2) {
+  text-transform: uppercase;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border: 1px solid #4267b2;
+  background: #4267b2;
+  color: #fff;
+  cursor: pointer;
+}
+
+#login .login__contenido .login__cajas button:nth-child(2):hover,
+#login .login__contenido .login__botones button:nth-child(2):hover {
+  background: #365899;
+  transition: 1s;
+}
+
+#login .login__contenido .login__cajas {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#login .login__title--text {
+  color: #FFFFFF;
+  font-size: 50px;
+}
+
+#login input[type="text"],
+#login input[type="password"] {
+  width: 80%;
+  font-size: 16px;
+  color: #FFF;
+  outline: none;
+  padding: 10px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #dedcdc;
+}
+
+#login button {
+  width: 80%;
+}
+
+#login ::-webkit-input-placeholder {
+  color: #dcdada;
+}
+
+#login img {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.modal-body {
+  padding: 21px 35px;
+}
+
+/**styles quiero ir a mis clases**/
+#search input {
+  display: block;
+  margin-top: 5px;
+  border: none;
+  background-color: #dcdada;
+  width: 80%;
+}
+
+small {
+  margin-left: 14%;
+}
+
+.p-clase {
+  margin: 0 0 0px;
+}
+
+.container-buscar {
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  #map-lugar {
+    left: 20%;
+    width: 80%;
+  }
+  .result__details {
+    padding: 21px 35px;
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+  }
+  .btn--change {
+    background-color: white;
+    color: red;
+    border: red 1px solid;
+  }
+  .btn--change:hover {
+    background-color: #ffe6e6;
+    color: red;
+  }
+  .btn--change:active, .btn--change:focus {
+    color: red;
+  }
+}

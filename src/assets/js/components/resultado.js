@@ -30,6 +30,10 @@ const Resultado = (update) => {
     .append(reserve)
     .append(back);
 
+  back.on('click',function () {
+    state.page = 3;
+    update();
+  });
   return section;
 
 };
