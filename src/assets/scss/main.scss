@@ -32,12 +32,21 @@
 		margin-top: 30px;
 	}
 	[class*='sede--'] {
+		cursor: pointer;
 		background-repeat: no-repeat;
 		background-size: cover;
 		height: 114px;
 		@media (min-width: 670px) {
 			height: 211px;
 			border: 2px solid white;
+		}
+		p{
+			width: 50%;
+			/* text-transform: uppercase; */
+			font-size: 17px;
+			color: white;
+			/* margin: 0 0 10px; */
+			background-color: rgba(0,0,0,.5);
 		}
 	}
 	.sede--Monterrico{

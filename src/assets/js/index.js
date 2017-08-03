@@ -26,9 +26,10 @@ const render = (root) => {
 };
 
 const state = {
-  page: 1,
-  data:{},
-  rutasMo: null,
+  	page: 1,
+  	data:{},
+  	rutasMo: null,
+	rutasSis: null,
 	screenView: null
 };
 

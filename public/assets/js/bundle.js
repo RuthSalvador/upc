@@ -197,19 +197,72 @@ const Sedes = () => {
 
 	const sedes = $('<div class="sede__contenido row"></div>');
 
-	const sede1 = $('<div class="sede--Monterrico col-xs-12 col-sm-6"></div>');
-	const sede2 = $('<div class="sede--SanIsidro col-xs-12 col-sm-6"></div>');
-	const sede3 = $('<div class="sede--Villa col-xs-12 col-sm-6"></div>');
-	const sede4 = $('<div class="sede--SanMiguel col-xs-12 col-sm-6"></div>');
+	const monterrico = $('<div class="sede--Monterrico col-xs-12 col-sm-6"><p>Campus Monterrico</p></div>');
+	const sanIsidro = $('<div class="sede--SanIsidro col-xs-12 col-sm-6"><p>Campus San Isidro</p></div>');
+	const villa = $('<div class="sede--Villa col-xs-12 col-sm-6"><p>Campus Villa</p></div>');
+	const sMiguel = $('<div class="sede--SanMiguel col-xs-12 col-sm-6"><p>Campus San Miguel</p></div>');
+
+/*
+	btn.on('click',function (e) {
+		e.preventDefault();
+
+		$.post('/api/registerNumber',{
+			phone: input.val(),
+			terms: $("#terminos").is(':checked')
+		},function(response){
+			if (response.success) {
+				state.screen = "pantalla3";
+				state.phone = response.data.phone;
+				state.code = response.data.code;
+				console.log(response.success);
+				console.log('Codigo: ' + response.data.code);
+				update();
+			} else {
+				state.screen = "pantalla2";
+				message.text("response.message");
+				console.log(response.message);
+				update();
+			}
+		});
+	});
+	*/
+
+	monterrico.on('click',(e) => {
+		getJSON('/rutasMo', (err, json) => {
+			state.rutasMo = json;
+			console.log(json.features);
+		});
+		getJSON('/upcMonterrico', (err, json) => {
+			state.rutasMo = json;
+			console.log(json.features);
+		});
+		e.preventDefault();
+		//state.page = 2;
+		//update();
+	});
+
+	sanIsidro.on('click',(e) => {
+		getJSON('/rutasSis', (err, json) => {
+			state.rutasSis = json;
+			console.log(state.rutasSis);
+		});
+		getJSON('/upcSis', (err, json) => {
+			state.rutasSis = json;
+			console.log(state.rutasSis);
+		});
+		e.preventDefault();
+		//state.page = 2;
+		//update();
+	});
 
 
 	contenedortitle.append(title);
 
 	sedes
-		.append(sede1)
-		.append(sede2)
-		.append(sede3)
-		.append(sede4);
+		.append(monterrico)
+		.append(sanIsidro)
+		.append(villa)
+		.append(sMiguel);
 
 	section
 		.append(Header())
@@ -258,9 +311,10 @@ const render = (root) => {
 };
 
 const state = {
-  page: 1,
-  data:{},
-  rutasMo: null,
+  	page: 1,
+  	data:{},
+  	rutasMo: null,
+	rutasSis: null,
 	screenView: null
 };
 

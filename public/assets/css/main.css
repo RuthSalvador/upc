@@ -80,6 +80,7 @@ header h3 {
 }
 
 #sedes [class*='sede--'] {
+  cursor: pointer;
   background-repeat: no-repeat;
   background-size: cover;
   height: 114px;
@@ -90,6 +91,15 @@ header h3 {
     height: 211px;
     border: 2px solid white;
   }
+}
+
+#sedes [class*='sede--'] p {
+  width: 50%;
+  /* text-transform: uppercase; */
+  font-size: 17px;
+  color: white;
+  /* margin: 0 0 10px; */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #sedes .sede--Monterrico {
