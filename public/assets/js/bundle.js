@@ -218,15 +218,18 @@ const reRenderClass = (sectionList, result, update) => {
 
 
 const BuscarClass = (update) => {
+  const section = $('<section></section>');
+  const divMap  = $('<div id="map-clases" class="map"></div>');
+
   const lugar     = $('<div id="buscarLugar" ></div>');
   const secSearch = $('<section id="search"></section>');
   const secClass  = $('<section id="clase"></section>');
   const secOther  = $('<section id="places"></section>');
 
-  const container = $('<div class="container container-buscar"></div>');
+  const container = $('<div class="container container-buscar" id="ir-clases"></div>');
   const boxImg    = $('<div class="col-xs-2 "></div>');
-  const img       = $('<img src="assets/img/reserva.png"> alt="ir a clases"');
-  const boxText   = $('<div class="col-xs-9"></div>')
+  const img       = $('<img src="assets/img/reserva.png" alt="ir a clases">');
+  const boxText   = $('<div class="col-xs-9"></div>');
   const parr      = $('<p>Volver a principales lugares</p>');
   const span      = $('<span>Top lugares en campus</span>');
   const boxArrow    = $('<div class="col-xs-1"></div>');
@@ -236,7 +239,7 @@ const BuscarClass = (update) => {
   const boxArrowLeft    = $('<div class="col-xs-12"></div>');
   const iconLeft      = $('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>');
   const boxImgGo    = $('<div class="col-xs-2 "></div>');
-  const imgGo      = $('<img class="" src="assets/img/go.png"> alt="ir a clases"');
+  const imgGo      = $('<img class="" src="assets/img/go.png" alt="ir a clases">');
   const boxTextGo  = $('<div class="col-xs-10"></div>');
   const inputOrigin = $('<input type="text" name="" value="">');
   const inputDestino = $('<input type="text" name="" value="" placeholder="¿A donde quieres ir?">');
@@ -257,6 +260,10 @@ const BuscarClass = (update) => {
   lugar.append(secClass);
   lugar.append(secOther);
 
+  section.append(Header(update));
+  section.append(lugar);
+  section.append(divMap);
+
   inputDestino.on('keyup',(e) => {
       let filtersClases = filterByPlace(state.clases.clases,inputDestino.val());
       reRenderClass(secOther,filtersClases,update);
@@ -270,8 +277,8 @@ const BuscarClass = (update) => {
 
   let list = state.clases.clases;
   reRenderClass( secOther, list, update);
-  return lugar;
-}
+  return section;
+};
 
 'use strict';
 
@@ -306,9 +313,9 @@ const BuscarLugar = (update) => {
     const secClass = $('<section id="clase"></section>');
     const secOther = $('<section id="places"></section>');
 
-    const container     = $('<div class="container container-buscar"></div>');
+    const container     = $('<div class="container container-buscar" id="ir-clases"></div>');
     const boxImg        = $('<div class="col-xs-2 "></div>');
-    const img           = $('<img src="assets/img/reserva.png"> alt="ir a clases"');
+    const img           = $('<img src="assets/img/reserva.png" alt="ir a clases">');
     const boxText       = $('<div class="col-xs-9"></div>');
     const parr          = $('<p>Quiero ir a mis clases</p>');
     const span          = $('<span>Sincronizado con tu horario</span>');
@@ -319,7 +326,7 @@ const BuscarLugar = (update) => {
     const boxArrowLeft  = $('<div class="col-xs-12"></div>');
     const iconLeft      = $('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>');
     const boxImgGo      = $('<div class="col-xs-2 "></div>');
-    const imgGo         = $('<img class="" src="assets/img/go.png"> alt="ir a clases"');
+    const imgGo         = $('<img class="" src="assets/img/go.png" alt="ir a clases">');
     const boxTextGo     = $('<div class="col-xs-10"></div>');
     const inputOrigin   = $('<input type="text" value=" Puerta de ingreso 2 Campus Villa" id="origen">');
     const inputDestino  = $('<input type="text" value="" id="destino" placeholder=" ¿A dónde quieres ir?">');
@@ -345,12 +352,18 @@ const BuscarLugar = (update) => {
     section.append(lugar);
     section.append(divMap);
 
+    container.on('click', (e)=> {
+      e.preventDefault();
+      state.page = 4;
+      update();
+    });
+
     iconLeft.on('click', (e)=> {
         e.preventDefault();
         state.page = 2;
         update();
     });
-    container.on('click',(e)=>{
+    $('#ir-clases').on('click',(e)=>{
       e.preventDefault();
       state.page = 6;
       update();
@@ -657,6 +670,7 @@ const render = (root) => {
     setTimeout(function () {
       initMap("map-buscar", state.origenLong, state.origenLat, '');
     }, 500);
+
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
     setTimeout(function () {
@@ -665,6 +679,9 @@ const render = (root) => {
 
   } else if(state.page == 4 ) {
     wrapper.append(BuscarClass(_=>{ render(root) }));
+    setTimeout(function () {
+      initMap("map-clases", state.origenLong, state.origenLat, kata);
+    }, 500);
 
   }else if(state.page == 5 ) {
     wrapper.append(Resultado(_ => { render(root) }));

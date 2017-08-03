@@ -15,6 +15,7 @@ const render = (root) => {
     setTimeout(function () {
       initMap("map-buscar", state.origenLong, state.origenLat, '');
     }, 500);
+
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
     setTimeout(function () {
@@ -23,6 +24,9 @@ const render = (root) => {
 
   } else if(state.page == 4 ) {
     wrapper.append(BuscarClass(_=>{ render(root) }));
+    setTimeout(function () {
+      initMap("map-clases", state.origenLong, state.origenLat, kata);
+    }, 500);
 
   }else if(state.page == 5 ) {
     wrapper.append(Resultado(_ => { render(root) }));
