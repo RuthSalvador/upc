@@ -4,6 +4,11 @@
 }
 
 .bg--principal:hover {
+  background-color: #ff2424;
+  color: white;
+}
+
+.bg--principal:active, .bg--principal:focus {
   color: white;
 }
 
@@ -82,4 +87,8 @@ header h5 {
 #login .login__botones {
   display: flex;
   flex-direction: column;
+}
+
+.modal-body {
+  padding: 21px 35px;
 }
