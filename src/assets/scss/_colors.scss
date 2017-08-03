@@ -9,6 +9,11 @@ $color-contrast: rgb(255,255,255);
 }
 
 .bg--principal:hover {
+  background-color: lighten($color-principal, 7%);
+  color: $color-contrast;
+}
+
+.bg--principal:active, .bg--principal:focus {
   color: $color-contrast;
 }
 

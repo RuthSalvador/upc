@@ -9,7 +9,7 @@ app.listen(app.get('port'), ()=> {
   console.log('Node app is running on port', app.get('port'));
 });
 
-app.get('/rutasMO', function (req, res) {
+app.get('/rutasMo', function (req, res) {
     var questions = api.questions();
     questions.then( (result) => {
         res.status(200).json(result);

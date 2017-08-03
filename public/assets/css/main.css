@@ -4,6 +4,11 @@
 }
 
 .bg--principal:hover {
+  background-color: #ff2424;
+  color: white;
+}
+
+.bg--principal:active, .bg--principal:focus {
   color: white;
 }
 
@@ -148,4 +153,8 @@ header h5 {
   position: absolute;
   top: 20px;
   right: 20px;
+}
+
+.modal-body {
+  padding: 21px 35px;
 }

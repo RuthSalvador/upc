@@ -84,7 +84,7 @@ const Login = (update) => {
 	        console.log('no logeado');
 	      }
 	    });
-	  });
+	});
 
 		// btnIngresar.on('click', (e) => {
 		// 	const codAlumno = codigoAlumno.val();
@@ -97,6 +97,7 @@ const Login = (update) => {
 		// });
 
 	return section;
+
 };
 
 //deberia subir todoOK
