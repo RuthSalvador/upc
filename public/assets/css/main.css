@@ -58,7 +58,7 @@
   bottom: 5vh;
 }
 
-#sedes #buscar, #sedes #buscarLugar #clase .container {
+#buscar, #buscarLugar #clase .container {
   display: flex !important;
   justify-content: center;
   align-items: center;
@@ -100,8 +100,7 @@ header h3 {
   padding: 0;
   display: flex;
   flex-direction: column;
-  /* Small devices (tablets, 768px and up) */
-  /* Medium devices (desktops, 992px and up) */
+  overflow: hidden;
 }
 
 #sedes .sede__title {
@@ -113,12 +112,12 @@ header h3 {
   cursor: pointer;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 114px;
+  height: 100px;
 }
 
 @media (min-width: 670px) {
   #sedes [class*='sede--'] {
-    height: 211px;
+    height: 200px;
     border: 2px solid white;
   }
 }
@@ -152,26 +151,26 @@ header h3 {
   background-position: bottom;
 }
 
-#sedes #buscar {
+#buscar {
   justify-content: space-between;
   width: 85vw;
   margin: 21vh auto 0 auto;
   background-color: white;
   color: #555555;
   border-color: #cccccc;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
-#sedes #buscarLugar {
+#buscarLugar {
   width: 100%;
   background-color: white;
 }
 
-#sedes #buscarLugar #search span {
+#buscarLugar #search span {
   cursor: pointer;
 }
 
-#sedes #buscarLugar #search input {
+#buscarLugar #search input {
   display: block;
   margin-top: 5px;
   border: none;
@@ -180,68 +179,70 @@ header h3 {
   margin-bottom: 7px;
 }
 
-#sedes #buscarLugar #search img {
+#buscarLugar #search img {
   width: 5vh;
 }
 
-#sedes #buscarLugar #clase {
+#buscarLugar #clase {
   border-top: 7px solid rgba(196, 190, 196, 0.62);
   border-bottom: 7px solid rgba(196, 190, 196, 0.62);
 }
 
-#sedes #buscarLugar #clase p {
+#buscarLugar #clase p {
   color: red;
   font-weight: 500;
   margin: 0;
   font-size: 1.14em;
 }
 
-#sedes #buscarLugar #clase span {
+#buscarLugar #clase span {
   color: #aeaeae;
 }
 
-#sedes #buscarLugar #places .item {
+#buscarLugar #places .item {
   padding: 7px 14px;
   border-bottom: 1px solid #d7d7d7;
 }
 
-#sedes #buscarLugar #places .item a {
+#buscarLugar #places .item a {
   color: #000;
 }
 
-#sedes #buscarLugar #places .item p {
+#buscarLugar #places .item p {
   display: inline-block;
 }
 
-#sedes #buscarLugar #places .item img {
+#buscarLugar #places .item img {
   padding-right: 35px;
   padding-left: 14px;
 }
 
+/* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-  #sedes #buscar {
+  #buscar {
     width: 50vw;
   }
-  #sedes #buscarLugar {
+  #buscarLugar {
     width: 40%;
   }
-  #sedes #buscarLugar #clase .container {
+  #buscarLugar #clase .container {
     width: 100%;
   }
-  #sedes #buscarLugar #search .container {
+  #buscarLugar #search .container {
     width: 100%;
   }
-  #sedes #buscarLugar #search input {
+  #buscarLugar #search input {
     width: 100%;
     font-size: 12px;
   }
 }
 
+/* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  #sedes #buscar {
+  #buscar {
     width: 35vw;
   }
-  #sedes #buscarLugar {
+  #buscarLugar {
     width: 30%;
   }
 }

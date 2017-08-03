@@ -10,7 +10,7 @@ const searchItem = (places, update)  => {
     item.append(link);
 
     return item;
-}
+};
 
 
 const reRender = (sectionList, result, update) => {
@@ -61,7 +61,7 @@ const BuscarLugar = (update) => {
     lugar.append(secOther);
     iconLeft.on('click', (e)=> {
         e.preventDefault();
-        state.page = 4;
+        state.page = 2;
         update();
     })
     let list = state.upcMonterrico.features;

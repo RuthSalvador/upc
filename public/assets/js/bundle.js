@@ -132,18 +132,27 @@ var functionLocalization = function(position) {
 'use strict';
 
 const Buscar = (update) => {
-    const box = $('<div class=""></div>');
-    const btn = $('<button type="submit" id="buscar"class="btn btn-primary ">¿A dónde quieres ir?</button>');
-    const img = $('<img src="assets/img/lupa.png" alt ="lupa ">');
-    btn.append(img);
-    box.append(btn);
-    btn.on('click', (e) => {
+  const section = $('<section></section>');
+  const map     = $('<div id="map-buscar" class="map"></div>');
+  const btn     = $('<button type="button" id="buscar" class="btn">¿A dónde quieres ir?</button>');
+  const img     = $('<img src="assets/img/lupa.png" alt ="buscar">');
+
+  section
+    .append(Header(update))
+    .append(map);
+
+  map
+    .append(btn);
+
+  btn
+    .append(img)
+    .on('click', (e) => {
         e.preventDefault();
-        state.page = 5;
+        state.page = 3;
         update();
-    })
-    return box;
-}
+    });
+    return section;
+};
 
 'use strict';
 
@@ -157,7 +166,7 @@ const searchItem = (places, update)  => {
     item.append(link);
 
     return item;
-}
+};
 
 
 const reRender = (sectionList, result, update) => {
@@ -208,7 +217,7 @@ const BuscarLugar = (update) => {
     lugar.append(secOther);
     iconLeft.on('click', (e)=> {
         e.preventDefault();
-        state.page = 4;
+        state.page = 2;
         update();
     })
     let list = state.upcMonterrico.features;
@@ -250,22 +259,20 @@ const Header = (update) => {
 const Login = (update) => {
 
 	const section = $('<section id="login" class="container-fluid"></section>');
-
-	const logo = $('<img src="assets/img/logo.png" alt="Logo Upc">');
+	const logo 		= $('<img src="assets/img/logo.png" alt="Logo Upc">');
 
 	const contenedortitle = $('<div class="login__title row"></div>');
-	const title = $('<h1 class="login__title--text col-xs-12">UPC GO!</h1>');
+	const title 					= $('<h1 class="login__title--text col-xs-12">UPC GO!</h1>');
+	const contenido 			= $('<div class="login__contenido row"></div>');
 
-	const contenido = $('<div class="login__contenido row"></div>');
-
-	const cajas = $('<div class="login__cajas col-xs-12"></div>');
-	const codigoAlumno = $('<input type="text" class="contenido__codigo" placeholder="Código de Alumno"/>');
+	const cajas					 = $('<div class="login__cajas col-xs-12"></div>');
+	const codigoAlumno 	 = $('<input type="text" class="contenido__codigo" placeholder="Código de Alumno"/>');
 	const passwordAlumno = $('<input type="password" class="contenido__contraseña" placeholder="Contraseña"/>');
 
-	const botones = $('<div class="login__botones col-xs-12"></div>');
+	const botones		 	= $('<div class="login__botones col-xs-12"></div>');
 	const btnIngresar = $('<button type="button" class="btn" name="button">Ingresar</button>');
 	const btnFacebook = $('<button type="button" class="btn" name="button">Facebook</button>');
-	const text = $('<p>* Olvidé contraseña</p>');
+	const text 				= $('<p>* Olvidé contraseña</p>');
 
 	contenedortitle.append(title);
 
@@ -332,17 +339,6 @@ const Login = (update) => {
 	      }
 	    });
 	});
-
-		// btnIngresar.on('click', (e) => {
-		// 	const codAlumno = codigoAlumno.val();
-	  //   const passAlumno = passwordAlumno.val();
-		// 	const auth = firebase.auth(); //constante para almacenar la promesa que nos va a devolver
-		// 	const promise = auth.createUserWithEmailAndPassword(codAlumno,passAlumno);
-		// 	promise.catch(e => {
-		// 		console.log(e.message);
-		// 	});
-		// });
-
 	return section;
 
 };
@@ -455,50 +451,38 @@ const Sedes = (update) => {
 	const section = $('<section id="sedes" class="container-fluid"></section>');
 
 	const contenedortitle = $('<div class="sede__title row"></div>');
-	const title = $('<h1 class="sede__title--text col-xs-12 text-center">Elige la sede</h1>');
+	const title 					= $('<h1 class="sede__title--text col-xs-12 text-center">Elige la sede</h1>');
 
 	const sedes = $('<div class="sede__contenido row"></div>');
 
 	const monterrico = $('<div class="sede--Monterrico col-xs-12 col-sm-6"><p>Campus Monterrico</p></div>');
-	const sanIsidro = $('<div class="sede--SanIsidro col-xs-12 col-sm-6"><p>Campus San Isidro</p></div>');
-	const villa = $('<div class="sede--Villa col-xs-12 col-sm-6"><p>Campus Villa</p></div>');
-	const sMiguel = $('<div class="sede--SanMiguel col-xs-12 col-sm-6"><p>Campus San Miguel</p></div>');
+	const sanIsidro	 = $('<div class="sede--SanIsidro col-xs-12 col-sm-6"><p>Campus San Isidro</p></div>');
+	const villa 		 = $('<div class="sede--Villa col-xs-12 col-sm-6"><p>Campus Villa</p></div>');
+	const sMiguel 	 = $('<div class="sede--SanMiguel col-xs-12 col-sm-6"><p>Campus San Miguel</p></div>');
 
 
+	const sede = (campus, urlRuta, urlSede) => {
+	  campus.on('click',(e) => {
+      e.preventDefault();
+      getJSON(urlRuta, (err, json) => {
+        state.rutasSede = json;
+        $.each(json.features, ( key, value ) =>  {
+          console.log(value);
+        });
+      });
+      getJSON(urlSede, (err, json) => {
+        state.upcSede = json;
+        //console.log(json.features);
+      });
 
-	monterrico.on('click',(e) => {
-		e.preventDefault();
-		getJSON('/rutasMo', (err, json) => {
-			state.rutasMo = json;
-			console.log(json.features);
-			$.each(json.features, ( key, value ) =>  {
-				console.log(value);
-			});
-		});
-			/*
-		getJSON('/upcMonterrico', (err, json) => {
-			state.rutasMo = json;
-			console.log(json.features);
-		});*/
+      state.page = 2;
+      update();
+    });
 
-		//state.page = 2;
-		//update();
-	});
+  };
 
-	sanIsidro.on('click',(e) => {
-		getJSON('/rutasSis', (err, json) => {
-			state.rutasSis = json;
-			console.log(state.rutasSis);
-		});
-		getJSON('/upcSis', (err, json) => {
-			state.rutasSis = json;
-			console.log(state.rutasSis);
-		});
-		e.preventDefault();
-		//state.page = 2;
-		//update();
-	});
-
+	sede(monterrico,'/rutasMo','/upcMonterrico');
+	sede(sanIsidro,'/rutasSis','/upcSis');
 
 	contenedortitle.append(title);
 
@@ -512,10 +496,7 @@ const Sedes = (update) => {
 		.append(Header())
 		.append(contenedortitle)
 		.append(sedes);
-
-
 	/*section.append(HeaderAll('Logeate',0,update));*/
-
 
 	return section;
 };
@@ -541,14 +522,15 @@ const render = (root) => {
 
   } else if(state.page == 2){
     wrapper.append(Buscar(_=>{ render(root) }));
+    setTimeout(function () {
+      initMap("map-buscar", upcMo, kata);
+    }, 500);
 
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
 
   } else if(state.page == 4 ) {
-    wrapper.append(Resultado(_ => {
-      render(root)
-    }));
+    wrapper.append(Resultado(_ => { render(root) }));
     setTimeout(function () {
       initMap("map-result", upcMo, kata);
     }, 500);
@@ -557,22 +539,20 @@ const render = (root) => {
 };
 
 const state = {
-  page: 0,
-  data:{},
-  rutasMo: null,
-  rutasSis: null,
-  upcMonterrico: null
+  page: 1,
+  rutasSede: null,
+  upcSede: null,
 };
 
 $(document).ready(function() {
   getJSON('/rutasMo', (err, json) => {
   state.rutasMo = json;
-  console.log(state.rutasMo);
+  //console.log(state.rutasMo);
 
   });
   getJSON('/rutasSis', (err, json) => {
       state.rutasSis = json;
-      console.log(state.rutasSis);
+      //console.log(state.rutasSis);
 
   });
   getJSON('/upcMonterrico', (err, json) => {

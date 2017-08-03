@@ -12,14 +12,15 @@ const render = (root) => {
 
   } else if(state.page == 2){
     wrapper.append(Buscar(_=>{ render(root) }));
+    setTimeout(function () {
+      initMap("map-buscar", upcMo, kata);
+    }, 500);
 
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
 
   } else if(state.page == 4 ) {
-    wrapper.append(Resultado(_ => {
-      render(root)
-    }));
+    wrapper.append(Resultado(_ => { render(root) }));
     setTimeout(function () {
       initMap("map-result", upcMo, kata);
     }, 500);
@@ -28,22 +29,20 @@ const render = (root) => {
 };
 
 const state = {
-  page: 0,
-  data:{},
-  rutasMo: null,
-  rutasSis: null,
-  upcMonterrico: null
+  page: 1,
+  rutasSede: null,
+  upcSede: null,
 };
 
 $(document).ready(function() {
   getJSON('/rutasMo', (err, json) => {
   state.rutasMo = json;
-  console.log(state.rutasMo);
+  //console.log(state.rutasMo);
 
   });
   getJSON('/rutasSis', (err, json) => {
       state.rutasSis = json;
-      console.log(state.rutasSis);
+      //console.log(state.rutasSis);
 
   });
   getJSON('/upcMonterrico', (err, json) => {
