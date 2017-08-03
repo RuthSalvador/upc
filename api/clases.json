@@ -1,0 +1,9 @@
+{
+  "clases" : [
+    {"nombre": "HU-29 - Comprensión de Lenguaje 1","horario": "A109 - 8:00 am"},
+    {"nombre": "PU-31 - Taller de Creatividad","horario": "A109 - 8:00 am"},
+    {"nombre": "MA-41 - Matemática Básica","horario": "C101 - 2:00 pm"},
+    {"nombre": "CU-98 - Cultura Peruana","horario": "F105 - 2:00 pm"},
+    {"nombre": "GE-33 - Taller de diseño gráfico","horario": "F105 - 2:00 pm"}
+  ]
+}
