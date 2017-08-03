@@ -98,4 +98,3 @@ const Modal = (idModal) => {
 
   return modal;
 };
-

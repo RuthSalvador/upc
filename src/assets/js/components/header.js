@@ -2,6 +2,7 @@
 const Header = (update) => {
   const principal     = $('<header></header>');
 
+
   const arrowLeft     = $('<div class="pull-left hidden-xs"></div>');
   const userImg       = $('<img src="assets/img/avatar.png" alt="usuario alumno">');
   const user          = $('<p class="estudiante">Hola <span id="student">Javier</span></p>');

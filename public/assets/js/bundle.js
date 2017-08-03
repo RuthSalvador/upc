@@ -1,4 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+
 var getJSON = (url, cb) => {
   var xhr = new XMLHttpRequest();
   xhr.addEventListener('load', () => {
@@ -129,8 +130,96 @@ var functionLocalization = function(position) {
     return myLocation;
   }*/
 'use strict';
+
+const Buscar = (update) => {
+    const box = $('<div class=""></div>');
+    const btn = $('<button type="submit" id="buscar"class="btn btn-primary ">¿A dónde quieres ir?</button>');
+    const img = $('<img src="assets/img/lupa.png" alt ="lupa ">');
+    btn.append(img);
+    box.append(btn);
+    btn.on('click', (e) => {
+        e.preventDefault();
+        state.page = 5;
+        update();
+    })
+    return box;
+}
+
+'use strict';
+
+const searchItem = (places, update)  => {
+    const item   = $('<div class="item"></div>');
+    const link   = $('<a href=""></a>');
+    const nam    = $('<p>'+places.properties.Name+'</p>');
+    const images = $('<img src="'+places.properties.src+'" alt="'+places.properties.Name+'">');
+    link.append(images);
+    link.append(nam);
+    item.append(link);
+
+    return item;
+}
+
+
+const reRender = (sectionList, result, update) => {
+    sectionList.empty();
+    result.forEach((places) => {
+        sectionList.append(searchItem(places, update));
+    });
+};
+
+
+const BuscarLugar = (update) => {
+    const lugar = $('<div id="buscarLugar" ></div>');
+
+    const secSearch = $('<section id="search"></section>');
+    const secClass = $('<section id="clase"></section>');
+    const secOther = $('<section id="places"></section>');
+
+    const container     = $('<div class="container"></div>');
+    const boxImg        = $('<div class="col-xs-2 "></div>');
+    const img           = $('<img src="assets/img/reserva.png"> alt="ir a clases"');
+    const boxText       = $('<div class="col-xs-9"></div>')
+    const parr          = $('<p>Quiero ir a mis clases</p>');
+    const span          = $('<span>Sincronizado con tu horario</span>');
+    const boxArrow      = $('<div class="col-xs-1"></div>');
+    const icon          = $('<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>');
+
+    const containerGo   = $('<div class="container"></div>');
+    const boxArrowLeft  = $('<div class="col-xs-12"></div>');
+    const iconLeft      = $('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>');
+    const boxImgGo      = $('<div class="col-xs-2 "></div>');
+    const imgGo         = $('<img class="" src="assets/img/go.png"> alt="ir a clases"');
+    const boxTextGo     = $('<div class="col-xs-10"></div>');
+    const inputOrigin   = $('<input type="text" value=" Puerta de ingreso 2 Campus Villa" id="origen">');
+    const inputDestino  = $('<input type="text" value="" id="destino" placeholder=" ¿A dónde quieres ir?">');
+
+    boxImgGo.append(imgGo);
+    boxTextGo.append(inputOrigin,inputDestino);
+    boxImg.append(img);
+    boxText.append(parr,span);
+    boxArrowLeft.append(iconLeft);
+    boxArrow.append(icon);
+    container.append(boxImg,boxText,boxArrow);
+    containerGo.append(boxArrowLeft,boxImgGo,boxTextGo);
+    secSearch.append(containerGo);
+    secClass.append(container);
+    lugar.append(secSearch);
+    lugar.append(secClass);
+    lugar.append(secOther);
+    iconLeft.on('click', (e)=> {
+        e.preventDefault();
+        state.page = 4;
+        update();
+    })
+    let list = state.upcMonterrico.features;
+    reRender( secOther, list, update);
+    return lugar;
+}
+
+'use strict';
 const Header = (update) => {
   const principal     = $('<header></header>');
+
 
   const arrowLeft     = $('<div class="pull-left hidden-xs"></div>');
   const userImg       = $('<img src="assets/img/avatar.png" alt="usuario alumno">');
@@ -360,7 +449,6 @@ const Modal = (idModal) => {
   return modal;
 };
 
-
 'use strict';
 
 const Sedes = (update) => {
@@ -447,18 +535,24 @@ const render = (root) => {
 
   if(state.page == 0){
     wrapper.append(Login(_=>{ render(root) }));
+
   } else if(state.page == 1){
-    wrapper.append(Resultado(_=>{ render(root) }));
-    setTimeout(function() {
+    wrapper.append(Sedes(_=>{ render(root) }));
+
+  } else if(state.page == 2){
+    wrapper.append(Buscar(_=>{ render(root) }));
+
+  } else if(state.page == 3 ) {
+    wrapper.append(BuscarLugar(_=>{ render(root) }));
+
+  } else if(state.page == 4 ) {
+    wrapper.append(Resultado(_ => {
+      render(root)
+    }));
+    setTimeout(function () {
       initMap("map-result", upcMo, kata);
     }, 500);
-  } else if(state.page == 2) {
-      wrapper.append(Header(_=>{ render(root) }));
-  } else if(state.page == 3){
-    wrapper.append(Sedes(_=>{ render(root) }));
   }
-
-
   root.append(wrapper);
 };
 
@@ -467,25 +561,27 @@ const state = {
   data:{},
   rutasMo: null,
   rutasSis: null,
-	screenView: null
+  upcMonterrico: null
 };
 
 $(document).ready(function() {
   getJSON('/rutasMo', (err, json) => {
   state.rutasMo = json;
   console.log(state.rutasMo);
+
+  });
+  getJSON('/rutasSis', (err, json) => {
+      state.rutasSis = json;
+      console.log(state.rutasSis);
+
+  });
+  getJSON('/upcMonterrico', (err, json) => {
+      state.upcMonterrico = json;
+
+  });
+
   const root = $('.root');
   render(root);
-  });
-});
-
-$(document).ready(function() {
-  getJSON('/rutasSis', (err, json) => {
-    state.rutasSis = json;
-    console.log(state.rutasSis);
-    const root = $('.root');
-    render(root);
-  });
 });
 
 },{}]},{},[1])
