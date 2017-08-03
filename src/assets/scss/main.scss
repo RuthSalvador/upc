@@ -17,12 +17,13 @@
 }
 
 %flex {
-  display: flex;
+  display: flex!important;
   justify-content: center;
   align-items: center;
 }
 
-@import "header" ;
+@import "header";
+@import "buscador";
 
 #login{
 	align-items: center;

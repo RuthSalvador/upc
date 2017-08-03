@@ -36,6 +36,12 @@
   bottom: 5vh;
 }
 
+#buscar {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
 body {
   background: rgba(130, 142, 145, 0.45);
 }
@@ -71,6 +77,18 @@ header h3 {
   }
 }
 
+/* Medium devices (desktops, 992px and up) */
+#buscar {
+  justify-content: space-between;
+  width: 85vw;
+  margin: 21vh auto 0 auto;
+  background-color: white;
+  color: #555555;
+  border-color: #cccccc;
+  border-radius: 0px;
+}
+
+/* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
 #login {
   align-items: center;

@@ -1,5 +1,5 @@
 'use strict'
-const Header = (update) => {
+const Header = () => {
     const principal     = $('<header></header>');
 
     const arrowLeft     = $('<div class="pull-left hidden-xs"></div>');

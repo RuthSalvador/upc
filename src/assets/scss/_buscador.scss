@@ -1,0 +1,41 @@
+// #formulario {
+//     position: absolute;
+//     top: 14vh;
+//     .form-group {
+//         width: 80vw;
+//         margin-left: 10vw;
+//     }
+//     input{
+//         height: 7vh!important;
+//         border-right-color: transparent!important;
+//     }
+//     .input-group-addon {
+//         background-color: #fff;
+//         border-radius: 0;
+//     }
+// }
+#buscar {
+    @extend %flex;
+    justify-content: space-between;
+    width: 85vw;
+    margin: 21vh auto 0 auto;
+    background-color: rgb(255, 255, 255);
+    color: rgb(85, 85, 85);
+    border-color: rgb(204, 204, 204);
+    border-radius: 0px;
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    // header {
+    //     background-color: $color-principal;
+    //     height: 70px;
+    //     color: #fff;
+    // }
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+
+}

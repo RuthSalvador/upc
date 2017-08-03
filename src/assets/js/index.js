@@ -10,15 +10,19 @@ const render = (root) => {
       initMap("map-result", laboratoriaLima);
     }, 500);
 
-  }
-  else if(state.page == 1){
+  } else if(state.page == 1){
     wrapper.append(Login(_=>{ render(root) }));
-  }else if(state.page == 2){
+  } else if(state.page == 2){
     wrapper.append(SegundaPantalla());
-} else if(state.page == 3) {
-    wrapper.append(Header(_=>{ render(root) }));
+  } else if(state.page == 3) {
+        wrapper.append(Header(_=>{ render(root) }));
+  } else if(state.page == 4) {
+        wrapper.append(Buscar(_=>{ render(root) }));
 
-}
+  } else if(state.page == 5 ) {
+        wrapper.append(BuscarLugar(_=>{ render(root) }));
+
+  }
 
   // switch(state.screenView) {
   // case null:
@@ -30,7 +34,7 @@ const render = (root) => {
 };
 
 const state = {
-  page: 3,
+  page: 4,
   data:{},
   rutasMo: null,
 	screenView: null
