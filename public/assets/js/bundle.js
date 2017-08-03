@@ -44,10 +44,10 @@ const HeaderResult = (image, title, detail) => {
 
 //centros
 const upcMo = { lat: -12.103676, lng: -76.9633296};
-const kata = { lat: -12.1040077, lng: -76.9624472};
+const kata = { lat: -12.1045677, lng: -76.9630828};
 //let myLocation;
 
-const initMap = (mapa,centro, destiny) => {
+const initMap = (mapa,centro,destiny) => {
 
   var map = new google.maps.Map(document.getElementById(mapa), {
     zoom: 18,
@@ -68,7 +68,22 @@ const initMap = (mapa,centro, destiny) => {
       icon: iconBase + 'tu-llegada.png',
     });
 
+  var flightPlanCoordinates = [
+    {lat: -12.103676, lng: -76.9633296},
+    {lat: -12.1042031, lng: -76.9629622},
+    {lat: -12.1043683, lng: -76.9629809},
+    {lat: -12.1044444, lng: -76.9630909},
+    {lat: -12.1045677, lng: -76.9630828},
+  ];
+  var flightPath = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
 
+  flightPath.setMap(map);
 
 };
 
@@ -237,6 +252,25 @@ const Login = (update) => {
 
 'use strict';
 
+const MapaSvg = (update) => {
+  const section = $('<section></section>');
+  var divMap  = $(`<div id="map-exa" class="map"></div>`);
+  var svg = `<svg xmlns="http://www.w3.org/2000/svg" version='1.1' width="100%" height="100%" >`;
+
+  section.append(divMap);
+
+  const line = `<line id="" x1='700' y1="400" x2='700' y2='340' style='stroke:blue;stroke-width:5'/>`;
+  divMap.append(svg);
+  //svg.append(line);
+
+  return section;
+
+};
+
+
+
+'use strict';
+
 const Resultado = (update) => {
   const section = $('<section></section>');
   const divMap  = $('<div id="map-result" class="map"></div>');
@@ -360,11 +394,14 @@ const render = (root) => {
     }, 500);
   }else if(state.page == 2){
     wrapper.append(SegundaPantalla());
-} else if(state.page == 3) {
-    wrapper.append(Header(_=>{ render(root) }));
-
-}
-
+  } else if(state.page == 3) {
+      wrapper.append(Header(_=>{ render(root) }));
+  } else if(state.page == 4) {
+    wrapper.append(MapaSvg(_ =>{render(root) }));
+    setTimeout(function() {
+      initMap("map-exa", upcMo, kata);
+    }, 500);
+  }
   root.append(wrapper);
 };
 

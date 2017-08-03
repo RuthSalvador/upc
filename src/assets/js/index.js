@@ -13,11 +13,14 @@ const render = (root) => {
     }, 500);
   }else if(state.page == 2){
     wrapper.append(SegundaPantalla());
-} else if(state.page == 3) {
-    wrapper.append(Header(_=>{ render(root) }));
-
-}
-
+  } else if(state.page == 3) {
+      wrapper.append(Header(_=>{ render(root) }));
+  } else if(state.page == 4) {
+    wrapper.append(MapaSvg(_ =>{render(root) }));
+    setTimeout(function() {
+      initMap("map-exa", upcMo, kata);
+    }, 500);
+  }
   root.append(wrapper);
 };
 
