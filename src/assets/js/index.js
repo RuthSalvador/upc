@@ -15,17 +15,11 @@ const render = (root) => {
     wrapper.append(SegundaPantalla());
   }
 
-  // switch(state.screenView) {
-  // case null:
-  // 	wrapper.append(Home(_ => render(root)));
-  // 	break;
-  // }
-
   root.append(wrapper);
 };
 
 const state = {
-  page: 0,
+  page: 1,
   data:{},
   rutasMo: null,
 	screenView: null
