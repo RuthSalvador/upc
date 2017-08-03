@@ -14,25 +14,25 @@ const render = (root) => {
   } else if(state.page == 2){
     wrapper.append(Buscar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-buscar", state.origenLat, state.origenLong, '','');
+      initMap("map-buscar", state.origenLat, state.origenLong, '','','');
     }, 500);
 
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-lugar", state.origenLat, state.origenLong, '','');
+      initMap("map-lugar", state.origenLat, state.origenLong, '','','');
     }, 500);
 
   } else if(state.page == 4 ) {
     wrapper.append(BuscarClass(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-clases", state.origenLat, state.origenLong, '','');
+      initMap("map-clases", state.origenLat, state.origenLong, '','','');
     }, 500);
 
   }else if(state.page == 5 ) {
     wrapper.append(Resultado(_ => { render(root) }));
     setTimeout(function () {
-      initMap("map-result", state.origenLat, state.origenLong, state.destinoLat, state.destinoLong);
+      initMap("map-result", state.origenLat, state.origenLong, state.destinoLat, state.destinoLong, state.myarray);
     }, 500);
   }
 
@@ -40,7 +40,7 @@ const render = (root) => {
 };
 
 const state = {
-  page: 0,
+  page: 1,
   usuario: null,
   rutasSede: null,
   upcSede: null,
@@ -49,7 +49,12 @@ const state = {
   destinoLat: null,
   destinoLong: null,
   dataPlaces: null,
-  clases: null
+  array: [],
+  latitudes: [],
+  longitudes: [],
+  clases: null,
+  objetoRuta: {},
+  myarray: []
 };
 
 $(document).ready(function() {

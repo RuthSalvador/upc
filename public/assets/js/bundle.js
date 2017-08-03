@@ -72,9 +72,12 @@ const HeaderResult = (image, title, detail) => {
 //let myLocation;
 var markerUbication;
 var markerDestiny;
-var rutas = [];
+var flightPath;
+var map;
+//var rutas = [];
 
-const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
+const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino,array) => {
+
 
   var centro = {
     lat: latOrigen,
@@ -86,7 +89,7 @@ const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
     lng: lngDestino
   };
 
-  var map = new google.maps.Map(document.getElementById(mapa), {
+  map = new google.maps.Map(document.getElementById(mapa), {
     zoom: 19,
     center: centro,
     disableDefaultUI: true
@@ -113,15 +116,20 @@ const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
     });
 
 
-  var flightPlanCoordinates = [
-    {lat: -12.103676, lng: -76.9633296},
+  var flightPlanCoordinates = array;
+
+    /*{lat: -12.103676, lng: -76.9633296},
     {lat: -12.1042031, lng: -76.9629622},
     {lat: -12.1043683, lng: -76.9629809},
     {lat: -12.1044444, lng: -76.9630909},
-    {lat: -12.1045677, lng: -76.9630828},
-  ];
+    {lat: -12.1045677, lng: -76.9630828},*/
 
-  var flightPath = new google.maps.Polyline({
+
+  // flightPlanCoordinates = array;
+  console.log(flightPlanCoordinates);
+  console.log(array);
+
+   flightPath = new google.maps.Polyline({
     path: flightPlanCoordinates,
     geodesic: true,
     strokeColor: '#FF0000',
@@ -129,11 +137,18 @@ const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
     strokeWeight: 2
   });
 
-  flightPath.setMap(map);
-
+//  flightPath.setMap(map);
+  addLine();
 
 };
 
+function addLine() {
+  flightPath.setMap(map);
+}
+/*
+function removeLine() {
+  flightPath.setMap(null);
+}*/
 
 
 
@@ -171,10 +186,13 @@ const Buscar = (update) => {
   const btn     = $('<button type="button" id="buscar" class="btn">¿A dónde quieres ir?</button>');
   const img     = $('<img src="assets/img/lupa.png" alt ="buscar">');
 
+  const back    = $('<button type="button" id="btn-back" class="btn btn-danger text-uppercase">volver</button>');
+
   section
     .append(Header(update))
     .append(map)
-    .append(btn);
+    .append(btn)
+    .append(back);
 
   btn
     .append(img)
@@ -184,6 +202,11 @@ const Buscar = (update) => {
 
       update();
     });
+
+  back.on('click',function () {
+    state.page = 1;
+    update();
+  });
     return section;
 };
 
@@ -529,7 +552,6 @@ const Resultado = (update) => {
   }
   const back    = $('<button type="button" class="btn btn-block btn--change text-uppercase">volver</button>');
 
-
   section
     .append(Header(update))
     .append(divMap)
@@ -547,7 +569,28 @@ const Resultado = (update) => {
   btns
     .append(back);
 
-  console.log(state.rutasSede);
+  (state.rutasSede).forEach(function (e) {
+    if(e.name == state.dataPlaces.Name ){
+      state.array = e.geometry.coordinates;
+      (state.array).forEach(function (el,i) {
+        (state.latitudes).push((state.array)[i][1]);
+        (state.longitudes).push((state.array)[i][0]);
+      });
+    }
+  });
+  //const objetoRuta = new Object();
+
+  for(let i = 0; i < (state.latitudes).length;i++){
+    (state.objetoRuta.lat) = (state.latitudes)[i];
+    (state.objetoRuta.lng) = (state.longitudes)[i];
+
+    (state.myarray).push({lat: (state.latitudes)[i], lng: (state.longitudes)[i]});
+  }
+
+ console.log(state.objetoRuta);
+ console.log(state.myarray);
+  //if(state.dataPlaces.Name == stat)
+
 
   back.on('click',function () {
     state.page = 3;
@@ -620,7 +663,7 @@ const Modal = (idModal, update) => {
     .append(close);
 
   body
-    .append(HeaderResult(state.upcSede[15].properties.src, "reserva de espacios deportivos","Consulte y reserve el espacio deportivo"))
+    .append(HeaderResult(state.upcSede[0].properties.srcpisc, "reserva de espacios deportivos","Consulte y reserve el espacio deportivo"))
     .append(divSpace)
     .append(divHours)
     .append(divDate)
@@ -665,7 +708,6 @@ const Sedes = (update) => {
 	const sanIsidro	 = $('<div class="sede--SanIsidro col-xs-12 col-sm-6"><p>Campus San Isidro</p></div>');
 	const villa 		 = $('<div class="sede--Villa col-xs-12 col-sm-6"><p>Campus Villa</p></div>');
 	const sMiguel 	 = $('<div class="sede--SanMiguel col-xs-12 col-sm-6"><p>Campus San Miguel</p></div>');
-
 
 	const sede = (campus, urlSede, rutasSede) => {
 	  campus.on('click',(e) => {
@@ -722,25 +764,25 @@ const render = (root) => {
   } else if(state.page == 2){
     wrapper.append(Buscar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-buscar", state.origenLat, state.origenLong, '','');
+      initMap("map-buscar", state.origenLat, state.origenLong, '','','');
     }, 500);
 
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-lugar", state.origenLat, state.origenLong, '','');
+      initMap("map-lugar", state.origenLat, state.origenLong, '','','');
     }, 500);
 
   } else if(state.page == 4 ) {
     wrapper.append(BuscarClass(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-clases", state.origenLat, state.origenLong, '','');
+      initMap("map-clases", state.origenLat, state.origenLong, '','','');
     }, 500);
 
   }else if(state.page == 5 ) {
     wrapper.append(Resultado(_ => { render(root) }));
     setTimeout(function () {
-      initMap("map-result", state.origenLat, state.origenLong, state.destinoLat, state.destinoLong);
+      initMap("map-result", state.origenLat, state.origenLong, state.destinoLat, state.destinoLong, state.myarray);
     }, 500);
   }
 
@@ -748,7 +790,7 @@ const render = (root) => {
 };
 
 const state = {
-  page: 0,
+  page: 1,
   usuario: null,
   rutasSede: null,
   upcSede: null,
@@ -757,7 +799,12 @@ const state = {
   destinoLat: null,
   destinoLong: null,
   dataPlaces: null,
-  clases: null
+  array: [],
+  latitudes: [],
+  longitudes: [],
+  clases: null,
+  objetoRuta: {},
+  myarray: []
 };
 
 $(document).ready(function() {

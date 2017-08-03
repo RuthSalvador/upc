@@ -13,7 +13,6 @@ const Sedes = (update) => {
 	const villa 		 = $('<div class="sede--Villa col-xs-12 col-sm-6"><p>Campus Villa</p></div>');
 	const sMiguel 	 = $('<div class="sede--SanMiguel col-xs-12 col-sm-6"><p>Campus San Miguel</p></div>');
 
-
 	const sede = (campus, urlSede, rutasSede) => {
 	  campus.on('click',(e) => {
 		  e.preventDefault();

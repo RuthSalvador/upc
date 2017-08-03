@@ -3,9 +3,12 @@
 //let myLocation;
 var markerUbication;
 var markerDestiny;
-var rutas = [];
+var flightPath;
+var map;
+//var rutas = [];
 
-const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
+const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino,array) => {
+
 
   var centro = {
     lat: latOrigen,
@@ -17,7 +20,7 @@ const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
     lng: lngDestino
   };
 
-  var map = new google.maps.Map(document.getElementById(mapa), {
+  map = new google.maps.Map(document.getElementById(mapa), {
     zoom: 19,
     center: centro,
     disableDefaultUI: true
@@ -44,15 +47,20 @@ const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
     });
 
 
-  var flightPlanCoordinates = [
-    {lat: -12.103676, lng: -76.9633296},
+  var flightPlanCoordinates = array;
+
+    /*{lat: -12.103676, lng: -76.9633296},
     {lat: -12.1042031, lng: -76.9629622},
     {lat: -12.1043683, lng: -76.9629809},
     {lat: -12.1044444, lng: -76.9630909},
-    {lat: -12.1045677, lng: -76.9630828},
-  ];
+    {lat: -12.1045677, lng: -76.9630828},*/
 
-  var flightPath = new google.maps.Polyline({
+
+  // flightPlanCoordinates = array;
+  console.log(flightPlanCoordinates);
+  console.log(array);
+
+   flightPath = new google.maps.Polyline({
     path: flightPlanCoordinates,
     geodesic: true,
     strokeColor: '#FF0000',
@@ -60,11 +68,18 @@ const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
     strokeWeight: 2
   });
 
-  flightPath.setMap(map);
-
+//  flightPath.setMap(map);
+  addLine();
 
 };
 
+function addLine() {
+  flightPath.setMap(map);
+}
+/*
+function removeLine() {
+  flightPath.setMap(null);
+}*/
 
 
 

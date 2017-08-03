@@ -405,3 +405,10 @@ small {
 .details__title figure {
   padding-right: 14px;
 }
+
+#btn-back {
+  position: absolute;
+  bottom: 5vh;
+  left: 10vw;
+  z-index: 1000;
+}

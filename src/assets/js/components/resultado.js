@@ -17,7 +17,6 @@ const Resultado = (update) => {
   }
   const back    = $('<button type="button" class="btn btn-block btn--change text-uppercase">volver</button>');
 
-
   section
     .append(Header(update))
     .append(divMap)
@@ -35,7 +34,28 @@ const Resultado = (update) => {
   btns
     .append(back);
 
-  console.log(state.rutasSede);
+  (state.rutasSede).forEach(function (e) {
+    if(e.name == state.dataPlaces.Name ){
+      state.array = e.geometry.coordinates;
+      (state.array).forEach(function (el,i) {
+        (state.latitudes).push((state.array)[i][1]);
+        (state.longitudes).push((state.array)[i][0]);
+      });
+    }
+  });
+  //const objetoRuta = new Object();
+
+  for(let i = 0; i < (state.latitudes).length;i++){
+    (state.objetoRuta.lat) = (state.latitudes)[i];
+    (state.objetoRuta.lng) = (state.longitudes)[i];
+
+    (state.myarray).push({lat: (state.latitudes)[i], lng: (state.longitudes)[i]});
+  }
+
+ console.log(state.objetoRuta);
+ console.log(state.myarray);
+  //if(state.dataPlaces.Name == stat)
+
 
   back.on('click',function () {
     state.page = 3;
@@ -108,7 +128,7 @@ const Modal = (idModal, update) => {
     .append(close);
 
   body
-    .append(HeaderResult(state.upcSede[15].properties.src, "reserva de espacios deportivos","Consulte y reserve el espacio deportivo"))
+    .append(HeaderResult(state.upcSede[0].properties.srcpisc, "reserva de espacios deportivos","Consulte y reserve el espacio deportivo"))
     .append(divSpace)
     .append(divHours)
     .append(divDate)
