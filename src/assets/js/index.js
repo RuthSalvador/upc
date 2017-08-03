@@ -1,19 +1,14 @@
 'use strict';
 
 const render = (root) => {
-  root.empty();
-  const wrapper = $('<div class="wrapper"></div>');
+	root.empty();
+	const wrapper = $('<div class="wrapper"></div>');
 
-  if(state.page == 0){
-    wrapper.append(Resultado(_=>{ render(root) }));
-    setTimeout(function() {
-      initMap("map-result", laboratoriaLima);
-    }, 500);
-  } else if(state.page == 1){
-    wrapper.append(Login(_=>{ render(root) }));
-  }else if(state.page == 2){
-    wrapper.append(SegundaPantalla());
-  }
+	if(state.user == null){
+    	wrapper.append(Login(_=>{ render(root) }));
+	}else {
+		wrapper.append(SegundaPantalla());
+	}
 
   // switch(state.screenView) {
   // case null:
@@ -25,17 +20,20 @@ const render = (root) => {
 };
 
 const state = {
-  page: 1,
-  data:{},
-  rutasMo: null,
+	user: null,
+	status: null,
+	page: 1,
+	data:{},
+	rutasMo: null,
 	screenView: null
 };
 
 $(document).ready(function() {
   getJSON('/rutasMo', (err, json) => {
   state.rutasMo = json;
-  console.log(state.rutasMo);
-  const root = $('.root');
-  render(root);
+  	console.log(state.rutasMo);
+  	const root = $('.root');
+  	render(root);
+  	state.doRender = render.bind(null,root);
   });
 });

@@ -48,6 +48,12 @@ const Login = (update) => {
 		update();
 	});
 
+	btnFacebook.on('click',(e) => {
+		e.preventDefault();
+		doLogin();
+	});
+
+
 	return section;
 };
 
