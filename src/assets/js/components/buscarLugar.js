@@ -46,7 +46,7 @@ const BuscarLugar = (update) => {
     const boxImgGo      = $('<div class="col-xs-2 "></div>');
     const imgGo         = $('<img class="" src="assets/img/go.png" alt="ir a clases">');
     const boxTextGo     = $('<div class="col-xs-10"></div>');
-    const inputOrigin   = $('<input type="text" value=" Puerta de ingreso 2 Campus Villa" id="origen">');
+    const inputOrigin   = $('<input type="text" value="Puerta de ingreso 1" id="origen">');
     const inputDestino  = $('<input type="text" value="" id="destino" placeholder=" ¿A dónde quieres ir?">');
 
     boxImgGo.append(imgGo);
@@ -70,6 +70,13 @@ const BuscarLugar = (update) => {
     section.append(lugar);
     section.append(divMap);
 
+    inputDestino.on('keyup',(e) => {
+      console.log(state.upcSede);
+      let filtersClases = filterByPlace(state.upcSede,inputDestino.val());
+      reRender(secOther,filtersClases,update);
+    });
+
+
     container.on('click', (e)=> {
       e.preventDefault();
       state.page = 4;
@@ -81,6 +88,7 @@ const BuscarLugar = (update) => {
         state.page = 2;
         update();
     });
+
     $('#ir-clases').on('click',(e)=>{
       e.preventDefault();
       state.page = 6;

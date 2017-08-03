@@ -28,13 +28,21 @@ function doLogin() {
 
 'use strict';
 
-const filterByPlace = (places,query) => {
-		return places.filter((place) => {
-      console.log(place);
-			return place.nombre.toLowerCase().indexOf(query.toLowerCase()) != -1;
-		});
-}
+const filterByClass = (classes,query) => {
 
+		return classes.filter((clase) => {
+
+			return clase.nombre.toLowerCase().indexOf(query.toLowerCase()) != -1;
+		})
+};
+const filterByPlace = (places,query) => {
+
+  return places.filter((place) => {
+    console.log(place);
+    return place.properties.Name.toLowerCase().indexOf(query.toLowerCase()) != -1;
+  });
+
+};
 var getJSON = (url, cb) => {
   var xhr = new XMLHttpRequest();
   xhr.addEventListener('load', () => {
@@ -241,7 +249,7 @@ const BuscarClass = (update) => {
   const boxImgGo    = $('<div class="col-xs-2 "></div>');
   const imgGo      = $('<img class="" src="assets/img/go.png" alt="ir a clases">');
   const boxTextGo  = $('<div class="col-xs-10"></div>');
-  const inputOrigin = $('<input type="text" name="" value="">');
+  const inputOrigin = $('<input type="text" name="" value="Puerta de ingreso 1">');
   const inputDestino = $('<input type="text" name="" value="" placeholder="¿A donde quieres ir?">');
 
   boxImgGo.append(imgGo);
@@ -265,13 +273,20 @@ const BuscarClass = (update) => {
   section.append(divMap);
 
   inputDestino.on('keyup',(e) => {
-      let filtersClases = filterByPlace(state.clases.clases,inputDestino.val());
+      let filtersClases = filterByClass(state.clases.clases,inputDestino.val());
       reRenderClass(secOther,filtersClases,update);
   });
+
 
   container.on('click',(e)=>{
     e.preventDefault();
     state.page = 4;
+    update();
+  });
+
+  iconLeft.on('click', (e)=> {
+    e.preventDefault();
+    state.page = 3;
     update();
   });
 
@@ -328,7 +343,7 @@ const BuscarLugar = (update) => {
     const boxImgGo      = $('<div class="col-xs-2 "></div>');
     const imgGo         = $('<img class="" src="assets/img/go.png" alt="ir a clases">');
     const boxTextGo     = $('<div class="col-xs-10"></div>');
-    const inputOrigin   = $('<input type="text" value=" Puerta de ingreso 2 Campus Villa" id="origen">');
+    const inputOrigin   = $('<input type="text" value="Puerta de ingreso 1" id="origen">');
     const inputDestino  = $('<input type="text" value="" id="destino" placeholder=" ¿A dónde quieres ir?">');
 
     boxImgGo.append(imgGo);
@@ -352,6 +367,13 @@ const BuscarLugar = (update) => {
     section.append(lugar);
     section.append(divMap);
 
+    inputDestino.on('keyup',(e) => {
+      console.log(state.upcSede);
+      let filtersClases = filterByPlace(state.upcSede,inputDestino.val());
+      reRender(secOther,filtersClases,update);
+    });
+
+
     container.on('click', (e)=> {
       e.preventDefault();
       state.page = 4;
@@ -363,6 +385,7 @@ const BuscarLugar = (update) => {
         state.page = 2;
         update();
     });
+
     $('#ir-clases').on('click',(e)=>{
       e.preventDefault();
       state.page = 6;
@@ -372,7 +395,6 @@ const BuscarLugar = (update) => {
     reRender( secOther, list, update);
     return section;
 };
-
 'use strict';
 const Header = (update) => {
   const principal     = $('<header></header>');
@@ -674,13 +696,13 @@ const render = (root) => {
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-lugar", state.origenLong, state.origenLat, kata);
+      initMap("map-lugar", state.origenLong, state.origenLat, '');
     }, 500);
 
   } else if(state.page == 4 ) {
     wrapper.append(BuscarClass(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-clases", state.origenLong, state.origenLat, kata);
+      initMap("map-clases", state.origenLong, state.origenLat, '');
     }, 500);
 
   }else if(state.page == 5 ) {

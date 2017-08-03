@@ -19,13 +19,13 @@ const render = (root) => {
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-lugar", state.origenLong, state.origenLat, kata);
+      initMap("map-lugar", state.origenLong, state.origenLat, '');
     }, 500);
 
   } else if(state.page == 4 ) {
     wrapper.append(BuscarClass(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-clases", state.origenLong, state.origenLat, kata);
+      initMap("map-clases", state.origenLong, state.origenLat, '');
     }, 500);
 
   }else if(state.page == 5 ) {
