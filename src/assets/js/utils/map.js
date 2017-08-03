@@ -1,10 +1,15 @@
 
-//centros
-const upcMo = { lat: -12.103676, lng: -76.9633296};
+
+
 const kata = { lat: -12.1045677, lng: -76.9630828};
 //let myLocation;
 
-const initMap = (mapa,centro,destiny) => {
+const initMap = (mapa,latitud,longitud,destiny) => {
+
+  var centro = {
+    lat: latitud,
+    lng: longitud
+  };
 
   var map = new google.maps.Map(document.getElementById(mapa), {
     zoom: 18,

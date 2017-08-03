@@ -20,16 +20,21 @@ const Sedes = (update) => {
       getJSON(urlRuta, (err, json) => {
         state.rutasSede = json;
         $.each(json.features, ( key, value ) =>  {
-          console.log(value);
+          console.log(value.geometry.coordinates);
         });
       });
       getJSON(urlSede, (err, json) => {
         state.upcSede = json;
-        //console.log(json.features);
+        $.each(json.features, ( key, value ) =>  {
+          console.log(value.geometry.coordinates);
+          console.log(state.upcSede.geometry.coordinates);
+
+        });
       });
 
       state.page = 2;
       update();
+
     });
 
   };

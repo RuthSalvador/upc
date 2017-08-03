@@ -77,8 +77,10 @@ const Login = (update) => {
 	        // User is signed in.
 	        console.log(user);
 	        state.page = 1;
+	        state.usuario = user.email;
 	        update();
-	      } else {
+          console.log(state.usuario);
+        } else {
 	        console.log('no logeado');
 	      }
 	    });
