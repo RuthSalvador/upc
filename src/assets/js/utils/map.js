@@ -1,18 +1,27 @@
 
-//centros
-const upcMo = { lat: -12.103676, lng: -76.9633296};
-const kata = { lat: -12.1045677, lng: -76.9630828};
+//const kata = { lat: -12.1045677, lng: -76.9630828};
 //let myLocation;
+var markerUbication;
+var markerDestiny;
+var rutas = [];
 
-const initMap = (mapa,centro,destiny) => {
+const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
+
+  var centro = {
+    lat: latOrigen,
+    lng: lngOrigen
+  };
+
+  var destiny = {
+    lat: latDestino,
+    lng: lngDestino
+  };
 
   var map = new google.maps.Map(document.getElementById(mapa), {
-    zoom: 18,
+    zoom: 19,
     center: centro,
     disableDefaultUI: true
   });
-
-
 
 
   var iconBase = 'assets/img/';
@@ -35,8 +44,6 @@ const initMap = (mapa,centro,destiny) => {
     });
 
 
-
-
   var flightPlanCoordinates = [
     {lat: -12.103676, lng: -76.9633296},
     {lat: -12.1042031, lng: -76.9629622},
@@ -44,6 +51,7 @@ const initMap = (mapa,centro,destiny) => {
     {lat: -12.1044444, lng: -76.9630909},
     {lat: -12.1045677, lng: -76.9630828},
   ];
+
   var flightPath = new google.maps.Polyline({
     path: flightPlanCoordinates,
     geodesic: true,

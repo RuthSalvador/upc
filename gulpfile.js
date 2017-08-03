@@ -123,24 +123,22 @@ gulp.task('default', ['browser-sync'], function () {
 
 
 
-/*gulp.task("serve", ()=> {
-  browserSync.init({
-    server: {
-      baseDir: config.dist
-    }
-  });
-
-  gulp.watch(sources.html, ["html-watch"]);
-  gulp.watch(sources.img, ["img-watch"]);
-  gulp.watch(sources.fonts, ["fonts-watch"]);
-  gulp.watch(sources.sass, ["sass-watch"]);
-  gulp.watch(sources.js, ["js-watch"]);
-
-});*/
+// gulp.task("serve", ()=> {
+//   browserSync.init({
+//     server: {
+//       baseDir: config.dist
+//     }
+//   });
+//   gulp.watch(sources.html, ["html-watch"]);
+//   gulp.watch(sources.img, ["img-watch"]);
+//   gulp.watch(sources.fonts, ["fonts-watch"]);
+//   gulp.watch(sources.sass, ["sass-watch"]);
+//   gulp.watch(sources.js, ["js-watch"]);
+// });
 
 gulp.task('serve', ['nodemon'], function() {
   browserSync.init(null, {
-    //proxy: "http://localhost:5000",
+    // proxy: "http://localhost:5000",
     files: ["public/**/*.*"],
     //browser: "google chrome",
     port: 7000,

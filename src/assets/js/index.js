@@ -4,48 +4,73 @@ const render = (root) => {
   root.empty();
   const wrapper = $('<div class="wrapper"></div>');
 
+
   if(state.page == 0){
     wrapper.append(Login(_=>{ render(root) }));
+
   } else if(state.page == 1){
-    wrapper.append(Resultado(_=>{ render(root) }));
-    setTimeout(function() {
-      initMap("map-result", upcMo, kata);
+    wrapper.append(Sedes(_=>{ render(root) }));
+
+  } else if(state.page == 2){
+    wrapper.append(Buscar(_=>{ render(root) }));
+    setTimeout(function () {
+      initMap("map-buscar", state.origenLat, state.origenLong, '','');
     }, 500);
-  }else if(state.page == 2){
-    wrapper.append(SegundaPantalla());
-  } else if(state.page == 3) {
-      wrapper.append(Header(_=>{ render(root) }));
-  } else if(state.page == 4) {
-    wrapper.append(MapaSvg(_ =>{render(root) }));
-    setTimeout(function() {
-      initMap("map-exa", upcMo, kata);
+
+  } else if(state.page == 3 ) {
+    wrapper.append(BuscarLugar(_=>{ render(root) }));
+    setTimeout(function () {
+      initMap("map-lugar", state.origenLat, state.origenLong, '','');
+    }, 500);
+
+  } else if(state.page == 4 ) {
+    wrapper.append(BuscarClass(_=>{ render(root) }));
+    setTimeout(function () {
+      initMap("map-clases", state.origenLat, state.origenLong, '','');
+    }, 500);
+
+  }else if(state.page == 5 ) {
+    wrapper.append(Resultado(_ => { render(root) }));
+    setTimeout(function () {
+      initMap("map-result", state.origenLat, state.origenLong, state.destinoLat, state.destinoLong);
     }, 500);
   }
+
   root.append(wrapper);
 };
 
 const state = {
   page: 1,
-  data:{},
-  rutasMo: null,
-  rutasSis: null,
-	screenView: null
+  usuario: null,
+  rutasSede: null,
+  upcSede: null,
+  origenLat :null,
+  origenLong: null,
+  destinoLat: null,
+  destinoLong: null,
+  dataPlaces: null,
+  clases: null
 };
 
 $(document).ready(function() {
   getJSON('/rutasMo', (err, json) => {
-  state.rutasMo = json;
-  console.log(state.rutasMo);
+      state.rutasMo = json;
+  });
+  getJSON('/rutasSis', (err, json) => {
+      state.rutasSis = json;
+
+
+  console.log(state.rutasMo.features[0].geometry.coordinates[1]);
+
+  });
+  getJSON('/upcMonterrico', (err, json) => {
+      state.upcMonterrico = json;
+  });
+  getJSON('/clases', (err, json) => {
+      state.clases = json;
+  });
+
   const root = $('.root');
   render(root);
-  });
-});
 
-$(document).ready(function() {
-  getJSON('/rutasSis', (err, json) => {
-    state.rutasSis = json;
-    console.log(state.rutasSis);
-    const root = $('.root');
-    render(root);
-  });
 });

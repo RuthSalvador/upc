@@ -1,0 +1,93 @@
+
+#buscar {
+    z-index: 1000;
+    position: absolute;
+    top: 21vh;
+    left: 14vw;
+    @extend %flex;
+    justify-content: space-between;
+    width: 72vw;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+    color: rgb(85, 85, 85);
+    border-color: rgb(204, 204, 204);
+    border-radius: 0;
+}
+#buscarLugar {
+    width: 100%;
+    background-color: white;
+    #search {
+        span {
+            cursor: pointer;
+        }
+        input {
+            display: block;
+            margin-top: 5px;
+            border: none;
+            background-color: #dcdada;
+            width: 70vw;
+            margin-bottom: 7px;
+        }
+        img {
+            width: 5vh;
+        }
+    }
+    #clase {
+        border-top: 7px solid rgba(196, 190, 196, 0.62);
+        border-bottom: 7px solid rgba(196, 190, 196, 0.62);
+        p {
+            color: $color-principal;
+            font-weight: 500;
+            margin: 0;
+            font-size: 1.14em;
+        }
+        span {
+            color: $color-secondary;
+        }
+        .container {
+            @extend %flex;
+        }
+    }
+    #places {
+        .item {
+            padding: 7px 14px;
+            border-bottom: 1px solid rgb(215, 215, 215);
+            a {
+                color: #000;
+            }
+            p {
+                display: inline-block;
+            }
+            img {
+                padding-right: 35px;
+                padding-left: 14px;
+            }
+        }
+    }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #buscar {
+      left: 7vw;
+      width: 86vw;
+    }
+    #buscarLugar {
+        width: 40%;
+        #clase {
+            .container {
+                width: 100%;
+            }
+        }#search {
+            .container {
+                width: 100%;
+            }
+            input {
+                width: 100%;
+                font-size: 12px;
+            }
+        }
+    }
+
+}
+
+

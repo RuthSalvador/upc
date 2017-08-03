@@ -46,7 +46,12 @@ var loadUpcVilla = () => {
       return snapshot.val();
     });
 };
-
+var loadClases = () => {
+    var url = '/clases';
+    return database.ref(url).once('value').then(function(snapshot) {
+      return snapshot.val();
+    });
+};
 
 module.exports = {
     questions : loadQuestions,
@@ -55,4 +60,5 @@ module.exports = {
     upcSanMiguel: loadUpcSanMiguel,
     upcSis: loadUpcSis,
     upcVilla: loadUpcVilla,
+    clases: loadClases,
 };

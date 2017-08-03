@@ -1,8 +1,8 @@
 const express = require('express');
-const api = require("./api");
+const api = require('./api');
 const app = express();
-
 app.use('/', express.static('public'));
+
 app.set('port', (process.env.PORT || 5000));
 
 app.listen(app.get('port'), ()=> {
@@ -46,6 +46,13 @@ app.get('/upcSis', function (req, res) {
 
 app.get('/upcVilla', function (req, res) {
     var questions = api.upcVilla();
+    questions.then( (result) => {
+        res.status(200).json(result);
+    });
+});
+
+app.get('/clases', function (req, res) {
+    var questions = api.clases();
     questions.then( (result) => {
         res.status(200).json(result);
     });
