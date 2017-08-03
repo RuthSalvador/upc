@@ -2,6 +2,7 @@
 
 *** Se realizó como reto de la Universidad Peruana de las Ciencias Aplicadas, con el objetivo de desarrollar la WebApp para cachimbos y alumnos para permitir los diferentes servicios dentro del campus ***
 
+`Demo`: [HEROKU](https://upc-go.herokuapp.com/)
 ## Framework utilizado:
 
 `Bootstrap`
