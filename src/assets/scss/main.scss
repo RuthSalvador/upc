@@ -147,7 +147,23 @@
 
 .modal-body {
   padding: 21px 35px;
-
+}
+/**styles quiero ir a mis clases**/
+#search input{
+  display: block;
+  margin-top: 5px;
+  border: none;
+  background-color: #dcdada;
+  width: 80%;
+}
+small{
+  margin-left: 14%;
+}
+.p-clase{
+  margin: 0 0 0px;
+}
+.container-buscar{
+  cursor: pointer;
 }
 
 @import "resultado";

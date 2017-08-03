@@ -332,6 +332,7 @@ header h3 {
   padding: 21px 35px;
 }
 
+<<<<<<< HEAD
 @media (min-width: 768px) {
   .result__details {
     padding: 21px 35px;
@@ -351,4 +352,25 @@ header h3 {
   .btn--change:active, .btn--change:focus {
     color: red;
   }
+=======
+/**styles quiero ir a mis clases**/
+#search input {
+  display: block;
+  margin-top: 5px;
+  border: none;
+  background-color: #dcdada;
+  width: 80%;
+}
+
+small {
+  margin-left: 14%;
+}
+
+.p-clase {
+  margin: 0 0 0px;
+}
+
+.container-buscar {
+  cursor: pointer;
+>>>>>>> origin/clases
 }

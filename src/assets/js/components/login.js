@@ -73,6 +73,7 @@ const Login = (update) => {
 	    });
 
 	    firebase.auth().onAuthStateChanged(function(user) {
+				console.log(user);
 	      if (user) {
 	        // User is signed in.
 	        console.log(user);
@@ -86,6 +87,4 @@ const Login = (update) => {
 	    });
 	});
 	return section;
-
 };
-
