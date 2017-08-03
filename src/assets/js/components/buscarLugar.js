@@ -5,11 +5,24 @@ const searchItem = (places, update)  => {
     const link   = $('<a href=""></a>');
     const nam    = $('<p>'+places.properties.Name+'</p>');
     const images = $('<img src="'+places.properties.src+'" alt="'+places.properties.Name+'">');
+    console.log(places.geometry.coordinates[1]);
     link.append(images);
     link.append(nam);
     item.append(link);
 
+    link.on('click',(e)=>{
+      e.preventDefault();
+      state.page = 5;
+      state.destinoLat = places.geometry.coordinates[1];
+      state.destinoLong = places.geometry.coordinates[0];
+      console.log(state.destinoLat);
+      console.log(state.destinoLong);
+
+      update();
+    });
+
     return item;
+
 };
 
 
@@ -91,7 +104,7 @@ const BuscarLugar = (update) => {
 
     $('#ir-clases').on('click',(e)=>{
       e.preventDefault();
-      state.page = 6;
+      state.page = 5;
       update();
     });
     let list = state.upcSede;

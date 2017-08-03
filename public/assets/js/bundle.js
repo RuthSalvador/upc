@@ -85,18 +85,21 @@ const HeaderResult = (image, title, detail) => {
 };
 
 
-
-
-const kata = { lat: -12.1045677, lng: -76.9630828};
+//const kata = { lat: -12.1045677, lng: -76.9630828};
 //let myLocation;
 var markerUbication;
 var markerDestiny;
 
-const initMap = (mapa,latitud,longitud,destiny) => {
+const initMap = (mapa,latOrigen,lngOrigen,latDestino,lngDestino) => {
 
   var centro = {
-    lat: latitud,
-    lng: longitud
+    lat: latOrigen,
+    lng: lngOrigen
+  };
+
+  var destiny = {
+    lat: latDestino,
+    lng: lngDestino
   };
 
   var map = new google.maps.Map(document.getElementById(mapa), {
@@ -104,8 +107,6 @@ const initMap = (mapa,latitud,longitud,destiny) => {
     center: centro,
     disableDefaultUI: true
   });
-
-
 
 
   var iconBase = 'assets/img/';
@@ -302,11 +303,24 @@ const searchItem = (places, update)  => {
     const link   = $('<a href=""></a>');
     const nam    = $('<p>'+places.properties.Name+'</p>');
     const images = $('<img src="'+places.properties.src+'" alt="'+places.properties.Name+'">');
+    console.log(places.geometry.coordinates[1]);
     link.append(images);
     link.append(nam);
     item.append(link);
 
+    link.on('click',(e)=>{
+      e.preventDefault();
+      state.page = 5;
+      state.destinoLat = places.geometry.coordinates[1];
+      state.destinoLong = places.geometry.coordinates[0];
+      console.log(state.destinoLat);
+      console.log(state.destinoLong);
+
+      update();
+    });
+
     return item;
+
 };
 
 
@@ -388,7 +402,7 @@ const BuscarLugar = (update) => {
 
     $('#ir-clases').on('click',(e)=>{
       e.preventDefault();
-      state.page = 6;
+      state.page = 5;
       update();
     });
     let list = state.upcSede;
@@ -636,8 +650,8 @@ const Sedes = (update) => {
 		  e.preventDefault();
 		  getJSON(urlSede, (err, json) => {
 			state.upcSede = json.features;
-			state.origenLat = json.features[0].geometry.coordinates[0];
-			state.origenLong = json.features[0].geometry.coordinates[1];
+			state.origenLat = json.features[0].geometry.coordinates[1];
+			state.origenLong = json.features[0].geometry.coordinates[0];
 
 			console.log(state.origenLat);
 			console.log(state.origenLong);
@@ -690,25 +704,25 @@ const render = (root) => {
   } else if(state.page == 2){
     wrapper.append(Buscar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-buscar", state.origenLong, state.origenLat, '');
+      initMap("map-buscar", state.origenLat, state.origenLong, '','');
     }, 500);
 
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-lugar", state.origenLong, state.origenLat, '');
+      initMap("map-lugar", state.origenLat, state.origenLong, '','');
     }, 500);
 
   } else if(state.page == 4 ) {
     wrapper.append(BuscarClass(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-clases", state.origenLong, state.origenLat, '');
+      initMap("map-clases", state.origenLat, state.origenLong, '','');
     }, 500);
 
   }else if(state.page == 5 ) {
     wrapper.append(Resultado(_ => { render(root) }));
     setTimeout(function () {
-      initMap("map-result", state.origenLong, state.origenLat, kata);
+      initMap("map-result", state.origenLat, state.origenLong, state.destinoLat, state.destinoLong);
     }, 500);
   }
   root.append(wrapper);
@@ -721,6 +735,8 @@ const state = {
   upcSede: null,
   origenLat :null,
   origenLong: null,
+  destinoLat: null,
+  destinoLong: null,
   clases: null
 };
 

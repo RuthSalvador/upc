@@ -13,25 +13,25 @@ const render = (root) => {
   } else if(state.page == 2){
     wrapper.append(Buscar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-buscar", state.origenLong, state.origenLat, '');
+      initMap("map-buscar", state.origenLat, state.origenLong, '','');
     }, 500);
 
   } else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-lugar", state.origenLong, state.origenLat, '');
+      initMap("map-lugar", state.origenLat, state.origenLong, '','');
     }, 500);
 
   } else if(state.page == 4 ) {
     wrapper.append(BuscarClass(_=>{ render(root) }));
     setTimeout(function () {
-      initMap("map-clases", state.origenLong, state.origenLat, '');
+      initMap("map-clases", state.origenLat, state.origenLong, '','');
     }, 500);
 
   }else if(state.page == 5 ) {
     wrapper.append(Resultado(_ => { render(root) }));
     setTimeout(function () {
-      initMap("map-result", state.origenLong, state.origenLat, kata);
+      initMap("map-result", state.origenLat, state.origenLong, state.destinoLat, state.destinoLong);
     }, 500);
   }
   root.append(wrapper);
@@ -44,6 +44,8 @@ const state = {
   upcSede: null,
   origenLat :null,
   origenLong: null,
+  destinoLat: null,
+  destinoLong: null,
   clases: null
 };
 

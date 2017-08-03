@@ -19,8 +19,8 @@ const Sedes = (update) => {
 		  e.preventDefault();
 		  getJSON(urlSede, (err, json) => {
 			state.upcSede = json.features;
-			state.origenLat = json.features[0].geometry.coordinates[0];
-			state.origenLong = json.features[0].geometry.coordinates[1];
+			state.origenLat = json.features[0].geometry.coordinates[1];
+			state.origenLong = json.features[0].geometry.coordinates[0];
 
 			console.log(state.origenLat);
 			console.log(state.origenLong);
