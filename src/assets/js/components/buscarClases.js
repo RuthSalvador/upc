@@ -64,10 +64,14 @@ const BuscarClass = (update) => {
       let filtersClases = filterByPlace(state.clases.clases,inputDestino.val());
       reRenderClass(secOther,filtersClases,update);
   });
-
+  iconLeft.on('click', (e)=> {
+      e.preventDefault();
+      state.page = 2;
+      update();
+  })
   container.on('click',(e)=>{
     e.preventDefault();
-    state.page = 4;
+    state.page = 3;
     update();
   });
 

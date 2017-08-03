@@ -6,22 +6,14 @@ const render = (root) => {
 
   if(state.page == 0){
     wrapper.append(Login(_=>{ render(root) }));
-
   } else if(state.page == 1){
     wrapper.append(Sedes(_=>{ render(root) }));
-
   } else if(state.page == 2){
     wrapper.append(Buscar(_=>{ render(root) }));
     setTimeout(function () {
       initMap("map-buscar", -12.1037153,-76.9633269, kata);
     }, 500);
-  }
-  //else if(state.page == 1){
-  //   wrapper.append(Login(_=>{ render(root) }));
-  // }
-  else if(state.page == 2){
-    wrapper.append(SegundaPantalla());
-  } else if(state.page == 3 ) {
+  }else if(state.page == 3 ) {
     wrapper.append(BuscarLugar(_=>{ render(root) }));
   } else if(state.page == 4 ) {
     wrapper.append(Resultado(_ => { render(root) }));
@@ -37,7 +29,7 @@ const render = (root) => {
 const state = {
   rutasMo: null,
   rutasSis: null,
-  upcMonterrico: null
+  upcMonterrico: null,
   page: 1,
   usuario: null,
   rutasSede: null,

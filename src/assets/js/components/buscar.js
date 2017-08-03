@@ -18,7 +18,6 @@ const Buscar = (update) => {
     .on('click', (e) => {
         e.preventDefault();
         state.page = 3;
-
       update();
     });
     return section;
