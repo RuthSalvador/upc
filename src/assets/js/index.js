@@ -54,6 +54,7 @@ $(document).ready(function() {
   getJSON('/clases', (err, json) => {
       state.clases = json;
       console.log(state.clases);
+
   });
 
   const root = $('.root');

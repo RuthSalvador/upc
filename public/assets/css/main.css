@@ -41,7 +41,7 @@
   bottom: 5vh;
 }
 
-#buscar {
+#buscar, #buscarLugar #clase .container {
   display: flex !important;
   justify-content: center;
   align-items: center;
@@ -97,17 +97,87 @@ header h3 {
   background-color: white;
 }
 
+#buscarLugar #search span {
+  cursor: pointer;
+}
+
+#buscarLugar #search input {
+  display: block;
+  margin-top: 5px;
+  border: none;
+  background-color: #dcdada;
+  width: 70vw;
+  margin-bottom: 7px;
+}
+
+#buscarLugar #search img {
+  width: 5vh;
+}
+
+#buscarLugar #clase {
+  border-top: 7px solid rgba(196, 190, 196, 0.62);
+  border-bottom: 7px solid rgba(196, 190, 196, 0.62);
+}
+
+#buscarLugar #clase p {
+  color: red;
+  font-weight: 500;
+  margin: 0;
+  font-size: 1.14em;
+}
+
+#buscarLugar #clase span {
+  color: #aeaeae;
+}
+
 #buscarLugar #places .item {
   padding: 7px 14px;
   border-bottom: 1px solid #d7d7d7;
+}
+
+#buscarLugar #places .item a {
+  color: #000;
 }
 
 #buscarLugar #places .item p {
   display: inline-block;
 }
 
+#buscarLugar #places .item img {
+  padding-right: 35px;
+  padding-left: 14px;
+}
+
 /* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  #buscar {
+    width: 50vw;
+  }
+  #buscarLugar {
+    width: 40%;
+  }
+  #buscarLugar #clase .container {
+    width: 100%;
+  }
+  #buscarLugar #search .container {
+    width: 100%;
+  }
+  #buscarLugar #search input {
+    width: 100%;
+    font-size: 12px;
+  }
+}
+
 /* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #buscar {
+    width: 35vw;
+  }
+  #buscarLugar {
+    width: 30%;
+  }
+}
+
 #login {
   align-items: center;
   height: 100vh;

@@ -1,25 +1,14 @@
 'use strict';
 
 const searchItem = (places, update)  => {
-    const item = $('<div class="item"></div>');
-    const nam = $('<p>'+places.properties.Name+'</p>');
-    const images = $('<img src="'+places.properties.src+'">');
-    // const adrss= $('<h6>'+station.address+'</h6>');
-    // const district = $('<h6>'+station.district+'</h6>');
-    // const icon = $('<i class="fa fa-map" aria-hidden="true"></i>');
+    const item   = $('<div class="item"></div>');
+    const link   = $('<a href=""></a>');
+    const nam    = $('<p>'+places.properties.Name+'</p>');
+    const images = $('<img src="'+places.properties.src+'" alt="'+places.properties.Name+'">');
+    link.append(images);
+    link.append(nam);
+    item.append(link);
 
-    item.append(images);
-    item.append(nam);
-    // item.append(adrss);
-    // item.append(district);
-    // item.append(icon);
-
-    // icon.on('click', (e) => {
-    //     e.preventDefault();
-    //     state.selectedStation = station;
-    //     update();
-    //     showMap(state.selectedStation.lat, state.selectedStation.long);
-    // })
     return item;
 }
 
@@ -33,46 +22,53 @@ const reRender = (sectionList, result, update) => {
 
 
 const BuscarLugar = (update) => {
-  const lugar     = $('<div id="buscarLugar" ></div>');
-  const secSearch = $('<section id="search"></section>');
-  const secClass  = $('<section id="clase"></section>');
-  const secOther  = $('<section id="places"></section>');
+    const lugar = $('<div id="buscarLugar" ></div>');
 
-  const container = $('<div class="container"></div>');
-  const boxImg    = $('<div class="col-xs-2 "></div>');
-  const img       = $('<img src="assets/img/reserva.png"> alt="ir a clases"');
-  const boxText   = $('<div class="col-xs-9"></div>')
-  const parr      = $('<p>Quiero ir a mis clases</p>');
-  const span      = $('<span>Sincronizado con tu horario</span>');
-  const boxArrow    = $('<div class="col-xs-1"></div>');
-  const icon      = $('<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>');
+    const secSearch = $('<section id="search"></section>');
+    const secClass = $('<section id="clase"></section>');
+    const secOther = $('<section id="places"></section>');
 
-  const containerGo = $('<div class="container"></div>');
-  const boxArrowLeft    = $('<div class="col-xs-12"></div>');
-  const iconLeft      = $('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>');
-  const boxImgGo    = $('<div class="col-xs-2 "></div>');
-  const imgGo      = $('<img class="" src="assets/img/go.png"> alt="ir a clases"');
-  const boxTextGo  = $('<div class="col-xs-10"></div>');
-  const inputOrigin = $('<input type="text" name="" value="">');
-  const inputDestino = $('<input type="text" name="" value="" placeholder="¿A donde quieres ir?">');
+    const container     = $('<div class="container"></div>');
+    const boxImg        = $('<div class="col-xs-2 "></div>');
+    const img           = $('<img src="assets/img/reserva.png"> alt="ir a clases"');
+    const boxText       = $('<div class="col-xs-9"></div>')
+    const parr          = $('<p>Quiero ir a mis clases</p>');
+    const span          = $('<span>Sincronizado con tu horario</span>');
+    const boxArrow      = $('<div class="col-xs-1"></div>');
+    const icon          = $('<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>');
 
-  boxImgGo.append(imgGo);
-  boxTextGo.append(inputOrigin,inputDestino);
+    const containerGo   = $('<div class="container"></div>');
+    const boxArrowLeft  = $('<div class="col-xs-12"></div>');
+    const iconLeft      = $('<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>');
+    const boxImgGo      = $('<div class="col-xs-2 "></div>');
+    const imgGo         = $('<img class="" src="assets/img/go.png"> alt="ir a clases"');
+    const boxTextGo     = $('<div class="col-xs-10"></div>');
+    const inputOrigin   = $('<input type="text" value=" Puerta de ingreso 2 Campus Villa" id="origen">');
+    const inputDestino  = $('<input type="text" value="" id="destino" placeholder=" ¿A dónde quieres ir?">');
 
-  boxImg.append(img);
-  boxText.append(parr,span);
-  boxArrowLeft.append(iconLeft);
-  boxArrow.append(icon);
-  container.append(boxImg,boxText,boxArrow);
-  containerGo.append(boxArrowLeft,boxImgGo,boxTextGo);
-  secSearch.append(containerGo);
-  secClass.append(container);
-
-  lugar.append(secSearch);
-  lugar.append(secClass);
-  lugar.append(secOther);
-
-  let list = state.upcMonterrico.features;
-  reRender( secOther, list, update);
-  return lugar;
+    boxImgGo.append(imgGo);
+    boxTextGo.append(inputOrigin,inputDestino);
+    boxImg.append(img);
+    boxText.append(parr,span);
+    boxArrowLeft.append(iconLeft);
+    boxArrow.append(icon);
+    container.append(boxImg,boxText,boxArrow);
+    containerGo.append(boxArrowLeft,boxImgGo,boxTextGo);
+    secSearch.append(containerGo);
+    secClass.append(container);
+    lugar.append(secSearch);
+    lugar.append(secClass);
+    lugar.append(secOther);
+    iconLeft.on('click', (e)=> {
+        e.preventDefault();
+        state.page = 4;
+        update();
+    })
+    container.on('click',(e)=>{
+      e.preventDefault();
+      state.page = 6;
+    });
+    let list = state.upcMonterrico.features;
+    reRender( secOther, list, update);
+    return lugar;
 }
